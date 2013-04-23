@@ -1,7 +1,7 @@
 Hypatia Station
 ==============
 
-Hypatia Station is a Space Station Thirteen server coded on a base of Bay Code with the good aspects of TG entwined as well as our own personal additions bunched in. Our preference of additions to the code is to improve aspects of realism, roleplay and enjoyability, rather than humour and immaturity. 
+Hypatia Station is a Space Station 13 server coded on a base of Baystation12 Code with the good aspects of /TG/ entwined as well as our own personal additions bunched in. Our preference of additions to the code is to improve aspects of realism, roleplay and enjoyability, rather than humour and immaturity. 
 
 Hypatia exists as a expanse built on story and heavy roleplaying, as such we wish for our code to reflect that in improving roleplay and story-making potential for our players and admin team. With this in mind, any large or controversial changes to the server, such as adding economy or cloning (which change roleplay aspects with them,) or changing an area of the map/changing a job such as science to research differently (which changes gameplay aspects,) must be approved through our Head Developer Askarn/Owen or our fellow Rootmin HappyKitten.
 
