@@ -1,0 +1,6 @@
+"Science Maintenance",21.8366,82.1472,0,0,293.15,10000
+"The Head of Personnel's Office",21.8351,82.1486,0,0,293.15,90000
+"The Aft Block",1.95312e-005,1.95312e-005,0,0,2.7,2500
+"The supply shuttle",21.8366,82.1472,0,0,293.15,117500
+"The Prison Wing",21.8366,82.1472,0,0,293.15,10000
+"The Administration Shuttle Centcom",21.8366,82.1472,0,0,293.15,105000

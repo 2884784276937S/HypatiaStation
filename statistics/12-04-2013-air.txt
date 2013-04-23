@@ -1,0 +1,3 @@
+"The Toxins Mixing Room",21.8366,82.1472,0,0,293.15,2500
+"Atmospherics",21.8366,82.1472,0,0,293.15,87500
+"The Derelict Solar Control",21.8366,82.1472,0,0,293.15,2500

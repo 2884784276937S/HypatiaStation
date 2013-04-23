@@ -1,0 +1,4 @@
+"The Abandoned Ship",21.8366,82.1472,0,0,293.15,57500
+"Abandoned Mining Station",0.01,0.01,0,0,2.7,2500
+"Mining Station Port Wing",21.8366,82.1472,0,0,293.15,12500
+"The Derelict Primary Hallway",0.01,0.01,0,0,2.7,10000

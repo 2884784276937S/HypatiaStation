@@ -1,0 +1,26 @@
+"Abandoned Mining Station",0.01,0.01,0,0,2.7,2500
+"Space",3.26667e-023,3.26667e-023,0,0,2.7,7500
+"Space",7.42766e-005,7.42766e-005,0,0,2.7,15000
+"Virology",21.8366,82.1472,0,0,293.15,10000
+"The Law Office",21.8366,82.1472,0,0,293.15,7500
+"The Brig",21.8366,82.1472,0,0,293.15,15000
+"The Syndicate Elite Shuttle",21.8366,82.1472,0,0,293.15,60000
+"The Syndicate Forward Operating Base",21.8366,82.1472,0,0,293.15,5000
+"The Derelict Chapel",0.01,0.01,0,0,2.7,20000
+"The Firing Range",21.8366,82.1472,0,0,293.15,2500
+"The Derelict Secondary Hallway",0.01,0.01,0,0,2.7,12500
+"The Ruskie DJ Station",21.8366,82.1472,0,0,293.15,5000
+"The Brig",21.8366,82.1472,0,0,293.15,15000
+"The Arrival Shuttle Hallway",21.8366,82.1472,0,0,293.15,7500
+"The Holodeck - Boxing Court",21.8366,82.1472,0,0,293.15,125000
+"Abandoned Mining Station",21.8366,82.1472,0,0,293.15,5000
+"Mining Station Port Wing",21.8366,82.1472,0,0,293.15,5000
+"The Strange Location",1.4013e-045,1.4013e-045,0,0,2.7,42500
+"The Telecoms Satellite",21.8366,82.1472,0,0,293.15,47500
+"Dormitory Maintenance",21.8366,82.1472,0,0,293.15,15000
+"Mine",21.8366,82.1472,0,0,293.15,17500
+"The Firing Range",21.8366,82.1472,0,0,293.15,2500
+"The Arrival Shuttle Hallway",21.8366,82.1472,0,0,293.15,25000
+"Medbay Maintenance",1.4013e-045,1.4013e-045,0,0,293.15,7500
+"The Escape Shuttle Hallway",21.8366,82.1472,0,0,293.15,27500
+"Mining Station Starboard Wing",21.8366,82.1472,0,0,293.15,5000

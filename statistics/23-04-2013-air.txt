@@ -1,0 +1,16 @@
+"Fore Starboard Solar Maintenance",21.8366,82.1472,0,0,293.15,5000
+"Abandoned Mining Station",3.32851e-023,1.25216e-022,0,0,293.15,7500
+"The Emergency Shuttle Centcom",21.8366,82.1472,0,0,293.15,5000
+"Abandoned Mining Station",0.01,0.01,0,0,2.7,2500
+"The AI Upload Chamber",21.8366,82.1472,0,0,293.15,2500
+"Mining Station Port Wing",17.4713,65.7198,0,0,235.06,12500
+"The Administration Shuttle Centcom",21.8366,82.1472,0,0,293.15,2500
+"Derelict Control Room Access",21.8366,82.1472,0,0,293.15,42500
+"The Escape Shuttle Hallway",21.8366,82.1472,0,0,293.15,27500
+"Space",0.00630969,0.0235392,0,0,13.8712,65000
+"Medbay",21.8366,82.1472,0,0,293.15,5000
+"The Telecoms Satellite",21.8366,82.1472,0,0,293.15,37500
+"Virology",21.8359,82.1472,0.000666667,0,293.15,27500
+"Mining Station Port Wing",21.8366,82.1472,0,0,293.15,12500
+"The Midship Block",1.4013e-045,1.4013e-045,0,0,2.7,12500
+"The Midship Block",1.56904,5.87694,0,0,23.4464,140000

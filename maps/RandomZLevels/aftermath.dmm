@@ -1,0 +1,377 @@
+"aa" = (/turf/simulated/wall/impassable_rock,/area)
+"ab" = (/turf/simulated/floor/grass,/area)
+"ac" = (/obj/structure/flora/ausbushes,/turf/simulated/floor/grass,/area)
+"ad" = (/obj/structure/flora/tree/pine,/turf/simulated/wall/impassable_rock,/area)
+"ae" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/grass,/area)
+"af" = (/obj/structure/bush,/turf/simulated/floor/grass,/area)
+"ag" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/grass,/area)
+"ah" = (/obj/structure/flora/bush,/turf/simulated/floor/grass,/area)
+"ai" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/grass,/area)
+"aj" = (/turf/simulated/wall/r_wall,/area)
+"ak" = (/obj/item/weapon/storage/secure/safe,/turf/simulated/wall/r_wall,/area)
+"al" = (/obj/machinery/newscaster,/turf/simulated/wall/r_wall,/area)
+"am" = (/turf/simulated/floor{icon_state = "dark"},/area)
+"an" = (/turf/simulated/wall,/area)
+"ao" = (/obj/machinery/mech_bay_recharge_port,/turf/simulated/floor{icon_state = "dark"},/area)
+"ap" = (/turf/simulated/floor/mech_bay_recharge_floor,/area)
+"aq" = (/obj/machinery/computer/mech_bay_power_console,/turf/simulated/floor/bluegrid,/area)
+"ar" = (/obj/item/weapon/bedsheet/blue,/turf/simulated/floor{icon_state = "dark"},/area)
+"as" = (/obj/structure/stool/bed,/turf/simulated/floor{icon_state = "dark"},/area)
+"at" = (/turf/simulated/floor{icon_state = "grimy"},/area)
+"au" = (/obj/structure/filingcabinet,/turf/simulated/floor{icon_state = "grimy"},/area)
+"av" = (/obj/machinery/computer/telecomms/monitor,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aw" = (/obj/structure/computerframe{anchored = 1},/turf/simulated/floor{icon_state = "grimy"},/area)
+"ax" = (/obj/structure/computerframe{anchored = 1},/obj/item/weapon/shard,/turf/simulated/floor{icon_state = "grimy"},/area)
+"ay" = (/turf/simulated/floor/bluegrid,/area)
+"az" = (/obj/machinery/door/airlock/centcom{name = "Living Quarters"; opacity = 1; req_access_txt = "105"},/turf/simulated/floor{icon_state = "dark"},/area)
+"aA" = (/obj/structure/closet,/obj/item/clothing/head/beret/navyhos{desc = "A stylish beret bearing a golden insignia that proudly displays the Marines coat of arms. A commander's must-have."; name = "marine officer's beret"},/obj/item/clothing/gloves/black,/obj/item/clothing/shoes/black,/turf/simulated/floor{icon_state = "dark"},/area)
+"aB" = (/obj/item/weapon/paper,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aC" = (/obj/machinery/computer/telecomms/server,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aD" = (/obj/item/weapon/shard,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aE" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aF" = (/obj/machinery/gateway{dir = 9},/turf/simulated/floor{icon_state = "dark"},/area)
+"aG" = (/obj/machinery/gateway{dir = 1},/turf/simulated/floor{icon_state = "dark"},/area)
+"aH" = (/obj/machinery/gateway{dir = 5},/turf/simulated/floor{icon_state = "dark"},/area)
+"aI" = (/obj/machinery/light_construct/small,/obj/item/stack/sheet/metal,/turf/simulated/floor{icon_state = "dark"},/area)
+"aJ" = (/obj/structure/table,/obj/item/weapon/paper,/obj/item/weapon/paper,/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aK" = (/obj/effect/decal/cleanable/blood/drip,/obj/structure/table,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aL" = (/obj/item/weapon/table_parts,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aM" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aN" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aO" = (/obj/machinery/computer/telecomms/traffic,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aP" = (/obj/structure/girder/reinforced,/turf/simulated/wall/r_wall,/area)
+"aQ" = (/obj/machinery/gateway{dir = 8},/turf/simulated/floor{icon_state = "dark"},/area)
+"aR" = (/obj/machinery/gateway/centeraway,/turf/simulated/floor{icon_state = "dark"},/area)
+"aS" = (/obj/machinery/gateway{dir = 4},/turf/simulated/floor{icon_state = "dark"},/area)
+"aT" = (/obj/structure/table,/turf/simulated/floor{icon_state = "dark"},/area)
+"aU" = (/turf/simulated/floor{icon_state = "damaged2"},/area)
+"aV" = (/obj/structure/girder,/turf/simulated/wall,/area)
+"aW" = (/obj/effect/decal/cleanable/blood/drip,/obj/item/weapon/pen,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aX" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/shard,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aY" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/paper,/turf/simulated/floor{icon_state = "grimy"},/area)
+"aZ" = (/obj/effect/decal/cleanable/dirt,/obj/item/device/radio/headset,/turf/simulated/floor{icon_state = "grimy"},/area)
+"ba" = (/obj/machinery/gateway{dir = 10},/turf/simulated/floor{icon_state = "dark"},/area)
+"bb" = (/obj/machinery/gateway,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"bc" = (/obj/machinery/gateway{dir = 6},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"bd" = (/obj/machinery/door/poddoor/shutters{density = 0; icon_state = "shutter0"; id = "kitchen"; name = "Mech Bay"; opacity = 0},/turf/simulated/floor{icon_state = "dark"},/area)
+"be" = (/obj/structure/closet,/obj/item/clothing/gloves/black,/obj/item/clothing/shoes/black,/obj/item/clothing/under/rank/navyhead_of_security{desc = "It's a jumpsuit worn by those few with the dedication to become Marine officers. It has additional armor to protect the wearer."; name = "marine officer's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"bf" = (/obj/structure/girder,/obj/item/stack/sheet/metal,/turf/simulated/wall,/area)
+"bg" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bh" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bi" = (/obj/item/clothing/head/beret/navyhos{desc = "A stylish beret bearing a golden insignia that proudly displays the Marines coat of arms. A commander's must-have."; name = "marine officer's beret"},/turf/simulated/floor{icon_state = "grimy"},/area)
+"bj" = (/obj/structure/computerframe{anchored = 1},/obj/item/weapon/shard,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bk" = (/obj/item/stack/rods,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bl" = (/obj/item/weapon/pen,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bm" = (/mob/living/simple_animal/hostile/orionblades,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bn" = (/obj/machinery/computer/telecomms/traffic,/obj/item/weapon/shard,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bo" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"bp" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"bq" = (/obj/machinery/light_construct/small,/turf/simulated/floor{icon_state = "dark"},/area)
+"br" = (/obj/structure/stool/bed,/obj/item/weapon/bedsheet/blue,/turf/simulated/floor{icon_state = "dark"},/area)
+"bs" = (/mob/living/simple_animal/hostile/orionblades,/turf/simulated/floor{icon_state = "dark"},/area)
+"bt" = (/obj/effect/decal/cleanable/blood/drip,/obj/machinery/door/airlock/highsecurity,/obj/machinery/door/airlock/centcom{name = "Commander Quarters"; opacity = 1; req_access_txt = "109"},/turf/simulated/floor{icon_state = "dark"},/area)
+"bu" = (/obj/structure/sign/securearea,/turf/simulated/wall,/area)
+"bv" = (/obj/machinery/door/airlock/highsecurity,/obj/machinery/door/airlock/centcom,/turf/simulated/floor{icon_state = "dark"},/area)
+"bw" = (/obj/structure/sign/securearea,/turf/simulated/wall/r_wall,/area)
+"bx" = (/obj/machinery/door/airlock/hatch,/turf/simulated/floor{icon_state = "dark"},/area)
+"by" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "dark"},/area)
+"bz" = (/obj/item/weapon/organ/r_arm,/turf/simulated/floor{icon_state = "dark"},/area)
+"bA" = (/obj/effect/decal/cleanable/vomit,/turf/simulated/floor{icon_state = "dark"},/area)
+"bB" = (/obj/machinery/telecomms/receiver,/turf/simulated/floor{icon_state = "dark"},/area)
+"bC" = (/obj/item/weapon/cigbutt,/turf/simulated/floor{icon_state = "dark"},/area)
+"bD" = (/obj/item/stack/sheet/metal,/turf/simulated/floor{icon_state = "dark"},/area)
+"bE" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"bF" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/simulated/floor{icon_state = "dark"},/area)
+"bG" = (/turf/simulated/floor{icon_state = "floorscorched2"},/area)
+"bH" = (/obj/effect/decal/cleanable/mucus,/turf/simulated/floor{icon_state = "dark"},/area)
+"bI" = (/obj/machinery/telecomms/receiver,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"bJ" = (/obj/structure/sign/greencross,/turf/simulated/wall,/area)
+"bK" = (/obj/machinery/telecomms/processor,/turf/simulated/floor{icon_state = "dark"},/area)
+"bL" = (/obj/machinery/telecomms/relay,/turf/simulated/floor{icon_state = "dark"},/area)
+"bM" = (/obj/machinery/photocopier,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bN" = (/obj/item/weapon/organ/l_leg,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bO" = (/obj/item/weapon/pen,/obj/item/weapon/pen,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bP" = (/obj/structure/table/reinforced,/turf/simulated/floor{icon_state = "dark"},/area)
+"bQ" = (/obj/machinery/vending/snack,/turf/simulated/floor{icon_state = "dark"},/area)
+"bR" = (/obj/machinery/vending/cola,/turf/simulated/floor{icon_state = "dark"},/area)
+"bS" = (/turf/simulated/floor{icon_state = "damaged4"},/area)
+"bT" = (/obj/machinery/shower,/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"bU" = (/obj/machinery/light_construct/small{dir = 1},/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"bV" = (/obj/structure/toilet,/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"bW" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bX" = (/obj/item/weapon/reagent_containers/food/snacks/donut/normal,/turf/simulated/floor{icon_state = "grimy"},/area)
+"bY" = (/obj/item/weapon/clipboard,/turf/simulated/floor{icon_state = "dark"},/area)
+"bZ" = (/obj/item/weapon/organ/l_arm,/turf/simulated/floor{icon_state = "dark"},/area)
+"ca" = (/obj/machinery/telecomms/bus,/turf/simulated/floor{icon_state = "damaged4"},/area)
+"cb" = (/obj/machinery/telecomms/bus,/turf/simulated/floor{icon_state = "dark"},/area)
+"cc" = (/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"cd" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"ce" = (/obj/item/weapon/soap/nanotrasen,/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"cf" = (/turf/simulated/floor{icon_state = "damaged1"},/area)
+"cg" = (/obj/effect/decal/cleanable/blood/drip,/obj/item/stack/sheet/metal,/turf/simulated/floor{icon_state = "dark"},/area)
+"ch" = (/obj/effect/decal/cleanable/blood,/obj/item/stack/rods,/turf/simulated/floor{icon_state = "grimy"},/area)
+"ci" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/cigbutt,/turf/simulated/floor{icon_state = "grimy"},/area)
+"cj" = (/obj/item/weapon/table_parts/reinforced,/turf/simulated/floor{icon_state = "dark"},/area)
+"ck" = (/obj/effect/decal/cleanable/blood/gibs/limb,/turf/simulated/floor{icon_state = "dark"},/area)
+"cl" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"cm" = (/obj/structure/urinal,/turf/simulated/wall,/area)
+"cn" = (/obj/machinery/door/airlock/centcom{name = "Restroom"; opacity = 1; req_access_txt = "150"},/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"co" = (/obj/item/device/toner,/turf/simulated/floor{icon_state = "grimy"},/area)
+"cp" = (/obj/machinery/newscaster,/turf/simulated/wall,/area)
+"cq" = (/obj/item/weapon/crowbar,/turf/simulated/floor{icon_state = "dark"},/area)
+"cr" = (/obj/machinery/telecomms/broadcaster,/turf/simulated/floor{icon_state = "dark"},/area)
+"cs" = (/obj/item/weapon/mop,/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"ct" = (/obj/effect/decal/cleanable/dirt,/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"cu" = (/obj/effect/decal/cleanable/dirt,/obj/item/stack/sheet/metal,/turf/simulated/floor{icon_state = "dark"},/area)
+"cv" = (/obj/item/stack/rods,/turf/simulated/floor{icon_state = "dark"},/area)
+"cw" = (/obj/structure/sink{icon_state = "sink"; dir = 8; pixel_x = -12; pixel_y = 2},/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"cx" = (/turf/simulated/floor{icon_state = "floorscorched1"},/area)
+"cy" = (/obj/structure/mopbucket,/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"cz" = (/obj/structure/mirror,/turf/simulated/wall,/area)
+"cA" = (/obj/effect/decal/cleanable/blood/gibs,/turf/simulated/floor{icon_state = "dark"},/area)
+"cB" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"cC" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/simulated/floor{icon_state = "floorscorched1"},/area)
+"cD" = (/obj/structure/reagent_dispensers/water_cooler,/turf/simulated/floor{icon_state = "dark"},/area)
+"cE" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "damaged2"},/area)
+"cF" = (/obj/machinery/telecomms/hub,/turf/simulated/floor{icon_state = "dark"},/area)
+"cG" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/airlock/centcom{name = "Restroom"; opacity = 1; req_access_txt = "150"},/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"cH" = (/obj/effect/decal/cleanable/blood/drip,/obj/machinery/door/airlock/centcom{name = "Restroom"; opacity = 1; req_access_txt = "150"},/turf/simulated/floor{icon_state = "freezerfloor"},/area)
+"cI" = (/obj/structure/noticeboard,/turf/simulated/wall,/area)
+"cJ" = (/obj/machinery/light_construct,/turf/simulated/wall,/area)
+"cK" = (/obj/machinery/firealarm,/turf/simulated/wall,/area)
+"cL" = (/obj/machinery/light_construct,/turf/simulated/wall/r_wall,/area)
+"cM" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "dark"},/area)
+"cN" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/gibs/limb,/turf/simulated/floor{icon_state = "dark"},/area)
+"cO" = (/obj/effect/decal/cleanable/oil/streak,/turf/simulated/floor{icon_state = "dark"},/area)
+"cP" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/robot_debris/limb,/turf/simulated/floor{icon_state = "dark"},/area)
+"cQ" = (/obj/effect/decal/cleanable/blood/drip,/obj/item/weapon/wrench,/turf/simulated/floor{icon_state = "dark"},/area)
+"cR" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "damaged4"},/area)
+"cS" = (/turf/simulated/floor{icon_state = "damaged3"},/area)
+"cT" = (/obj/effect/decal/cleanable/robot_debris/limb,/turf/simulated/floor{icon_state = "dark"},/area)
+"cU" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "dark"},/area)
+"cV" = (/obj/effect/decal/cleanable/blood/tracks,/obj/effect/decal/cleanable/blood/tracks,/turf/simulated/floor{icon_state = "dark"},/area)
+"cW" = (/obj/effect/decal/cleanable/blood/drip,/obj/machinery/door/airlock/centcom{name = "Living Quarters"; opacity = 1; req_access_txt = "105"},/turf/simulated/floor{icon_state = "dark"},/area)
+"cX" = (/obj/structure/sink/kitchen,/turf/simulated/wall,/area)
+"cY" = (/obj/structure/stool/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor{icon_state = "dark"},/area)
+"cZ" = (/obj/structure/stool/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/bedsheet,/turf/simulated/floor{icon_state = "dark"},/area)
+"da" = (/obj/effect/decal/cleanable/blood/tracks,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"db" = (/obj/item/weapon/reagent_containers/glass/rag,/turf/simulated/floor{icon_state = "dark"},/area)
+"dc" = (/obj/item/weapon/reagent_containers/food/snacks/grown/banana,/turf/simulated/floor{icon_state = "dark"},/area)
+"dd" = (/obj/structure/closet,/obj/item/weapon/pen,/obj/item/device/radio/headset,/obj/item/clothing/shoes/jackboots,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/turf/simulated/floor{icon_state = "dark"},/area)
+"de" = (/obj/structure/closet,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/turf/simulated/floor{icon_state = "dark"},/area)
+"df" = (/obj/structure/closet,/obj/item/weapon/coin/silver,/turf/simulated/floor{icon_state = "dark"},/area)
+"dg" = (/obj/item/weapon/paper/pamphlet,/turf/simulated/floor{icon_state = "dark"},/area)
+"dh" = (/obj/item/clothing/under/rank/navywarden{desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the Marine insignia on the shoulders."; name = "marine's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"di" = (/obj/structure/closet,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/obj/item/clothing/shoes/jackboots,/turf/simulated/floor{icon_state = "dark"},/area)
+"dj" = (/obj/structure/closet,/obj/item/weapon/coin/silver,/obj/item/clothing/shoes/black,/turf/simulated/floor{icon_state = "dark"},/area)
+"dk" = (/obj/structure/closet,/obj/item/weapon/contraband/poster,/obj/item/clothing/shoes/black,/turf/simulated/floor{icon_state = "dark"},/area)
+"dl" = (/obj/structure/stool,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"dm" = (/obj/structure/table,/obj/item/trash/plate,/turf/simulated/floor{icon_state = "dark"},/area)
+"dn" = (/obj/structure/stool,/turf/simulated/floor{icon_state = "dark"},/area)
+"do" = (/obj/structure/table,/obj/item/trash/plate,/obj/item/weapon/kitchen/utensil/fork,/turf/simulated/floor{icon_state = "dark"},/area)
+"dp" = (/obj/item/weapon/cigbutt,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"dq" = (/obj/item/weapon/bedsheet,/turf/simulated/floor{icon_state = "dark"},/area)
+"dr" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/organ/l_arm,/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "dark"},/area)
+"ds" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/wall,/area)
+"dt" = (/obj/effect/decal/cleanable/ash,/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "dark"},/area)
+"du" = (/obj/structure/stool/bed,/turf/simulated/floor{icon_state = "damaged1"},/area)
+"dv" = (/obj/item/weapon/kitchen/utensil/fork,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"dw" = (/obj/structure/table,/obj/item/trash/plate,/obj/item/trash/snack_bowl,/obj/item/weapon/reagent_containers/food/drinks/coffee,/turf/simulated/floor{icon_state = "dark"},/area)
+"dx" = (/obj/structure/table,/obj/item/trash/sosjerky,/turf/simulated/floor{icon_state = "dark"},/area)
+"dy" = (/obj/structure/stool,/obj/item/trash/snack_bowl,/turf/simulated/floor{icon_state = "dark"},/area)
+"dz" = (/obj/structure/closet,/obj/item/weapon/storage/wallet/random,/obj/item/clothing/shoes/jackboots,/turf/simulated/floor{icon_state = "dark"},/area)
+"dA" = (/obj/effect/decal/cleanable/blood/drip,/obj/item/clothing/under/rank/navywarden{desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the Marine insignia on the shoulders."; name = "marine's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"dB" = (/obj/structure/closet,/obj/item/clothing/shoes/jackboots,/turf/simulated/floor{icon_state = "dark"},/area)
+"dC" = (/obj/structure/closet,/obj/item/weapon/lighter/random,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/obj/item/clothing/gloves/black,/obj/item/clothing/shoes/jackboots,/turf/simulated/floor{icon_state = "dark"},/area)
+"dD" = (/obj/structure/closet,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/obj/item/clothing/under/rank/navywarden{desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the Marine insignia on the shoulders."; name = "marine's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"dE" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/obj/item/clothing/shoes/jackboots,/turf/simulated/floor{icon_state = "dark"},/area)
+"dF" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"dG" = (/obj/structure/closet,/obj/item/weapon/coin/silver,/obj/item/device/radio,/turf/simulated/floor{icon_state = "dark"},/area)
+"dH" = (/obj/structure/closet,/obj/item/clothing/under/rank/mailman{desc = "Uniform for FleetCom enlisted"; name = "Crewman's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"dI" = (/obj/structure/closet,/obj/item/clothing/shoes/black,/turf/simulated/floor{icon_state = "dark"},/area)
+"dJ" = (/obj/machinery/light_construct{dir = 8},/turf/simulated/floor{icon_state = "dark"},/area)
+"dK" = (/obj/structure/stool,/turf/simulated/floor{icon_state = "damaged1"},/area)
+"dL" = (/obj/item/trash/plate,/obj/effect/decal/cleanable/ash,/obj/item/weapon/table_parts,/turf/simulated/floor{icon_state = "dark"},/area)
+"dM" = (/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/turf/simulated/floor{icon_state = "dark"},/area)
+"dN" = (/obj/structure/sign/poster,/turf/simulated/wall,/area)
+"dO" = (/obj/structure/stool/bed,/obj/item/stack/rods,/turf/simulated/floor{icon_state = "dark"},/area)
+"dP" = (/obj/structure/stool/bed,/obj/effect/decal/cleanable/blood/gibs/body,/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor{icon_state = "dark"},/area)
+"dQ" = (/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor{icon_state = "dark"},/area)
+"dR" = (/obj/item/stack/rods,/turf/simulated/floor{icon_state = "damaged4"},/area)
+"dS" = (/obj/item/weapon/broken_bottle,/turf/simulated/floor{icon_state = "dark"},/area)
+"dT" = (/obj/structure/table,/obj/item/trash/plate,/obj/item/weapon/newspaper,/turf/simulated/floor{icon_state = "dark"},/area)
+"dU" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor{icon_state = "dark"},/area)
+"dV" = (/obj/structure/table,/obj/item/trash/plate,/obj/item/weapon/reagent_containers/food/snacks/fries,/obj/item/weapon/reagent_containers/food/drinks/coffee,/turf/simulated/floor{icon_state = "dark"},/area)
+"dW" = (/obj/structure/closet,/obj/item/clothing/gloves/black,/obj/item/clothing/shoes/jackboots,/obj/item/clothing/under/rank/navywarden{desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the Marine insignia on the shoulders."; name = "marine's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"dX" = (/obj/structure/closet,/obj/item/weapon/handcuffs,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/turf/simulated/floor{icon_state = "dark"},/area)
+"dY" = (/obj/structure/closet,/obj/item/weapon/contraband/poster,/obj/item/weapon/contraband/poster,/obj/item/weapon/contraband/poster,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/turf/simulated/floor{icon_state = "dark"},/area)
+"dZ" = (/obj/structure/girder,/obj/item/stack/rods,/obj/effect/decal/cleanable/blood,/turf/simulated/wall,/area)
+"ea" = (/obj/effect/decal/cleanable/blood,/obj/structure/closet,/obj/item/clothing/head/beret/navysec{desc = "A beret with the Marines insignia emblazoned on it."; name = "marine beret"},/turf/simulated/floor{icon_state = "dark"},/area)
+"eb" = (/obj/effect/decal/cleanable/vomit,/obj/effect/decal/cleanable/blood/splatter,/obj/effect/decal/cleanable/blood/gibs/body{tag = "icon-gibdown1"; icon_state = "gibdown1"},/turf/simulated/floor{icon_state = "damaged3"},/area)
+"ec" = (/obj/effect/decal/cleanable/blood/drip,/obj/structure/closet,/obj/item/weapon/lighter/random,/obj/item/clothing/shoes/black,/obj/item/clothing/under/rank/mailman{desc = "Uniform for FleetCom enlisted"; name = "Crewman's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"ed" = (/obj/structure/closet,/obj/item/weapon/coin/silver,/obj/item/clothing/under/rank/mailman{desc = "Uniform for FleetCom enlisted"; name = "Crewman's jumpsuit"},/turf/simulated/floor{icon_state = "dark"},/area)
+"ee" = (/obj/structure/table,/obj/item/trash/liquidfood,/obj/item/weapon/kitchen/utensil/fork,/turf/simulated/floor{icon_state = "dark"},/area)
+"ef" = (/obj/item/trash/plate,/obj/item/weapon/table_parts,/turf/simulated/floor{icon_state = "dark"},/area)
+"eg" = (/obj/structure/closet,/obj/item/weapon/spacecash/c10,/turf/simulated/floor{icon_state = "dark"},/area)
+"eh" = (/obj/structure/girder,/obj/effect/decal/cleanable/blood,/turf/simulated/wall,/area)
+"ei" = (/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor{icon_state = "damaged4"},/area)
+"ej" = (/obj/structure/stool/bed,/obj/effect/decal/cleanable/blood/splatter,/obj/item/weapon/bedsheet,/turf/simulated/floor{icon_state = "dark"},/area)
+"ek" = (/obj/structure/closet,/turf/simulated/floor{icon_state = "dark"},/area)
+"el" = (/obj/item/weapon/newspaper,/turf/simulated/floor{icon_state = "dark"},/area)
+"em" = (/obj/machinery/firealarm{dir = 1; pixel_y = -24},/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"en" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/wall/r_wall,/area)
+"eo" = (/obj/structure/girder,/obj/item/stack/rods,/turf/simulated/wall,/area)
+"ep" = (/obj/item/device/radio/headset,/turf/simulated/floor{icon_state = "dark"},/area)
+"eq" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/grass,/area)
+"er" = (/obj/structure/target_stake,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/grass,/area)
+"es" = (/obj/item/device/radio,/turf/simulated/floor{icon_state = "dark"},/area)
+"et" = (/obj/machinery/vending/snack,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"eu" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor{icon_state = "dark"},/area)
+"ev" = (/turf/simulated/floor/plating,/area)
+"ew" = (/obj/machinery/firealarm{dir = 8; pixel_x = -24},/turf/simulated/floor{icon_state = "dark"},/area)
+"ex" = (/obj/item/weapon/flamethrower,/turf/simulated/floor{icon_state = "dark"},/area)
+"ey" = (/obj/machinery/firealarm{dir = 4; pixel_x = 24},/turf/simulated/floor{icon_state = "dark"},/area)
+"ez" = (/obj/item/clothing/mask/gas,/obj/effect/decal/cleanable/blood,/turf/simulated/floor{icon_state = "dark"},/area)
+"eA" = (/obj/item/clothing/head/helmet/space/syndicate/black/orange,/turf/simulated/floor/grass,/area)
+"eB" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/grass,/area)
+"eC" = (/obj/item/weapon/cable_coil/cut,/turf/simulated/floor{icon_state = "dark"},/area)
+"eD" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/grass,/area)
+"eE" = (/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor/grass,/area)
+"eF" = (/obj/effect/decal/cleanable/blood/drip,/obj/machinery/light_construct{dir = 8},/turf/simulated/floor{icon_state = "dark"},/area)
+"eG" = (/obj/item/weapon/shard,/turf/simulated/floor{icon_state = "dark"},/area)
+"eH" = (/obj/effect/decal/remains/robot,/turf/simulated/floor{icon_state = "dark"},/area)
+"eI" = (/obj/structure/table/reinforced,/obj/item/weapon/shard,/turf/simulated/floor{icon_state = "dark"},/area)
+"eJ" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "dark"},/area)
+"eK" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/newspaper,/turf/simulated/floor{icon_state = "dark"},/area)
+"eL" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor{icon_state = "dark"},/area)
+"eM" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/cigbutt,/turf/simulated/floor{icon_state = "dark"},/area)
+"eN" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "damaged3"},/area)
+"eO" = (/obj/item/weapon/shard,/obj/effect/decal/cleanable/dirt,/obj/item/stack/rods,/turf/simulated/floor/plating,/area)
+"eP" = (/obj/item/stack/rods,/turf/simulated/floor{icon_state = "floorscorched2"},/area)
+"eQ" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area)
+"eR" = (/obj/structure/door_assembly/door_assembly_highsecurity,/turf/simulated/floor{icon_state = "dark"},/area)
+"eS" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/obj/machinery/door/airlock/highsecurity,/turf/simulated/floor{icon_state = "dark"},/area)
+"eT" = (/obj/structure/sink/puddle,/turf/simulated/floor/grass,/area)
+"eU" = (/obj/item/weapon/organ/r_foot,/turf/simulated/floor/grass,/area)
+"eV" = (/obj/effect/decal/remains/human,/turf/simulated/floor/grass,/area)
+"eW" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/tracks,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/grass,/area)
+"eX" = (/obj/effect/decal/cleanable/blood/gibs/limb,/turf/simulated/floor/grass,/area)
+"eY" = (/obj/effect/decal/cleanable/robot_debris/limb,/turf/simulated/floor/grass,/area)
+"eZ" = (/obj/effect/decal/cleanable/blood/gibs/up,/turf/simulated/floor/grass,/area)
+"fa" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/grass,/area)
+"fb" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/tracks,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/grass,/area)
+"fc" = (/obj/item/weapon/organ/r_leg,/turf/simulated/floor/grass,/area)
+"fd" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/vomit,/turf/simulated/floor/grass,/area)
+"fe" = (/obj/effect/decal/cleanable/blood/gibs/down,/turf/simulated/floor/grass,/area)
+"ff" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor/grass,/area)
+"fg" = (/obj/effect/decal/cleanable/blood/gibs/body{tag = "icon-gibdown1"; icon_state = "gibdown1"},/turf/simulated/floor/grass,/area)
+"fh" = (/obj/item/clothing/mask/gas,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/grass,/area)
+"fi" = (/obj/effect/decal/cleanable/oil,/turf/simulated/floor/grass,/area)
+"fj" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/grass,/area)
+"fk" = (/obj/structure/flora/ausbushes,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/grass,/area)
+"fl" = (/obj/effect/decal/mecha_wreckage/marauder,/obj/effect/decal/cleanable/oil,/turf/simulated/floor/grass,/area)
+"fm" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/grass,/area)
+"fn" = (/obj/item/weapon/organ/l_arm,/turf/simulated/floor/grass,/area)
+"fo" = (/obj/effect/decal/cleanable/robot_debris/down,/turf/simulated/floor/grass,/area)
+"fp" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/simulated/floor/grass,/area)
+"fq" = (/obj/effect/decal/cleanable/dirt,/obj/item/stack/rods,/turf/simulated/floor/grass,/area)
+"fr" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/gibs/body{tag = "icon-gibdown1"; icon_state = "gibdown1"},/turf/simulated/floor/grass,/area)
+"fs" = (/obj/item/stack/rods,/turf/simulated/floor/grass,/area)
+"ft" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/grass,/area)
+"fu" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/grass,/area)
+"fv" = (/obj/structure/flora/tree/pine,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/grass,/area)
+"fw" = (/obj/structure/flora/tree/pine,/obj/effect/decal/cleanable/dirt,/turf/simulated/wall/impassable_rock,/area)
+"fx" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/wall/impassable_rock,/area)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababacababababababababababababaa
+adabaeabaeabaeabaeabaeabaeabaeabaeaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeaeaeabaeabaeabaeabaeabaeabaeabaeabaeabaeaeaeabaeabaeabaeabaeaeaa
+aaaeabaeabaeaeaeabaeabaeabaeabaeabaeaeaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeaeabaa
+aaaeabababababaeabababababababababababababababababababababababababababababababababababababababababaeabababababababaeabababababacababababababababababababababababababaeaeabaeabababaa
+adaeaeabaeaeababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaeabaeabaeaeaeaa
+aaaeaeaeababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaeababaeaeaa
+adabababababababababababababababababababacabababababababababababababababababafabababababababababababababababababababababababababababababababababababababababababababababababaeababaa
+adaeabababababababababababababababababababababababababababababababababababababababababababababababababababababagababababababababababababababababababababababababababababababababaeaa
+aaaeabababababababababahabababababababababababababababababababababababahabababababagabababababababababababababababababababababababababababababababababacabababababaiabababababaeabaa
+adababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaa
+adababababababagabababababababababababababababababababababababababababababababababababagabababababacabababababababababababababababababababahababababababababababababababababababaeaa
+aaaeabababababababababababababababababababababababababagababababababababababababababababababababababababababababababababababagababababababababababababababababababababababababaeabaa
+aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababacababababababababababababababababababababaa
+adaeabababababababababababababababababababababababababababababababababacabababababababababacababababababababababababababababababababababababababababababababababababababababababaeaa
+aaaeabababababababababababacabababababagabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaeabaa
+aaaeaeababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaa
+adabababababababababababababababababababababababababababababababagabababababababababababababababababababababababababababagabababababababababababafabababababababababababababababaeaa
+aaaeabababababababababababababababababababababababababababababababababababababababababababababababababababagabababababababababababababababababababababababababababababababababaeabaa
+aaabababagabababababababababababababababababababababababababababababababababafababababababababababababababababababababababababababababababababababababababababababababababababababaa
+adaeababababababababababababababababababacabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababacabababababaeaa
+adababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaeabaa
+aaaeababababababababababababababagababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaa
+adababababababagababababababababababababababababababajajajajajajajajajajajajajajajajajajakalajajajajajajajajajajajajajajajajajajajajajabababababababababababababababababababababaeaa
+aaabababababababababababababababababababababababababajamamamamanamaoapaqanamamanarasanatatatauatanatavawavaxatajamamamamamamamamamamajabababababababababababababababagababababaeabaa
+aaaeababababababababababababababababababababababababajamamamamanamayayayanamamazamaAanaBataBaBatanaCaDataEatawajamamamaFaGaHamamamamajababababababababababababababababababababababaa
+adabaeabababababababababababababababababababababababajamamamamanamamamamanamamanaIasanataJaKaLaManawaNaNataDaOaPamamamaQaRaSamamamamajababababagababababababababababababababababaeaa
+aaabababababababababababababababababababababababababajamamamamanamamamamanaTaUanaVananaWaXaEaYataVaCataEaZatawajamamambabbbcamamamamajababababababababababababababababababababaeabaa
+aaaeababababababababababababababababababababababababajamamamamananbdbdananamamazambebfaBbgbhbhbianbjaNbkblbmbnajamamamboboboamamamamajababababababababababababababababababababababaa
+adabababababababababababababababababababababababababajamamamamamamamamamanambpaVbqbranbkataMatatanatatatataNatajamamambsboboamamamamajabababababababababababababababababababababaeaa
+adaeababababababababababababababababababababababababajamamamamambpamamamananazananananananbtanaVanaVbubvbuanajajajajajajbwbxbwajajajajababababababababababababababababababababaeabaa
+aaabababababababababababababababababababababababababajamamamamambpamamamamambpamanamamamanbyamambzamamboamambAamajamamamamamambBambBajababababababababababababababababababababababaa
+adabababababababababababababababababababababababababajamamamambCamambpamambyamamanamamamanbDbEbybpambFamambyambGaPbpbobpbHamambIambBajabababababababababababababababababababababaeaa
+aaaeababababababababababababababababababababababababajamamamamamamamamambJamamamananamanananbpananaVanananamamboajamamambKbLambBambBajabababababababababababagababababababababaeabaa
+aaaeabababababababababababacababababababababababababajananananananananaVanambpamanbMbNatbObPamamamambQbRanboamambwbSambyamamamamboamajababababababababababababababababababababababaa
+adabababababababababababababababababababababababababajbTbTbTbTbTbTanbUbVanamamboanaubWbXaEbPbpbYambFambZaVambybpbvambFbobKbLamcacbcbajabababababababababababababababababababababaeaa
+aaaeabababacababababababababababababababababababababajcccccdccccceanccanancfcgamaVatchciatcjbpboambGckamanamclambwbpboamamamamamamamajababababababababababababababababababababaeabaa
+aaabababababababababababababababababababababababababajcmcmcccccmcmcmcccccnambpamancoatatawbPamboamambyamcpamamamajcqbobpbKbLbpcrbpcrajababababababagabababababababababababababababaa
+adabababababababababababababababababababababababababajcccccccccccsccccctanamambpanbPcfcjbPbPambpbyambAamanbycucvajambFamamamamcramcrajabababababababababababababababababababababaeaa
+aaaeababababababababababababababababababababababababajcwcccxcxcdcccccccyczamambSancAamamamamcBamamcCamcDanamambyajcEambpcFcFamcrbScrajababababababababababababababababababababaeabaa
+aaabababababababagabababababababababababababababababajananancGcHanaVanananamamamanananaVanamambpcIcJananananaVcKaPajajajajcLajajajajajababababababababababababababababababababababaa
+adabababababababababababababababababababababababababajamcvamamamamamamamamamambpamamamamamamcMamamamamamamboamamamamamamamcfamamamamaPabababababababababababababababababababababaeaa
+aaaeababagabababababababababababababababababababababajamamamambpamambGbpbobocNambGbpambyamcOamcPambpambpcxamamamcQbpcRambpamamboamamajababababababababababababababababababababaeaeaa
+aaababababababababababagababababagabababababababababajcSamamamamamamamamckamamcTambpbpbpcUbpbpcVamamamamamamamboamamamamamamamamamamajababababababababababababababababababababababaa
+adabababababababababababababababababababababababababajananazananananancWanananananbpanananambGamanananazananancXancpanbSamanananananajabababababababababababababababababababababaeaa
+aaaeababababababababababababababababababagabababababajasambEamasancYamamamcYancZamdaamasanamamdaanasamamamasandbdcamamamamamamamamamajababababababababababababababababababababaeaeaa
+aaabababababababababababababababababababababababababajddamamcxdeandfamdgamdeandedhbpamdianambpamandjamamamdkaVamamdldmdnbpdndodndpamajababababababababababababababababababababababaa
+adabababababababababababababababababababababababababajasdqcfamasanasambEcSamanasdramamasdsamdtamanduambpamcYaVdvamdndwdlamdndxdybpamaPabababababababababababababababababababababaeaa
+aaaeababababababababababababababababababababagabababajdzamdAbodBandCambpamdDaVdEdFdaamdGanambpbpandHdqboamdIandJamdKdLdnamdndmdnamamajababababababababacabababababababababababaeaeaa
+adaeababababagabababababababababababababababababababajasdMcfamcYdNcYcSamamdOaVdPdQbobpcYanbyambpdRasamcNdqasanamdSdndTdndUdndVdnamamajababababababababababababababababababababababaa
+adabababababababababababababababagabababagabababababajdWambpdqdBandXambyamdYdZeaebbpbodDanbDambpaVecbpbpamedandQbpdneednamdnefdnbpamajabababababababababababababababababababababaeaa
+aaaeababababababababababababababababababababababababajcfcYegasamanamasdecYcSeheiejdiasboanbpamdaanamcYekasckanamelbCambDemambSamamcDajababababababababababababababababababababaeaeaa
+aaaeabababababababababababababababababababababababagenajajajajaPajajajajaPajajajeoancpananamepdFananaVananajajajaPajajajajajaPajajajajabababababababababeqababababababababababababaa
+adabababababababababagababababababababababababababagerageragerageragerageragagajesambCboamambpbpamamambRetajababababababababababababababababababagabababababababababababababababaeaa
+aaaeabababababababababababababababagababababababagagagagagagagagagagagagagagagaPambyameuamcfbobpamamevamboajabababababababababababababababababababababababababafabababababababaeaeaa
+aaababababababababababababababababababeqabababababagagagagagagagagagagagagagagajewbEexamamamamambpbyboameyajabababababababababababababababababababababababagabababababababababababaa
+adababababababababababababababababababababababababagagagagagagagagagagagagagagajbobpezbycSbpbAamamamcSboamaPababababababababababababababababababababababababababababababababababaeaa
+aaaeabababababababababababeAabagabababababababagabagagagagagagagagagageBagagagajbyameCamambpbpbpambAambAamajababababacababacababababagababababababababababababababababababababaeaeaa
+aaabababababababababababababababeqababagabababababagagagagagagagagagagagagagagajamancIcSanambybpanaVananamajabababababababababababababababababeDabababababababababababababababababaa
+adabababababababagabababeEababababababababababagabagagagagagageBagagagagagagagaPbpambpamanbybobpanamamamamajababababababababababeqabababababababababababababababababababababababaeaa
+aaaeabababababababababababababababeDabababababababagagagagagagagagagagagagagagajeFcBeGeHbPbpamdaeIbocSamamajabababagabababababababababababababababababababababababababababababaeaeaa
+aaababababababababababababababababababababagabagabagagagagagagagagagagagagagagajeJbCeKeGcjamcSeLbPamboameMajababababababababababababababeqababababababababababababababababababababaa
+adabababababagababababababababababababababababababagagagagagagagageBagagagagagajameNeOboaVePcBdFanboeGamcfajababababababababababababababababababacabababababababababababababababaeaa
+adaeabababababababababababababababababababababababagagagagagagagagagagagagagagajajaPeQajbweRbyeSbwajajaPajajabababababeTabababababababagabababeqabababababababababababababababaeabaa
+aaabababababababababababababeqabacabeqabababababagabababagagabababagagababeUababeVagagababagageWababababababababababeqababeDababababababababababababababababababababababababababaeaa
+adabababeEabababababababagababababeqababababagabababeqabagagabababagageXababababeYabageZeqeBageWababababababababababababababababababababababababababagabababababababababababababaeaa
+aaaeababababababeTabababababababababababababababababeqababababababagagabababeDabababeDababeBfafbababfcabeDababababababababababababababababababababababababababababababababababaeabaa
+aaababababababababababababababababababeqababababababababagababababagagagagagagfdagagagagagagagagabeDabababababacabababababeqababababababababababababababababahababababababababaeabaa
+adababababababababababababababahabababeqabaceqabababababeqabagababagagagagagagagageBagagagagagagabababfeffabababababagababababababagababababababababababababababababababababababaeaa
+aaaeababababababababeqababeqababababeqabababababababeqababababababababfgeqfhagababababeqabeBagfaabeqagababababababababababababababababababababababababababababababababababababababaa
+adabababababababababababababeqeqababababababababagababababababeqabababababfiababababababeqagagagabababababababeDababababababababababababababacababababababababafabababababababaeaeaa
+adaeabababagabababababababababeqabababababeqabababababagababageDababeDabababababababfjabeDagageBagabeqabababababababababababababababababababababababababababababababababababababaeaa
+aaababababababababagababababababfkabababeEababeqabababababagabababababfiabflabfmabababababagfaagabeqabababababababababababababababababagabababababababababababababababababababababaa
+adababababababababababababababababababababfmabeqabababeDababababababababeqabfiabfnabababeqageBagababfeababababfoabababababababababababababababababababababababababababababababaeaeaa
+adaeababababababababababababeEababeqeqababeqagabababababababababagabagababababfpabababababagagagabababababababababababababagababababababababababababababababacabababababababababaeaa
+aaababababababababababababababababababababababeqababababeqeqababagababababfieqababeDeBabeXagagagfmabeUabababababababababababababababababababababababababababacababababababababaiabaa
+adabababababababababababababababababababababababababababeqeqabagabeDeqeqabababababababababagagagabababeDabababababababababababababababababababababababababababababababababababaeabaa
+adaeababababacabababababeTababababababeqabababababfqabfgagababababagabeqabfrabababeqabababeBeBagababababababababababababababababababababababababababababababababababababababababaeaa
+aaababababababababababababababababagabababababababababababababababababababfsabagabababababagagagabfgababagabababababababababababababababababacababababababababababababababababaiabaa
+adababababababababababababababababababababababababababeEababababababageqeqababababababacabagagagfmabababababacababababababababababababababababababababababababababababababababaeabaa
+adaeababababababababababababababababababababagabababababababftabababababababeqababagabababeBagagababababababababababababababababababababababababababababababababababababababababaeaa
+aaabababababababababababababababababababababagabagabababababeDababababababeqabababababeqabagagagabababeqabagabababababababababababababababababababababababababababababababababababaa
+adaeabababababababababababababababababababababababababababababababagababababftababababababagageBababababababababababababababababababagababababababababababababacababababababaeaeabaa
+adaeababababababagababababababagababababababababababababagabababababababababababababeqababagagagababagababababababababababababababababababababababababababababababababababababaeaeaa
+aaabaeababababababababababababababababababababababababababababababababababababababababababagagagabababababababababababababababababababababababababababababababababababababaeabababaa
+adaeabaeaeababababababababababababababababababababababababababababababababababababababababfufufuabababababababababababababababababababababababababababababababababababababaeabaeabaa
+adabababababaeababababababababababababababababababababababababababababababababababababababagagagabababababababababababababababababababababababababababababababababababaeababababaeaa
+aaababaeabababababababaeababababaeabababaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeababababagagagababababababababababababababababababababababababababababaeababababaeabababaeabababaa
+adaeaeabaeaeaeabaeaeaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabababaeabababababaeabaeabaefvfvagaeabaeabaeabaeaeaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeabaeaeaeabaeaeaeabaeaeaeaa
+adadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaafwfxfwadadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadaaadadaa
+"}

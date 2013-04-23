@@ -1,0 +1,215 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Hypatia Changelog</title>
+  <link rel="stylesheet" type="text/css" href="changelog.css">
+  <script type='text/javascript'>
+  
+	function changeText(tagID, newText, linkTagID){
+		var tag = document.getElementById(tagID);
+		tag.innerHTML = newText;
+		var linkTag = document.getElementById(linkTagID);
+		linkTag.removeAttribute("href");
+		linkTag.removeAttribute("onclick");
+	}
+	
+  </script>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<!-- 
+Header Section 
+-->
+<table align='center' width='650'><tr><td>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<div align='center'><font size='3'><b>Hypatia Station - A roleplaying SS13 server</b></font></div>
+			<p><div align='center'><font size='3'><a href="http://hypatiastation.net/forum">Forum</a> | <a href="http://hypatiastation.net/wiki/">Wiki</a> | <a href="https://github.com/Baystation12/Baystation12/">Source</a></font></div></p>
+		<!--	<div align='center'><font size='2'><b>Visit our IRC channel:</b> #bs12 on irc.sorcery.net</font><br> -->
+			<font size='2'>Code licensed under <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>. Content licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.<br><br>
+
+<b><a href="http://hypatiastation.net/wiki/index.php/Rules">By playing to agreed to read and abide by the rules!</a></b></font></div>
+
+			</td>
+	</tr>
+</table>
+<br><b>Hypatia Station Credit List</b>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<font size='2'><b>Code:</b> 2884784276937S, <b>Askarn (mostly Askarn)</b>, TwistedAkai<br></font>
+			<font size='2'><b>Sprites:</b> 33Harry33, Cassandra, NgDaniel6<br></font>
+			<font size='2'><b>Thanks To:</b>Baystation12, /tg/ station, Goonstation, Animus Station, Daedalus, and original Spacestation 13 devs. Skibiliano for the IRC bot.</font>
+		</td>
+	</tr>
+</table>
+<!--<font size='4' color='red'><b>Visit the bleeding-edge test server at <a href="byond://tekkit.fallemmc.com:8000">byond://tekkit.fallemmc.com:8000</a></b></font> -->
+
+<!-- 
+Changelog Section 
+-->
+
+<!-- NOTE TO UPDATERS!! Please only list things which are important to players. 
+Stuff which is in development and not yet visible to players or just code related 
+(ie. code improvements for expandability, etc.) should not be listed here. They 
+should be listed in the changelog upon commit though. Thanks. -->
+
+<!-- To take advantage of the pretty new format (well it was new when I wrote this anyway), open the "add-to-changelog.html" file in any browser and add the stuff and then generate the html code and paste it here -->
+
+<div class="commit sansserif">
+	<h2 class="date">23rd March 2013</h2>
+	<h3 class="author">Askarn updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="rscadd"><h3>Hypatia V.2 - Forked from Baystation Code</h3></li>
+		<li class="rscadd">You are now able to surgically implant items into people.</li>
+		<li class="tweak">A new report has been added to the Tau Ceti News.</li>
+		<li class="tweak">Number of job slots has been increased substantially.</li>
+		<li class="bugfix">Various stability fixes.</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">3rd April 2013</h2>
+	<h3 class="author">Askarn updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="bugfix">Virology is now fixed. Be afraid, be very afraid.</li>
+		<li class="rscadd">Shuttle doors will now lock in flight</li>
+		<li class="bugfix">Assorted other bug fixes</li>
+		<li class="rscdel">Damage taken in the holodeck does not heal properly</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">9th April 2013</h2>
+	<h3 class="author">Askarn updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="tweak">Events will now be much less frequent (and hopefully less annoying)</li>
+		<li class="tweak">All Heads of Staff should now be able to message CentCom</li>
+		<li class="bugfix">Bugfixes (mostly to fire/atmospherics)</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">12th April 2013</h2>
+	<h3 class="author">Askarn updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="rscadd">Anomaly research has been upgraded to baystation standard. It can be undertaken in the northern mining outpost. May be buggy, report if things don't go as expected.</li>
+		<li class="tweak">Some atmospheric changes; regrettably we must wave goodbye to transparant fire doors. Plasma now ignites at high temperature.</li>
+		<li class="rscadd">Methylphenidate, Citalopram and Paroxetine have been added.</li>
+		<li class="bugfix">Some bugfixes.</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">15th April 2013</h2>
+	<h3 class="author">Askarn updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="tweak">Fixes some map issues, mainly relating to anomaly research. Still no shuttle I'm afraid.</li>
+		<li class="tweak">Optimises slimes, should cause a bit less lag.</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">16th April 2013</h2>
+	<h3 class="author">Askarn updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="rscadd">Minor map changes.  Shuttle to anomly research added.</li>
+		<li class="bugfix">Solars Arrays should now track properly.</li>
+		<li class="tweak">Some more optimisation.</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">19th April 2013</h2>
+	<h3 class="author">Askarn updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="bugfix">Fixes to xenoarcheolgy.</li>
+		<li class="tweak">Some stability fixes.</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">21st April 2013</h2>
+	<h3 class="author">2884784276937S updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="rscadd">Added "Chemical Preparation Crate"</li>
+		<li class="bugfix">Cyborgs can now open and close crates as well as lockers.  Previously they could only open.</li>
+		<li class="rscadd">Newcasters can now be constructed.  Circuits can be made at research.</li>
+		<li class="rscadd">Newscasters now accept the BBCode used on paper.  Some changes may be made at a later point.</li>
+		<li class="tweak">Various maximum input lengths have been extended.  We trust you won't abuse this.</li>
+		<li class="rscadd">We now have a changelog!</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">21st April 2013</h2>
+	<h3 class="author">TwistedAkai updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="bugfix">"NanoTrasen Relationship" now works for all slots.</li>
+	</ul>
+</div>
+<div class="commit sansserif">
+	<h2 class="date">23rd April 2013</h2>
+	<h3 class="author">2884784276937S updated:</h3>
+	<ul class="changes bgimages16">
+		<li class="rscadd">pAIs now feature a crew manifest much like PDAs, including SSD status.</li>
+		<li class="wip">Newcasters are now fixable.</li>
+		<li class="tweak">(ADMINS) Admins now have instant-respawn, "GO ADMIN POWERS! GO!"</li>
+		<li class="rscadd">Changes to chemistry, added a new machine and an additional chemical dispenser.</li>
+		<li class="tweak">Tweaks to the Donor rank.</li>
+		<li class="rscadd">(ADMINS) The "Dsay" proc is now accessible to all admins and moderators (and donors), will display appropriately.  E.g. if moderator, "MOD(Annedu)", if donor "DONOR(2884784276937S)", if coder, "DEV(2884784276937S)", etc.</li>
+		<li class="rscadd">(ADMINS) Banhammer button.  Tired of not being able to play that banhammer sound, lack of permissions?  Well now you can, with the all new - BANHAMMER!</li>
+		<li class="bugfix">pAI door jack now unbolts doors, instead of just opening them.</li>
+		<li class="tweak">(ADMINS) Moderators can now change their OOC colour.</li>
+		<li class="rscadd">Various additional spam filters, namely preventing white space spam - and falsifying server messages.  As done several days ago.</li>
+		<li class="wip">Xenoarcheology's cyclcing doors, <b>should</b>, be fixed.</li>
+		<li class="wip">Revamping pAIs.  Currently barely anything noticeable has been done.</li>
+		<li class="bugfix">Various additional bug-fixes, I've forgotten half of them.</li>
+	</ul>
+</div>
+
+
+<!-- 
+Credits Section 
+-->
+<b>Baystation 12 Development Team</b>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<font size='2'><b>Code:</b> Abi79, Aryn, Cael_Aislinn, Chinsky, cib, CompactNinja, DopeGhoti, Erthilo, Hawk_v3, Head, Ispil, Lexusjjss, Melonstorm, Miniature, Mloc, SkyMarshal, Spectre, Strumpetplaya, Sunfall, Tastyfish, Uristqwerty<br></font>
+			<font size='2'><b>Sprites:</b> Apple_Master, Arcalane, Chinsky, CompactNinja, Deus Dactyl, Erthilo, Flashkirby, Miniature, Searif, Xenone<br></font>
+			<font size='2'><b>Sounds:</b> Aryn<br></font>
+			<font size='2'><b>Thanks To:</b> /tg/ station, Goonstation, Animus Station, Daedalus, and original Spacestation 13 devs. Skibiliano for the IRC bot.</font>
+		</td>
+	</tr>
+</table>
+
+<b>/tg/ station 13 Development Team</b>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<font size='2'><b>Coders:</b> TLE, NEO, Errorage, muskets, veryinky, Skie, Noise, Numbers, Agouri, Noka, Urist McDorf, Uhangi, Darem, Mport, rastaf0, Doohl, Superxpdude, Rockdtben, ConstantA, Petethegoat, Kor, Polymorph, Carn, Nodrak, Donkie<br></font>
+			<font size='2'><b>Spriters:</b> Agouri, Cheridan, Cruazy Guest, Deeaych, Deuryn, Matty406, Microwave, ShiftyEyesShady, Skie, Uhangi, Veyveyr, Petethegoat, Kor, Ricotez, Ausops, TankNut<br></font>
+			<font size='2'><b>Sounds:</b> Skie, Lasty/Vinyl<br></font>
+			<font size='2'><b>Thanks to:</b> CDK Station devs, GoonStation devs, the original SpaceStation developers and Invisty for the title image</font>
+		</td>
+	</tr>
+</table>
+
+<b>Daedalus Development Team</b>
+<table align='center' class="top">
+	<tr>
+		<td valign="top">
+			<font size="2"><b>Coders:</b> DopeGhoti, Sunfall, ThVortex</font><br>
+			<font size="2"><b>Artwork:</b> Captain Hammer</font><br>
+			<font size="2"><b>Spriters:</b> ((TODO.))</font><br>
+			<font size="2"><b>Sounds:</b> Peter J, due, Erik Satie</font><br>
+			<font size="2"><b>Thanks to:</b> All the dev teams that came before: BS12, /tg/station13, the Goons, and the original SS13 folks.</font><br>
+		</td>
+	</tr>
+</table>
+
+<b>GoonStation 13 Development Team</b>
+	<div class = "top">
+	<font size='2'><b>Coders:</b> Stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob, Justicefries, 0staf, sniperchance, AngriestIBM, BrianOBlivion<br></font>
+	<font size='2'><b>Spriters:</b> Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said No<br></font>
+	</div>
+<p class="lic"><div align='center'><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br /><i>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.<br>Rights are currently extended to <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a> only.</i></p>
+<p class="lic">Some icons by <a href="http://p.yusukekamiyamane.com/">Yusuke Kamiyamane</a>. All rights reserved. Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.</p>
+</td></tr></table></div>
+</body>
+</html>

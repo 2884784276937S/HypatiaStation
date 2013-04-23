@@ -1,0 +1,9 @@
+"The Derelict Secondary Hallway",0.00316478,0.00316478,0,0,2.7,2500
+"The Incinerator",21.8366,82.1472,0,0,293.15,10000
+"The Research and Development",21.8366,82.1472,0,0,293.15,7500
+"The Derelict Secondary Hallway",1.4013e-045,1.4013e-045,0,0,5.38935,270000
+"Primary Tool Storage",21.8355,82.1481,0,0,293.15,130000
+"Engineering",21.8365,82.1472,5.64103e-005,0,293.15,30000
+"The Emergency Shuttle Centcom",21.8366,82.1472,0,0,293.15,22500
+"Space",0.00106869,0.00106869,0,0,2.7,2500
+"Engineering",21.8366,82.1472,0,0,293.15,10000
