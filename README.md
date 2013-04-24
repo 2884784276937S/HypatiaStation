@@ -7,6 +7,7 @@ Hypatia exists as a expanse built on story and heavy roleplaying, as such we wis
 
 An example of additions and changes we have made: (Log begins late into the Hypatia cycle)
 http://hypatiastation.net/forum/viewtopic.php?f=2&t=81
+A more comprehensive changelog, is available <i>in-game</i>.
 
 An example of requested and suggested changes, showing what the players want:
 http://hypatiastation.net/forum/viewforum.php?f=8
