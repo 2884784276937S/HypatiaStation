@@ -134,6 +134,9 @@
 	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
 
 	var/list/data = list()
+	if(!data["antibodies"])
+		state("The [src.name] cannot detect antibodies in that sample", "blue")
+		return
 	data["antibodies"] = B.data["antibodies"]
 	product.reagents.add_reagent("antibodies",30,data)
 

@@ -365,17 +365,16 @@ var/list/slot_equipment_priority = list( \
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
-	if(!client.holder)
-		if (!( abandon_allowed ))
-			usr << "\blue Respawn is disabled."
-			return
+
+	if (!( abandon_allowed ) && !check_rights(R_ADMIN)) //Allows anyone with +ADMIN to bypass respawn. Uses the same code as Asay and other admin verbs
+		usr << "\blue Respawn is disabled."
+		return
 	if ((stat != 2 || !( ticker )))
 		usr << "\blue <B>You must be dead to use this!</B>"
 		return
-	if(!client.holder)
-		if (ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-			usr << "\blue Respawn is disabled."
-			return
+	if (ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
+		usr << "\blue Respawn is disabled."
+		return
 	else
 		var/deathtime = world.time - src.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
@@ -388,18 +387,13 @@ var/list/slot_equipment_priority = list( \
 			pluralcheck = " [deathtimeminutes] minutes and"
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		if(!client.holder)
-			if (deathtime < 18000)
-				usr << "You must wait 30 minutes to respawn!"
-				return
-			else
-				usr << "You can respawn now, enjoy your new life!"
+		if (deathtime < 18000)
+			usr << "You must wait 30 minutes to respawn!"
+			return
 		else
-			usr << "\blue <b>Go admin respawn powers!  Go!</b>"
-		//	usr << "You can respawn now, enjoy your new life!"
+			usr << "You can respawn now, enjoy your new life!"
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
-	message_admins("[usr.name]/[usr.key] has respawned.")
 
 	usr << "\blue <B>Make sure to play a different character, and please roleplay correctly!</B>"
 

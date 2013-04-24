@@ -11,6 +11,8 @@
 	var/ini_dir = null
 	var/state = 0
 	var/reinf = 0
+	var/disassim = 0 // Used for disassembly to stop shatter sound
+	var/index = 0 // Used in window destruction.
 //	var/silicate = 0 // number of units of silicate
 //	var/icon/silicateIcon = null // the silicated icon
 
@@ -186,6 +188,17 @@
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
+	else if(istype(W, /obj/item/weapon/wrench) && state == 0 && !anchored)
+		index = 1
+		disassim = 1
+		if(is_fulltile()) index = 0
+		while(index < 2)
+			if(!reinf) new /obj/item/stack/sheet/glass(loc)
+			if(reinf) new /obj/item/stack/sheet/rglass(loc)
+			index++
+		user << "<span class='notice'>You take apart the window.</span>"
+		del(src)
+		return
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			hit(W.force)
@@ -205,7 +218,6 @@
 		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 	if(health <= 0)
 		if(dir == SOUTHWEST)
-			var/index = null
 			index = 0
 			while(index < 2)
 				new /obj/item/weapon/shard(loc)
@@ -294,7 +306,7 @@
 /obj/structure/window/Del()
 	density = 0
 	update_nearby_tiles()
-	playsound(src, "shatter", 70, 1)
+	if(!disassim)playsound(src, "shatter", 70, 1)
 	update_nearby_icons()
 	..()
 

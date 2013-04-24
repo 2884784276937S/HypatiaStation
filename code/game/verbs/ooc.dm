@@ -41,8 +41,8 @@ var/global/normal_ooc_colour = "#002eb8"
 			if(findtext(msg, "          "))
 				log_admin("[key_name(src)] has attempted to spam OOC, and potentially fake server messages..  They have been automatically muted.")
 				message_admins("[key_name(src)] has attempted to spam OOC, and potentially fake server messages.  They have been automatically muted.")
-				src.prefs.toggles ^= MUTE_OOC
-				src << "\red  You have been muted by the automatic spam filter.  Please do not attempt to spam OOC."
+				cmd_admin_mute(src, MUTE_OOC, 1)
+				//src << "\red  You have been muted by the automatic spam filter.  Please do not attempt to spam OOC."
 			else
 				log_admin("[key_name(src)] has used a suspicious amount of spaces in an OOC message.  Please note, they may be attempting to spam OOC.")
 				message_admins("[key_name(src)] has used a suspicious amount of spaces in an OOC message.  Please note, they may be attempting to spam OOC.")
@@ -53,13 +53,12 @@ var/global/normal_ooc_colour = "#002eb8"
 	var/display_colour = normal_ooc_colour
 	if(holder && !holder.fakekey)
 		display_colour = "#0099cc"	//light blue
-		if(holder.rights & R_MOD && !(holder.rights & R_ADMIN))
-			display_colour = "#184880"	//dark blue
+		if(config.allow_admin_ooccolor)
+			display_colour = src.prefs.ooccolor
+		else if(holder.rights & R_MOD && !(holder.rights & R_ADMIN))
+			display_colour = "#FF75FF"	//HOT PINK!!!!!!!!
 		else if(holder.rights & R_ADMIN)
-			if(config.allow_admin_ooccolor)
-				display_colour = src.prefs.ooccolor
-			else
-				display_colour = "#b82e00"	//orange
+			display_colour = "#b82e00"	//orange
 
 	for(var/client/C in clients)
 		if(C.prefs.toggles & CHAT_OOC)

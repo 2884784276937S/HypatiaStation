@@ -185,7 +185,6 @@
 	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
-	var/storage = 0
 	var/useramount = 30 // Last used amount
 	var/bottlesprite = "1" //yes, strings
 	var/pillsprite = "1"
@@ -193,10 +192,8 @@
 
 /obj/machinery/chem_master/New()
 	var/datum/reagents/R = new/datum/reagents(100)
-	var/datum/reagents/S = new/datum/reagents(10000000)
 	reagents = R
 	R.my_atom = src
-	S.my_atom = src
 
 /obj/machinery/chem_master/ex_act(severity)
 	switch(severity)
@@ -438,30 +435,15 @@
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=10'>(10)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=[N.volume]'>(All)</A> "
 				dat += "<A href='?src=\ref[src];removecustom=[N.id]'>(Custom)</A><BR>"
-		/*if(S.total_volume)
-			dat += "<HR>Storage Contents:<BR>"
-			for(var/datum/reagent/Q in S.reagent_list)
-				dat += "[Q.name] , [Q.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[Q.description];name=[Q.name]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=[Q.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=[Q.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=[Q.id];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=[Q.id];amount=[Q.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=[Q.id]'>(Custom)</A><BR>"*/
 		else
 			dat += "Empty<BR>"
-		if(!condi && !storage)
+		if(!condi)
 			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (50 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (30 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle[bottlesprite].png\" /></A>"
-		else if(storage)
-			dat += "<A href='?src=\ref[src];createbottle=1'>Synthesise bottle containing chemical(s) (30 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle[bottlesprite].png\" /></A>"
-			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Synthesise pill from chemical(s) (50 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
 		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
-	if(storage)
-		user << browse("<TITLE>Chemical Storage Unit</TITLE>Chemical Storage Unit Menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
 	else
 		user << browse("<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
 	onclose(user, "chem_master")
@@ -484,9 +466,6 @@
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"
 	condi = 1
-/obj/machinery/chem_master/storage
-	name = "Chemical Storage Unit.  It bears a warning \red \"Warning, maximum capacity 10,000,000 units\""
-	storage = 1
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -868,6 +847,7 @@
 		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in O.contents)
 			O.contents -= G
 			G.loc = src
+			G.screen_loc = 0
 			holdingitems += G
 			if(holdingitems && holdingitems.len >= limit) //Sanity checking so the blender doesn't overfill
 				user << "You fill the All-In-One grinder to the brim."

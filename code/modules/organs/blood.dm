@@ -193,7 +193,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 	var/datum/reagent/blood/our = get_blood(vessel)
 	var/datum/reagent/blood/injected = get_blood(container.reagents)
 
-	if(!container.reagents)
+	if(!get_blood(container.reagents) )
 		return
 	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"]) )
 		reagents.add_reagent("toxin",amount * 0.5)

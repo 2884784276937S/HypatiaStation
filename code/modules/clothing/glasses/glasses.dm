@@ -1,14 +1,26 @@
 
-/obj/item/clothing/glasses
+/obj/item/clothing/glasses //Also defined in clothing.dm. Left alone to keep this update concise.
 	name = "glasses"
 	icon = 'glasses.dmi'
 	//w_class = 2.0
 	//flags = GLASSESCOVERSEYES
 	//slot_flags = SLOT_EYES
 	//var/vision_flags = 0
-	//var/darkness_view = 0//Base human is 2
-	//var/invisa_view = 0
+	//var/darkness_view = 0 //Base human is 2. Added to base human.
+	//var/invisa_view = 0 //Trumps disdark due to how darkness works.
 	var/prescription = 0
+	var/disdark = 0 //Used to define if the glasses should disable darkness entirely or not. Most glasses will not, but most scanners will. Setting this to 1 will lower invisibility.
+/*
+SEE_SELF 	 // can see self, no matter what
+SEE_MOBS  = 4// can see all mobs, no matter what. =4
+SEE_OBJS  = 8// can see all objs, no matter what. =8
+SEE_TURFS =16// can see all turfs (and areas), no matter what. =16
+SEE_PIXELS=32// if an object is located on an unlit area, but some of its pixels are.
+        	 // in a lit area (via pixel_x,y or smooth movement), can see those pixels
+        	 // This is set on all human mobs and cannot be unset by glasses. =32
+BLIND     = 1// can't see anything normally. Handy for making glasses that only let you see specific things.
+			 // Do not use to simply blind. Set mob's blinded = 1 instead.
+*/
 
 /obj/item/clothing/glasses/meson
 	name = "Optical Meson Scanner"
@@ -17,6 +29,7 @@
 	item_state = "glasses"
 	origin_tech = "magnets=2;engineering=2"
 	vision_flags = SEE_TURFS
+	disdark = 1
 
 /obj/item/clothing/glasses/meson/prescription
 	prescription = 1
@@ -55,6 +68,7 @@
 	item_state = "glasses"
 	origin_tech = "magnets=3;engineering=3"
 	vision_flags = SEE_OBJS
+	disdark = 1
 
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
@@ -119,7 +133,7 @@
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
 	item_state = "blindfold"
-	vision_flags = BLIND
+	//vision_flags = BLIND //Blindfolds blind via code in life.dm for superior blindness.
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	prescription = 1
@@ -147,7 +161,9 @@
 	item_state = "glasses"
 	origin_tech = "magnets=3"
 	vision_flags = SEE_MOBS
-	invisa_view = 2
+	invisa_view = SEE_INVISIBLE_LEVEL_ONE
+	disdark = 0 //Not checked when invisa_view is non-zero
+	darkness_view = 2
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))

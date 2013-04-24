@@ -406,10 +406,10 @@
 			return "Code Gold"
 
 /proc/get_all_jobs()
-	return list("Assistant", "Captain", "Head of Personnel", "Bartender", "Chef", "Botanist", "Quartermaster", "Cargo Technician",
-				"Shaft Miner", /*"Clown", "Mime", */"Janitor", "Librarian", "Lawyer", "Chaplain", "Chief Engineer", "Station Engineer",
+	return list("Assistant", "Captain", "Head of Personnel", "Magistrate", "Bartender", "Chef", "Botanist", "Quartermaster", "Cargo Technician",
+				"Mining Foreman", "Shaft Miner", /*"Clown", "Mime", */"Janitor", "Librarian", "Lawyer", "Chaplain", "Chief Engineer", "Station Engineer",
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
-				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer")
+				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer", "Security Paramedic")
 
 /proc/get_all_centcom_jobs()
 	return list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer","BlackOps Commander","Supreme Commander")

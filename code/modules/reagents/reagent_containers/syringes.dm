@@ -122,8 +122,28 @@
 					if(!do_mob(user, target)) return
 					for(var/mob/O in viewers(world.view, user))
 						O.show_message(text("\red [] injects [] with the syringe!", user, target), 1)
+					//Attack log entries are produced here due to failure to produce elsewhere. Remove them here if you have doubles from normal syringes.
+					var/list/rinject = list()
+					for(var/datum/reagent/R in src.reagents.reagent_list)
+						rinject += R.name
+					var/contained = english_list(rinject)
+					var/mob/M = target
+					log_attack("<font color='red'>[user.name] ([user.ckey]) injected [M.name] ([M.ckey]) with [src.name], which had [contained] (INTENT: [uppertext(user.a_intent)])</font>")
+					M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected ([contained]) with [src.name] by [user.name] ([user.ckey])</font>")
+					user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [M.name] ([M.ckey]) with [contained]</font>")
+
 					src.reagents.reaction(target, INGEST)
 				if(ismob(target) && target == user)
+					//Attack log entries are produced here due to failure to produce elsewhere. Remove them here if you have doubles from normal syringes.
+					var/list/rinject = list()
+					for(var/datum/reagent/R in src.reagents.reagent_list)
+						rinject += R.name
+					var/contained = english_list(rinject)
+					var/mob/M = target
+					log_attack("<font color='red'>[user.name] ([user.ckey]) injected [M.name] ([M.ckey]) with [src.name], which had [contained] (INTENT: [uppertext(user.a_intent)])</font>")
+					M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected ([contained]) with [src.name] by [user.name] ([user.ckey])</font>")
+					user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [M.name] ([M.ckey]) with [contained]</font>")
+
 					src.reagents.reaction(target, INGEST)
 				spawn(5)
 					var/datum/reagent/blood/B

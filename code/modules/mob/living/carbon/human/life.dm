@@ -1101,40 +1101,27 @@
 						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
 
 			if(glasses)
-				if(istype(glasses, /obj/item/clothing/glasses/meson))
-					sight |= SEE_TURFS
-					if(!druggy)
-						see_invisible = SEE_INVISIBLE_MINIMUM
-				else if(istype(glasses, /obj/item/clothing/glasses/night))
-					see_in_dark = 5
-					if(!druggy)
-						see_invisible = SEE_INVISIBLE_MINIMUM
-				else if(istype(glasses, /obj/item/clothing/glasses/thermal))
-					sight |= SEE_MOBS
-					if(!druggy)
-						see_invisible = SEE_INVISIBLE_MINIMUM
-				else if(istype(glasses, /obj/item/clothing/glasses/material))
-					sight |= SEE_OBJS
-					if(!druggy)
-						see_invisible = SEE_INVISIBLE_MINIMUM
+				var/obj/item/clothing/glasses/G = glasses
+				sight |= G.vision_flags //Apply any vision flags the glasses have. Doesn't do anything if 0.
+				see_in_dark = 2 + G.darkness_view //2 is base human. Glasses work from there.
 
 	/* HUD shit goes here, as long as it doesn't modify sight flags */
 	// The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
 
-				else if(istype(glasses, /obj/item/clothing/glasses/sunglasses))
-					see_in_dark = 1
-					if(istype(glasses, /obj/item/clothing/glasses/sunglasses/sechud))
-						var/obj/item/clothing/glasses/sunglasses/sechud/O = glasses
-						if(O.hud)		O.hud.process_hud(src)
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
+				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/sechud))
+					var/obj/item/clothing/glasses/sunglasses/sechud/O = glasses
+					if(O.hud)		O.hud.process_hud(src)
 
 				else if(istype(glasses, /obj/item/clothing/glasses/hud))
 					var/obj/item/clothing/glasses/hud/O = glasses
 					O.process_hud(src)
-					if(!druggy)
+				if(!G.invisa_view) //If the glasses let you see invisible shit, they can't also disable darkness.
+					if(!druggy && G.disdark)
+						see_invisible = SEE_INVISIBLE_MINIMUM
+					else
 						see_invisible = SEE_INVISIBLE_LIVING
 				else
-					see_invisible = SEE_INVISIBLE_LIVING
+					see_invisible = G.invisa_view
 			else
 				see_invisible = SEE_INVISIBLE_LIVING
 
@@ -1195,8 +1182,13 @@
 				if(blinded)		blind.layer = 18
 				else			blind.layer = 0
 
-			if( disabilities & NEARSIGHTED && !istype(glasses, /obj/item/clothing/glasses/regular) )
-				client.screen += global_hud.vimpaired
+			if( disabilities & NEARSIGHTED)
+				if(!glasses)
+					client.screen += global_hud.vimpaired
+				else
+					var/obj/item/clothing/glasses/G = glasses
+					if(!G.prescription)
+						client.screen += global_hud.vimpaired
 			if(eye_blurry)			client.screen += global_hud.blurry
 			if(druggy)				client.screen += global_hud.druggy
 

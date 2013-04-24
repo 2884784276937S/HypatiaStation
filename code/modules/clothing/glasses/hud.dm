@@ -32,7 +32,7 @@
 				return "health25"
 			if(5 to 18)
 				return "health10"
-			if(1 to 5)
+			if(0 to 5)
 				return "health1"
 			if(-99 to 0)
 				return "health0"

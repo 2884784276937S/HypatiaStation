@@ -39,20 +39,9 @@
 /obj/machinery/smartfridge/extract
 	name = "\improper Slime Extract Storage"
 	desc = "A refrigerated storage unit for slime extracts"
-	isbroken = 0
-	ispowered = 0
 
 /obj/machinery/smartfridge/extract/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/slime_extract))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/chemicals
-	name = "\improper Chemical Storage Unit"
-	desc = "A regridgerated liquid chemical storage device."
-
-/obj/machinery/smartfridge/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/))
 		return 1
 	return 0
 

@@ -1,7 +1,7 @@
 var/list/protips										= list(
 	"Protip: Adminhelp if you see or are a victim of bad roleplay.",
 	"Protip: Don't tell the admins to do things.",
-	"Protip: Roros like being contained by their shields! Use them. Also, remember to feed them.",
+//	"Protip: Roros like being contained by their shields! Use them. Also, remember to feed them.",
 	"Protip: Trash goes in the nearest disposal unit: this is a space station, not a homeless shelter.",
 	"Protip: When OOC is disabled, don't go (OOC) over the radio.",
 	"Protip: Are you an assistant?  Don't make problems, go get a job.",
@@ -30,7 +30,9 @@ var/list/protips										= list(
 	"Protip: Minimally violent resolutions are preferred! Talk it out, call security, or disarm someone else. Avoid killing!",
 	"Protip: Genetics is there for a reason. Clone someone, chuck them in cryo for a minute or two, then fix any disabilities.",
 	"Protip: You must have consent if you want to do any kind of ERP (Erotic RolePlay) with someone. Offenders are permabanned.",
-	"Protip: Read the protips."
+	"Protip: Read the protips.",
+	"Protip: Don't have weapons showing when the station is on Code Green. This includes wearing them on your suit.",
+	"Protip: If you are working inside Medbay, use rollerbeds to transport people. Not doing so will hurt the patient."
 )
 
 proc/protips()
