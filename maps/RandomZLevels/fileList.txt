@@ -26,6 +26,4 @@ maps/RandomZLevels/listeningpost.dmm
 
 #maps/RandomZLevels/zresearchlabs.dmm
 
-maps/RandomZLevels/jungle.dmm
-
 maps/RandomZLevels/arcticwaste.dmm
