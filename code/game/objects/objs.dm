@@ -126,3 +126,9 @@
 		mo.show_message(rendered, 2)
 		*/
 	return
+
+/obj/fixthisshit
+	name = "(OOC) Broken shit"
+	desc = "If you see this, a mapper was lazy. Poke someone about it. It does not exist ICly"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "energynet"
