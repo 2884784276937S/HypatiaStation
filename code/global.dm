@@ -198,17 +198,17 @@ var/list/awaydestinations = list()	//a list of landmarks that the warpgate can t
 
 	// MySQL configuration
 
-var/sqladdress = "74.220.207.153"
+var/sqladdress = "localhost"
 var/sqlport = "3306"
-var/sqldb = "hypatia_station"
-var/sqllogin = "hypatias_game"
-var/sqlpass = "Whoam!"
+var/sqldb = "tgstation"
+var/sqllogin = "root"
+var/sqlpass = ""
 
 	// Feedback gathering sql connection
 
-var/sqlfdbkdb = "hypatias_feedback"
-var/sqlfdbklogin = "hypatias_game"
-var/sqlfdbkpass = "Whoam!"
+var/sqlfdbkdb = "feedback"
+var/sqlfdbklogin = "root"
+var/sqlfdbkpass = ""
 
 var/sqllogging = 0 // Should we log deaths, population stats, etc?
 
