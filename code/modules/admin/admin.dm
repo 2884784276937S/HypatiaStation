@@ -784,7 +784,8 @@ var/global/floorIsLava = 0
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
 	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
+	message_admins("\blue [key_name(usr)] Toggled admin jumping to [config.allow_admin_jump].")
+	log_admin("[key_name(usr)] Toggled admin jumping to [config.allow_admin_jump].")
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adspawn()
@@ -792,7 +793,8 @@ var/global/floorIsLava = 0
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
 	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
+	message_admins("\blue [key_name(usr)] toggled admin item spawning to [config.allow_admin_spawning].")
+	log_admin("[key_name(usr)] Toggled admin item spawning to [config.allow_admin_spawning].")
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adrev()
@@ -800,7 +802,8 @@ var/global/floorIsLava = 0
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
 	config.allow_admin_rev = !(config.allow_admin_rev)
-	message_admins("\blue Toggled reviving to [config.allow_admin_rev].")
+	message_admins("\blue [key_name(usr)] toggled reviving to [config.allow_admin_rev].")
+	log_admin("[key_name(usr)] Toggled reviving to [config.allow_admin_rev].")
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/immreboot()
