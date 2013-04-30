@@ -247,6 +247,7 @@
 	..()
 	statpanel("Status")
 	if (client.statpanel == "Status")
+		stat(null, "Station Time: [worldtime2text()]")
 		if(emergency_shuttle.online && emergency_shuttle.location < 2)
 			var/timeleft = emergency_shuttle.timeleft()
 			if (timeleft)
