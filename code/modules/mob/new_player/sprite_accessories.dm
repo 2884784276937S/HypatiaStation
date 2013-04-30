@@ -65,11 +65,11 @@
 	longalt
 		name = "Shoulder-length Hair Alt"
 		icon_state = "hair_longfringe"
-
+/* Commenting this out because the sprite isn't available in TG or BS12.
 	longish
 		name = "Longer Hair"
 		icon_state = "hair_b2"
-
+*/
 	longer
 		name = "Long Hair"
 		icon_state = "hair_vlong"
