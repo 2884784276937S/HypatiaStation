@@ -90,6 +90,8 @@
 		if(!client)	return 0
 
 		if(href_list["show_preferences"])
+			ready = 0
+			new_player_panel_proc()
 			client.prefs.ShowChoices(src)
 			return 1
 
