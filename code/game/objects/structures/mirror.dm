@@ -14,24 +14,68 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-
+		var/species = "Human"
+		if(H.dna.mutantrace) //When Species is checked, it must be properly capitalized. I could think of a better way to do this so blah.
+			switch(H.dna.mutantrace)
+				if("tajaran")
+					species = "Tajaran"
+				if("lizard")
+					species = "Soghun"
+				if("skrell")
+					species = "Skrell"
+/*				if("plant")
+					species = "Fennodi"
+				if("slime")
+					species = "Slime"
+				if("shadow")
+					species = "Shadow" //Commented these out due to not having their own hairs, so they'll use Human instead.
+				if("golem")
+					species = "Golem"
+*/
+				else
+					species = "Human" //Always fall back to Human
 		var/userloc = H.loc
 
 		//see code/modules/mob/new_player/preferences.dm at approx line 545 for comments!
 		//this is largely copypasted from there.
 
 		//handle facial hair (if necessary)
-		if(H.gender == MALE)
-			var/new_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in facial_hair_styles_list
-			if(userloc != H.loc) return	//no tele-grooming
-			if(new_style)
-				H.f_style = new_style
+
+		var/list/valid_facialhairstyles = list()
+		for(var/facialhairstyle in facial_hair_styles_list)
+			var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+			if(H.gender == MALE && S.gender == FEMALE)
+				continue
+			if(H.gender == FEMALE && S.gender == MALE)
+				continue
+			if( !(species in S.species_allowed))
+				continue
+
+			valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+
+		var/new_f_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in valid_facialhairstyles
+		if(userloc != H.loc) return	//no tele-grooming
+		if(new_f_style)
+			H.f_style = new_f_style
 
 		//handle normal hair
-		var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
+
+		var/list/valid_hairstyles = list()
+		for(var/hairstyle in hair_styles_list)
+			var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+			if(H.gender == MALE && S.gender == FEMALE)
+				continue
+			if(H.gender == FEMALE && S.gender == MALE)
+				continue
+			if( !(species in S.species_allowed))
+				continue
+
+			valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+
+		var/new_h_style = input(user, "Select a hair style", "Grooming")  as null|anything in valid_hairstyles
 		if(userloc != H.loc) return	//no tele-grooming
-		if(new_style)
-			H.h_style = new_style
+		if(new_h_style)
+			H.h_style = new_h_style
 
 		H.update_hair()
 
