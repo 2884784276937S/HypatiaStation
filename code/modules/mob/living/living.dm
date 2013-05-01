@@ -264,9 +264,19 @@
 	ear_damage = 0
 	heal_overall_damage(1000, 1000)
 	buckled = initial(src.buckled)
+	if(HUSK in src.mutations) src.mutations.Remove(HUSK)
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 		C.handcuffed = initial(C.handcuffed)
+		if(istype(src,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = src
+			for(var/datum/organ/external/O in H.organs)
+				if(istype(O,/datum/organ/external/head))
+					var/datum/organ/external/head/HD = O
+					HD.disfigured = 0
+				O.status &= ~ORGAN_BLEEDING
+				O.destspawn = 0
+
 	for(var/datum/disease/D in viruses)
 		D.cure(0)
 	if(stat == 2)
