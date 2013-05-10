@@ -55,3 +55,8 @@
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target = null
+
+	var/clone_walk = 0
+	var/clone_item = 0
+	var/clone_item_c = 0
+	var/clone_walk_c = 0

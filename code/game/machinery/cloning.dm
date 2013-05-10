@@ -18,6 +18,7 @@
 	var/mess = 0 //Need to clean out it if it's full of exploded clone.
 	var/attempting = 0 //One clone attempt at a time thanks
 	var/eject_wait = 0 //Don't eject them as soon as they are created fuckkk
+	var/charges = 0 //We need to keep track of dem aborted fetuses.
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
@@ -45,6 +46,27 @@
 	data_type = "se"
 	data = "0983E840344C39F4B059D5145FC5785DC6406A4FFF"
 	read_only = 1
+
+
+//Part ouf our new cloning system, stem-cell charges!  Can abort fetuses save YOUR LIFE?  Find out, next.
+
+/obj/item/cloning/charge
+	name = "Stem Cell Container"
+	desc = "PLACEHOLDER"
+	var/charges = 1
+	icon = 'icons/mob/obsidiai.dmi'
+	icon_state = "fukdis"
+
+/obj/item/cloning/charge/attack_self(mob/user)
+	playsound(src.loc, 'sound/effects/Glassbr3.ogg', 50, 0)
+	for (var/mob/O in viewers(world.view, user))
+		O << "[user] is shaking \the [src], trying to determine if anything is inside."
+		spawn(10)
+		O << "[user] accidentally empties the contents of \the [src] all over the floor!"
+	gibs(src.loc)
+	user << "That was stupid of you..."
+	user.drop_item()
+	Del(src)
 
 //Find a dead mob with a brain and client.
 /proc/find_dead_player(var/find_key)
@@ -124,7 +146,12 @@
 	if(clonemind.active)	//somebody is using that mind
 		if( ckey(clonemind.key)!=ckey )
 			return 0
+	if(!charges) //Yummy
+		src.connected_message("Error:  Insuffecient Stem-Cells")
+		return 0
+
 	else
+		charges -= 1
 		for(var/mob/dead/observer/G in player_list)
 			if(G.ckey == ckey)
 				if(G.can_reenter_corpse)
@@ -160,6 +187,10 @@
 	clonemind.transfer_to(H)
 	H.ckey = ckey
 	H << "<span class='notice'><b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i></span>"
+	spawn(10)
+	H << "<span class='notice'><i>Hmm... this isn't so ba- </i><B><FONT COLOR=RED>AGH... GOD!  MAKE IT STOP!  MAKE IT STOP!</FONT></B>"
+	spawn(20)
+	H << "<B>You hear a voice in your head...</B> I should have just stayed dead..."
 
 	// -- Mode/mind specific stuff goes here
 
@@ -176,6 +207,11 @@
 				ticker.mode.update_all_cult_icons() //So the icon actually appears
 
 	// -- End mode specific stuff
+
+	if(prob(10))
+		src.charges = 0
+		src.connected_message("Error:  Stem-Cell Processing Failure")
+		return
 
 	if(!H.dna)
 		H.dna = new /datum/dna()
@@ -233,6 +269,11 @@
 			use_power(7500) //This might need tweaking.
 			return
 
+		if(prob(40))
+			src.mess = 1
+			src.locked = 0
+			src.go_out()
+
 		else if((src.occupant.health >= src.heal_level) && (!src.eject_wait))
 			src.connected_message("Cloning Process Complete.")
 			src.locked = 0
@@ -271,6 +312,18 @@
 		src.locked = 0
 		src.go_out()
 		return
+	else
+		..()
+
+/obj/machinery/clonepod/attackby(var/obj/item/cloning/C as obj, mob/user as mob)
+	if (istype(C, /obj/item/cloning/charge))
+		var/obj/item/cloning/charge/D = C
+		if(!D.charges)
+			user << "\red Warning:  Container Empty"
+		else
+			user << "\blue <B>[D.charges] added.  [src.charges] total charges."
+			src.charges += D.charges
+			D.charges = null
 	else
 		..()
 
@@ -327,6 +380,9 @@
 	src.eject_wait = 0 //If it's still set somehow.
 	domutcheck(src.occupant) //Waiting until they're out before possible monkeyizing.
 	src.occupant.add_side_effect("Bad Stomach") // Give them an extra side-effect for free.
+	var/mob/living/carbon/human/C = src.occupant
+	C.clone_walk = 1
+	C.clone_item = 1 //Cloning side-effects
 	src.occupant = null
 	return
 

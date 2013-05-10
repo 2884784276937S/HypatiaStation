@@ -132,9 +132,27 @@
 			return
 		user.lastDblClick = world.time + 2
 		user.next_move = world.time + 2
+	//if(!user.clone.item)
 	src.pickup(user)
 	add_fingerprint(user)
 	user.put_in_active_hand(src)
+	var/mob/living/carbon/human/U = user
+	if(U.clone_item)
+		if(U.clone_item_c >= 10)
+			U << "<FONT COLOR=BLUE><B>You feel strong...  You feel like you can hold things properly!</B></FONT>"
+			U.clone_item = 0
+			U.clone_item_c = 0
+			return
+		else if(prob(60))
+			U << "<FONT COLOR=RED><B>You hands ache...</B></FONT>"
+			spawn(10)
+			U << "<B>You drop \the [src].</B>"
+			U.drop_item()
+			return
+		else
+			U << "<FONT COLOR=BLUE><B>You muster the strength to pickup \the [src].</B></FONT>"
+			U.clone_item_c += 1
+			return
 	return
 
 

@@ -30,6 +30,21 @@
 
 	if(FAT in src.mutations)
 		tally += 1.5
+	if(clone_walk)
+		if(clone_walk_c >= 10)
+			src << "<FONT COLOR=BLUE><B>You feel a jolt of strength...</B> You feel as if you can walk again!"
+			clone_walk = 0
+			clone_walk_c = 0
+		else if(prob(60))
+			src << pick("<FONT COLOR=RED><B>You back aches....</B> You reach around to support it...</FONT>", "\red <B>Your legs feel wobbly...</B>", "\red <B>You suddenly run out of energy</B>")
+			spawn(10)
+			src << pick("\red <B>You trip!</B>", "\red <B>You fall over!</B>", "\red <B>You suddenly forget how to stand up!</B>")
+			Weaken(4)
+			Paralyse(3)
+		else
+			src << "\blue <B>You muster the strength to take one slow step.</B>"
+			clone_walk_c++
+			tally += 2
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 
