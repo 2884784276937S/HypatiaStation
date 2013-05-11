@@ -14,6 +14,8 @@
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
 	var/mode = SYRINGE_DRAW
+	var/usedOn
+	var/uses = 0
 
 	on_reagent_change()
 		update_icon()
@@ -50,6 +52,14 @@
 
 	afterattack(obj/target, mob/user , flag)
 		if(!target.reagents) return
+		if(!usedOn)
+			usedOn = "\ref [target]"
+		if(ismob(target))
+			if(usedOn != "\ref [target]")
+				user << "\red >B>How dare you...</B> using the same syringe on more than two patients..."
+				var/mob/T = target
+				T << "\red Didn't that doctor just use that syringe on another patient!?"
+				return
 
 		switch(mode)
 			if(SYRINGE_DRAW)
@@ -116,12 +126,20 @@
 					user << "\red [target] is full."
 					return
 
+				if(uses >= 3)
+					mode = BROKEN
+					user << "<B>You hear a voice in your head...</B> Well... \the [src] is contaminated, time to throw it away."
+					for(var/mob/O in viewers(world.view, user))
+						O << "<B>[user]</B> bends \the [src], so it is unusable."
+					return
+
 				if(ismob(target) && target != user)
 					for(var/mob/O in viewers(world.view, user))
 						O.show_message(text("\red <B>[] is trying to inject []!</B>", user, target), 1)
 					if(!do_mob(user, target)) return
 					for(var/mob/O in viewers(world.view, user))
 						O.show_message(text("\red [] injects [] with the syringe!", user, target), 1)
+					uses++
 					//Attack log entries are produced here due to failure to produce elsewhere. Remove them here if you have doubles from normal syringes.
 					var/list/rinject = list()
 					for(var/datum/reagent/R in src.reagents.reagent_list)
