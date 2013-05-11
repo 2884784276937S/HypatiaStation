@@ -154,6 +154,15 @@
 	icon_opened = "medicalcrateopen"
 	icon_closed = "medicalcrate"
 
+/obj/stucture/closet/crate/secure/bio
+	desc = "PLACEHOLDER"
+	name = "Long-Term Biohazard Storage Unit"
+	icon = 'icons/mob/obsidiai.dmi'
+	icon_state = "fukdis"
+	density = 1
+	icon_opened = "fukdis"
+	icon_closed = "fukdis"
+
 /obj/structure/closet/crate/secure/hydrosec
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	name = "secure hydroponics crate"

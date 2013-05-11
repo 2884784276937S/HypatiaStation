@@ -355,6 +355,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_medical
 	group = "Medical / Science"
 
+/datum/supply_packs/stemcell
+	name = "Stem-Cell Pack (2)"
+	desc = "PLACEHOLDER"
+	contains = list(/obj/item/cloning/charge,
+					/obj/item/cloning/charge)
+	cost = 125
+	containertype = /obj/structure/closet/crate/secure/bio
+	containername = "Stem-Cell Long Term Storage Unit"
+	access = access_medical
+	group = "Medical / Science"
+
 /datum/supply_packs/virus
 	name = "Virus crate"
 /*	contains = list(/obj/item/weapon/reagent_containers/glass/bottle/flu_virion,
