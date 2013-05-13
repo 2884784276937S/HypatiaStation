@@ -357,7 +357,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/stemcell
 	name = "Stem-Cell Pack (2)"
-	desc = "PLACEHOLDER"
 	contains = list(/obj/item/cloning/charge,
 					/obj/item/cloning/charge)
 	cost = 125

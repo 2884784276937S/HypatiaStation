@@ -494,7 +494,7 @@
 	return
 
 
-/mob/living/carbon/obsidiai/verb/toggle_hotkey_verbs()
+/mob/living/carbon/rock/obsidiai/verb/toggle_hotkey_verbs()
 	set category = "OOC"
 	set name = "Toggle hotkey buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
@@ -507,7 +507,7 @@
 		src.hud_used.hotkey_ui_hidden = 1
 
 
-/mob/living/carbon/obsidiai/update_action_buttons()
+/mob/living/carbon/rock/obsidiai/update_action_buttons()
 	var/num = 1
 	if(!src.hud_used) return
 	if(!src.client) return

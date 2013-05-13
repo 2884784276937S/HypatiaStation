@@ -154,7 +154,7 @@
 	icon_opened = "medicalcrateopen"
 	icon_closed = "medicalcrate"
 
-/obj/stucture/closet/crate/secure/bio
+/obj/structure/closet/crate/secure/bio
 	desc = "PLACEHOLDER"
 	name = "Long-Term Biohazard Storage Unit"
 	icon = 'icons/mob/obsidiai.dmi'

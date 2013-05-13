@@ -134,6 +134,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/air_report,
 	/client/proc/reload_admins,
 	/client/proc/restart_controller,
+	/client/proc/callproc,
 	/client/proc/enable_debug_verbs
 	)
 var/list/admin_verbs_possess = list(
@@ -225,7 +226,9 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/PlayerNotes,
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/cmd_mod_say,
-	/client/proc/colorooc,				//Annedu asked for this.  Why not?
+//	/client/proc/colorooc,
+	/client/proc/cmd_admin_subtle_message,	//12/5/2013 (GMT+10) Admin-meeting decision. --Numbers
+	/client/proc/cmd_admin_direct_narrate,
 	/datum/admins/proc/show_player_info,
 	/client/proc/player_panel_new,
 //	/datum/admins/proc/show_skills
@@ -234,11 +237,10 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/colorooc,				//I think this is a cool thing for donors.
 	/client/proc/cmd_admin_say,
+	//Donors can access the old-style player panel anyway
 	/client/proc/player_panel,			/*shows an interface for all players, with links to various panels (old style)*/
-	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/
-	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/ //Timothion will be happy
-	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
-	//They have it anyway, might as well make it more accessible.
+	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/  //LINKS REQUIRE ADDITIONAL PERMS
+	//They have it anyway, might as well make it more accessible. (the following commands)
 	/datum/admins/proc/show_player_info,
 	/datum/admins/proc/PlayerNotes,			//Can do all this stuff anyway, just hardish
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
@@ -246,7 +248,7 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 	/client/proc/cmd_mod_say,
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
-	/*Debugging Type Stuff*/			//Maybe this shouldn't go here.  However, useful is you're someone like me.
+	/*Debugging Type Stuff*/			//Maybe this shouldn't go here.  But, they're still logs.
 	/client/proc/giveruntimelog,		/*allows us to give access to runtime logs to somebody*/
 	/client/proc/getruntimelog,			/*allows us to access runtime logs to somebody*/
 	/client/proc/getserverlog,			/*allows us to fetch server logs (diary) for other days*/

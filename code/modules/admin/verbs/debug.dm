@@ -868,8 +868,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	M.regenerate_icons()
 
+	dresscode = "\proper [dresscode]"
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", 1)
+	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1) //PUNCTUATION FIXES
 	return
 
 /client/proc/startSinglo()
@@ -922,6 +923,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/obj/machinery/power/smes/SMES in world)
 		if(SMES.anchored)
 			SMES.chargemode = 1
+	log_admin("[key_name(usr)] has admin-setup the singularity.")
+	message_admins("[key_name(usr)] has admin-setup the singularity. \n <FONT COLOR=RED>PLEASE NOTE: THIS IS INTENDED FOR DEBUG-ONLY.  THIS MAY HAVE CERTAIN UNDESIRED EFFECTS.</FONT>")
 
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"

@@ -21,15 +21,28 @@
 		return
 
 	var/rendered
+	var/d_rank
+	if(length(src.holder.rank) <= 9)
+		d_rank = uppertext(src.holder.rank)
+	else
+		if(!config.admin_legacy_system) //INDENT LEVEL 1
+			switch(src.holder.rank) //INDENT LEVEL 2
+				if(null) //INDENT LEVEL 3
+					return
+				if("Head Administrator")
+					d_rank = "HEADADMIN"
+				//Because screw double pipes
+				if("HeadAdministrator")
+					d_rank = "HEADADMIN"
+				else
+					d_rank = "ADMIN"
+		else d_rank = "ADMIN" //INDENT LEVLEL 1 (SORRY, THIS HURT MY EYES)
 
-	if(check_rights(R_ADMIN))
-		rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>ADMIN([src.holder.fakekey ? pick("BADMIN", "hornigranny", "TLF", "scaredforshadows", "KSI", "Silnazi", "HerpEs", "BJ69", "SpoofedEdd", "Uhangay", "Wario90900", "Regarity", "MissPhareon", "LastFish", "unMportant", "Deurpyn", "Fatbeaver") : src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
-	if(check_rights(R_MOD))
-		rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>MOD([src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
-	if(check_rights(R_DEBUG))
-		rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>DEV([src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
-	if(check_rights(R_DONOR))
-		rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>DONOR([src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
+	//if(config.admin_legacy_system)
+
+
+	rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[d_rank]([src.holder.fakekey ? pick("BADMIN", "hornigranny", "TLF", "scaredforshadows", "KSI", "Silnazi", "HerpEs", "BJ69", "SpoofedEdd", "Uhangay", "Wario90900", "Regarity", "MissPhareon", "LastFish", "unMportant", "Deurpyn", "Fatbeaver") : src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
+
 
 	for (var/mob/M in player_list)
 		if (istype(M, /mob/new_player))
