@@ -268,14 +268,21 @@
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 		C.handcuffed = initial(C.handcuffed)
-		if(istype(src,/mob/living/carbon/human))
+		C.viruses = initial(C.viruses)
+		if(istype(src,/mob/living/carbon/human)) //A lot of things defined at the human level. Might be on other mobs too.
 			var/mob/living/carbon/human/H = src
+			H.side_effects = initial(H.side_effects)
 			for(var/datum/organ/external/O in H.organs)
 				if(istype(O,/datum/organ/external/head))
-					var/datum/organ/external/head/HD = O
-					HD.disfigured = 0
-				O.status &= ~ORGAN_BLEEDING
-				O.destspawn = 0
+					var/datum/organ/external/head/HD = O //Only the head can be disfigured
+					HD.disfigured = 0 //FIX YO FACE
+				if(O.status & ORGAN_ROBOT) //If it's a robot hand, it should stay a robot hand.
+					O.status = ORGAN_ROBOT
+				else
+					O.status = 0 //If it's not a robot hand, fix it completely.
+				O.destspawn = 0 //Make it possible to break it off again.
+			for(var/datum/organ/internal/I in H.internal_organs) //FIX THAT ACHY BREAKY HEART
+				I.damage = 0
 
 	for(var/datum/disease/D in viruses)
 		D.cure(0)
