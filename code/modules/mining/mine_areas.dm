@@ -48,5 +48,26 @@
 /area/mine/north_outpost
 	name = "North Mining Outpost"
 
+/area/mine/north_outpost/dock
+	name = "Research Mining Dock"
+
+/area/mine/north_outpost/lab
+	name = "Anomaly Research Lab"
+
+/area/mine/north_outpost/storage
+	name = "Anomaly Research Storage"
+
+/area/mine/north_outpost/maintainence
+	name = "Anomaly Research Maintainence"
+
+/area/mine/north_outpost/hallway
+	name = "Anomaly Research Hallway"
+
+/area/mine/north_outpost/excavation
+	name = "Mining Research Station"
+
+/area/mine/north_outpost/xenoarch
+	name = "Xenoarcheology"
+
 /area/mine/west_outpost
 	name = "West Mining Outpost"
