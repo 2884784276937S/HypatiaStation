@@ -54,8 +54,9 @@
 	name = "Stem Cell Container"
 	desc = "PLACEHOLDER"
 	var/charges = 1
-	icon = 'icons/mob/obsidiai.dmi'
-	icon_state = "fukdis"
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "rcd"
+	item_state = "rcdammo"
 
 /obj/item/cloning/charge/attack_self(mob/user)
 	playsound(src.loc, 'sound/effects/Glassbr3.ogg', 50, 0)
