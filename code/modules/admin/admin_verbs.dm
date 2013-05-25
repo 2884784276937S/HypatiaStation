@@ -8,6 +8,7 @@ var/list/admin_verbs_default = list(
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/check_antagonists,		/*shows all antags*/
 	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/ //Shows ADMIN, MOD, DEV, etc depending on permissions
+	/client/proc/display_admin_reports,
 	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(

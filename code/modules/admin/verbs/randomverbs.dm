@@ -722,7 +722,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/admin_call_shuttle()
 
 	set category = "Admin"
-	set name = "Call Shuttle"
+	set name = "Call Emergency Shuttle"
 
 	if ((!( ticker ) || emergency_shuttle.location))
 		return
@@ -768,7 +768,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/admin_call_transfer()
 
 	set category = "Admin"
-	set name = "Call transfer"
+	set name = "Call Crew Transfer Shuttle"
 
 	if ((!( ticker ) || emergency_shuttle.location))
 		return

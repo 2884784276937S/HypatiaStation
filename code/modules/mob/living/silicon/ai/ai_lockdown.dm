@@ -2,13 +2,13 @@
 	set category = "AI Commands"
 	set name = "Lockdown"
 
+
 	if(usr.stat == 2)
 		usr <<"You cannot initiate lockdown because you are dead!"
 		return
 
-	src << "<b>Initiating lockdowns has been disabled due to system stress.</b>"
-//	Commented this out to disable Lockdowns -- TLE
-/*	world << "\red Lockdown initiated by [usr.name]!"
+	message_admins("[src.ckey]/([src.name] has initiated a lockdown!")
+	log_admin("[src.ckey]/([src.name] has initiated a lockdown!")
 
 	for(var/obj/machinery/firealarm/FA in world) //activate firealarms
 		spawn( 0 )
@@ -20,17 +20,22 @@
 			if(AL.canAIControl() && AL.icon_state == "door0" && AL.lockdownbyai == 0)
 				AL.close()
 				AL.lockdownbyai = 1
+	for(var/obj/machinery/door/poddoor/AL in world) //lockdown blast doors
+		spawn( 0 )
+			if(AL.density == 0 && AL.lockdownbyai == 0)
+				AL.close()
+				AL.lockdownbyai = 1
 
 	var/obj/machinery/computer/communications/C = locate() in world
 	if(C)
 		C.post_status("alert", "lockdown")
-*/
 
-/*	src.verbs -= /mob/living/silicon/ai/proc/lockdown
+
+	src.verbs -= /mob/living/silicon/ai/proc/lockdown
 	src.verbs += /mob/living/silicon/ai/proc/disablelockdown
 	usr << "\red Disable lockdown command enabled!"
 	winshow(usr,"rpane",1)
-*/
+
 
 /mob/living/silicon/ai/proc/disablelockdown()
 	set category = "AI Commands"
@@ -40,7 +45,8 @@
 		usr <<"You cannot disable lockdown because you are dead!"
 		return
 
-	world << "\red Lockdown cancelled by [usr.name]!"
+	message_admins("[src.ckey]/([src.name] has released a lockdown!")
+	log_admin("[src.ckey]/([src.name] has released a lockdown!")
 
 	for(var/obj/machinery/firealarm/FA in world) //deactivate firealarms
 		spawn( 0 )
@@ -52,9 +58,13 @@
 			if(AL.canAIControl() && AL.lockdownbyai == 1)
 				AL.open()
 				AL.lockdownbyai = 0
+	for(var/obj/machinery/door/poddoor/AL in world) //lockdown blast doors
+		spawn( 0 )
+			if(AL.density == 1 && AL.lockdownbyai == 1)
+				AL.open()
+				AL.lockdownbyai = 0
 
-/*	src.verbs -= /mob/living/silicon/ai/proc/disablelockdown
+	src.verbs -= /mob/living/silicon/ai/proc/disablelockdown
 	src.verbs += /mob/living/silicon/ai/proc/lockdown
 	usr << "\red Disable lockdown command removed until lockdown initiated again!"
 	winshow(usr,"rpane",1)
-*/

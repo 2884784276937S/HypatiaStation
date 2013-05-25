@@ -27,6 +27,20 @@
 	usr << "You will [(prefs.toggles & CHAT_RADIO) ? "now" : "no longer"] see radio chatter from nearby radios or speakers"
 	feedback_add_details("admin_verb","THR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/toggle_roll_letter() //--Numbers
+	set name = "Automatic Tajaran/Soghun Speech"
+	set category = "Preferences"
+	if(!ishuman(src.eye))
+		set hidden = 1
+	else
+		var/mob/living/carbon/human/M = src.eye
+		if(M.get_species() != "Tajaran" | "Soghun")
+			set hidden = 1
+	prefs.toggles ^= CHAT_ROLL
+	prefs.save_preferences()
+	usr << "You will [(prefs.toggles & CHAT_ROLL) ? "now" : "no longer"] automatically roll your character's R/Ss."
+	feedback_add_details("admin_verb","ROLL") //Wha... why...
+
 /client/proc/toggleadminhelpsound()
 	set name = "Hear/Silence Adminhelps"
 	set category = "Preferences"

@@ -155,13 +155,17 @@
 	icon_closed = "medicalcrate"
 
 /obj/structure/closet/crate/secure/bio
-	desc = "PLACEHOLDER"
-	name = "Long-Term Biohazard Storage Unit"
+	desc = "A specialized orange freezer, designed to biologically suspend \
+the valuable stem cells used to clone people on board the station \
+inside the genetics lab. Designed to hold stem cells for very long \
+periods of time. There is some small print on top, \n \
+<B><FONT COLOR=RED>\"Warning: The contents of this Biological Suspension Unit (BSU) are incredibly valuable. Waste of these stem cells will result in termination and you will be expected to compensate.\"</B></FONT>"
+	name = "Biological Suspension Unit (BSU)"
 	icon = 'icons/obj/storage.dmi'
 	density = 1
-	icon_state = "securecrate"
-	icon_opened = "securecrateopen"
-	icon_closed = "securecrate"
+	icon_state = "bio"
+	icon_opened = "bioopen"
+	icon_closed = "bio"
 
 /obj/structure/closet/crate/secure/hydrosec
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."

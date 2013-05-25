@@ -5,6 +5,11 @@
 		return 1
 	return 0
 
+/proc/isrock(A)
+	if(istype(A, /mob/living/carbon/rock/obsidiai))
+		return 1
+	return 0 //ROCKMAN!-Numbers
+
 /proc/ismonkey(A)
 	if(A && istype(A, /mob/living/carbon/monkey))
 		return 1

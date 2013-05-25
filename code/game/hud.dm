@@ -276,6 +276,9 @@ datum/hud/New(mob/owner)
 	else if(isrobot(mymob))
 		robot_hud()
 
+	else if(isrock(mymob))
+		obsidiai_hud()
+
 //	else if(ishivebot(mymob))
 //		hivebot_hud()
 

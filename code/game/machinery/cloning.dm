@@ -51,19 +51,18 @@
 //Part ouf our new cloning system, stem-cell charges!  Can abort fetuses save YOUR LIFE?  Find out, next.
 
 /obj/item/cloning/charge
-	name = "Stem Cell Container"
-	desc = "PLACEHOLDER"
+	name = "Short-Term Biological Suspension Unit (SBSU)"
+	//desc = "PLACEHOLDER"
 	var/charges = 1
-	icon = 'icons/obj/ammo.dmi'
-	icon_state = "rcd"
-	item_state = "rcdammo"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "stem-charge"
 
 /obj/item/cloning/charge/attack_self(mob/user)
 	playsound(src.loc, 'sound/effects/Glassbr3.ogg', 50, 0)
 	for (var/mob/O in viewers(world.view, user))
-		O << "[user] is shaking \the [src], trying to determine if anything is inside."
+		O << "<B>[user]</B> is shaking \the [src], trying to determine if anything is inside."
 		spawn(10)
-		O << "[user] accidentally empties the contents of \the [src] all over the floor!"
+		O << "<B>[user]</B> accidentally empties the contents of \the [src] all over the floor!"
 	gibs(src.loc)
 	user << "That was stupid of you..."
 	user.drop_item()

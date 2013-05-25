@@ -22,7 +22,7 @@
 
 	var/rendered
 	var/d_rank
-	if(length(src.holder.rank) <= 9)
+	if(length(src.holder.rank) <= 10)
 		d_rank = uppertext(src.holder.rank)
 	else
 		if(!config.admin_legacy_system) //INDENT LEVEL 1

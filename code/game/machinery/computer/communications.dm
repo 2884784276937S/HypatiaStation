@@ -287,7 +287,7 @@
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	if (src.z > 6)
+	if (src.z != 1 | 2)
 		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
 		return
 
@@ -297,7 +297,7 @@
 		var/timeleft = emergency_shuttle.timeleft()
 		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 
-	if (istype(user, /mob/living/silicon))
+	if ((istype(user, /mob/living/silicon)) && (user.client.holder))
 		var/dat2 = src.interact_ai(user) // give the AI a different interact proc to limit its access
 		if(dat2)
 			dat +=  dat2
@@ -390,8 +390,12 @@
 	var/dat = ""
 	switch(src.aistate)
 		if(STATE_DEFAULT)
-			if(emergency_shuttle.location==0 && !emergency_shuttle.online)
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Call Emergency Shuttle</A> \]"
+			if(emergency_shuttle.location==0)
+				if (emergency_shuttle.online)
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Shuttle Call</A> \]"
+				else
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Call Emergency Shuttle</A> \]"
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=crewtransfer'>Initiate Crew Transfer</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-status'>Set Status Display</A> \]"
 		if(STATE_CALLSHUTTLE)

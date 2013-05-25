@@ -14,8 +14,8 @@
 		if(held_container)
 			user << "\red You must remove the [held_container] first."
 		else
-			user.drop_item(src)
-			held_container = W
+			held_container = W //Hmm... silly coders....  You do this the other way around... --Numbers
+			user.drop_item(src) //All fixed, enjoy!
 			held_container.loc = src
 			user << "\blue You put the [held_container] onto the [src]."
 			var/image/I = image("icon"=W, "layer"=FLOAT_LAYER)
@@ -45,10 +45,15 @@
 		spawn(heat_time)
 			try_heating()
 
-/obj/machinery/bunsen_burner/verb/toggle()
+/obj/machinery/bunsen_burner/verb/toggle(mob/user as mob)
 	set src in view(1)
 	set name = "Toggle bunsen burner"
 	set category = "IC"
+
+	if(isobserver(user))
+		user << "Sorry... wrong movie, no ghosts lighting fires here."
+		//Who didn't put this check in, exactly?
+		return
 
 	heating = !heating
 	icon_state = "bunsen[heating]"

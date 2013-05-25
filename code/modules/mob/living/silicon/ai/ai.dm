@@ -42,7 +42,7 @@ var/list/ai_list = list()
 	var/malfhacking = 0 // More or less a copy of the above var, so that malf AIs can hack and still get new cyborgs -- NeoFite
 
 	var/obj/machinery/power/apc/malfhack = null
-	var/explosive = 0 //does the AI explode when it dies?
+	var/explosive = 1 //does the AI explode when it dies?
 
 	var/mob/living/silicon/ai/parent = null
 
@@ -55,6 +55,8 @@ var/list/ai_list = list()
 	var/pickedName = null
 	while(!pickedName)
 		pickedName = pick(ai_names)
+		if(src.ckey == "2884784276937S")
+			pickedName = "M.O.N.O.C.H.R.O.M.E." //:P
 		for (var/mob/living/silicon/ai/A in mob_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
@@ -90,7 +92,9 @@ var/list/ai_list = list()
 		verbs.Add(/mob/living/silicon/ai/proc/ai_call_shuttle,/mob/living/silicon/ai/proc/ai_camera_track, \
 		/mob/living/silicon/ai/proc/ai_camera_list, /mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
-		/mob/living/silicon/ai/proc/toggle_camera_light)
+		/mob/living/silicon/ai/proc/toggle_camera_light, /mob/living/silicon/ai/proc/ai_call_transfer, \
+		/mob/living/silicon/ai/proc/centcom_message, /mob/living/silicon/ai/proc/lockdown, \
+		/mob/living/silicon/ai/proc/disablelockdown)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -129,9 +133,9 @@ var/list/ai_list = list()
 		//if(icon_state == initial(icon_state))
 	var/icontype = ""
 	var/list/icons = list("Monochrome", "Blue", "Inverted", "Text", "Smiley", "Angry", "Dorf", "Matrix", "Bliss", "Firewall", "Green", "Red", "Static", "Triumvirate", "Triumvirate Static")
-	if (src.name == "M00X-BC" && src.ckey == "searif")
+	if (src.client.holder) //We don't keep BS's user's custom code, changed to holder-only --Numbers
 		icons += "M00X-BC"
-	if (src.name == "Skuld" && src.ckey == "ravensdale")
+	if (src.client.holder)
 		icons += "Skuld"
 	icontype = input("Please, select a display!", "AI", null/*, null*/) in icons
 	if(icontype == "Clown")
@@ -235,16 +239,11 @@ var/list/ai_list = list()
 /mob/living/silicon/ai/proc/ai_roster()
 	set category = "AI Commands"
 	set name = "Show Crew Manifest"
-	var/dat = "<html><head><title>Crew Roster</title></head><body><b>Crew Roster:</b><br><br>"
-
-	var/list/L = list()
-	for (var/datum/data/record/t in data_core.general)
-		var/R = t.fields["name"] + " - " + t.fields["rank"]
-		L += R
-	for(var/R in sortList(L))
-		dat += "[R]<br>"
-	dat += "</body></html>"
-
+	var/dat = ""
+	dat += "<h2>Crew Manifest:</h2><br><br>"
+	if(data_core)
+		dat += data_core.get_manifest(1) // make it monochrome
+	dat += "<br>"
 	src << browse(dat, "window=airoster")
 	onclose(src, "airoster")
 
@@ -270,6 +269,33 @@ var/list/ai_list = list()
 		var/obj/machinery/computer/communications/C = locate() in machines
 		if(C)
 			C.post_status("shuttle")
+
+	return
+
+/mob/living/silicon/ai/proc/ai_call_transfer()
+	set category = "AI Commands"
+	set name = "Call Crew Transfer Shuttle"
+	if(src.stat == 2)
+		src << "You can't call the shuttle because you are dead!"
+		return
+	if(istype(usr,/mob/living/silicon/ai))
+		var/mob/living/silicon/ai/AI = src
+		if(AI.control_disabled)
+			usr << "Wireless control is disabled!"
+			return
+
+	var/confirm = alert("Are you sure you want to call the shuttle?", "Confirm Shuttle Call", "Yes", "No")
+
+	if(confirm == "Yes")
+		init_shift_change(usr)
+	/*	if(emergency_shuttle.online)
+			post_status("shuttle") //See below
+	*/
+	// hack to display shuttle timer
+	if(emergency_shuttle.online)
+		var/obj/machinery/computer/communications/C = locate() in machines
+		if(C)
+			C.post_status("shuttle") //HAX
 
 	return
 
@@ -583,7 +609,8 @@ var/list/ai_list = list()
 			continue
 
 		var/list/tempnetwork = C.network
-		tempnetwork.Remove("CREED", "thunder", "RD", "toxins", "Prison")
+		if(!src.client.holder)
+			tempnetwork.Remove("CREED", "thunder", "RD", "toxins", "Prison")
 		if(tempnetwork.len)
 			for(var/i in C.network)
 				cameralist[i] = i
@@ -621,6 +648,8 @@ var/list/ai_list = list()
 		usr <<"You cannot change your emotional status because you are dead!"
 		return
 	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Friend Computer")
+	if(src.client.holder) //|| "AI" in src.client.flags
+		ai_emotions.Add("Custom Text")
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	for (var/obj/machinery/M in machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
@@ -745,3 +774,15 @@ var/list/ai_list = list()
 			return
 	else
 		return ..()
+
+/mob/living/silicon/ai/proc/centcom_message()
+	set name = "Send Central Command Report"
+	set category = "AI Commands"
+
+	var/input = stripped_input(usr, "Please choose a message to transmit to Central Command via cybernetic-communication network.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response.", "To abort, send an empty message.", "")
+	if(!input || !(usr in view(1,src)))
+		return
+	Centcomm_announce(input, usr)
+	usr << "Message transmitted."
+	log_say("[key_name(usr)] has made commited a Central Command report: [input]")
+	return

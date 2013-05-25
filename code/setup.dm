@@ -588,7 +588,7 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 
 
 
-//Please don't edit these values without speaking to Errorage first	~Carn
+//Please don't edit these values without speaking to Errorage first	~Carn //Owen totally violated this rule --NUMBERS
 //Admin Permissions
 #define R_BUILDMODE		1
 #define R_ADMIN			2
@@ -622,9 +622,10 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define CHAT_PRAYER		256
 #define CHAT_RADIO		512
 #define CHAT_ATTACKLOGS	1024
+#define CHAT_ROLL 2048
 
-#define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS)
-
+#define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_ROLL)
+//
 #define BE_TRAITOR		1
 #define BE_OPERATIVE	2
 #define BE_CHANGELING	4

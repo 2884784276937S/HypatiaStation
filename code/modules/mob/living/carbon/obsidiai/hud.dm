@@ -544,3 +544,105 @@
 			num++
 
 	src.client.screen += src.hud_used.item_action_list
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+/mob/living/carbon/rock/obsidiai/Topic(href, href_list)
+	..()
+	if (href_list["mach_close"])
+		var/t1 = text("window=[]", href_list["mach_close"])
+		unset_machine()
+		src << browse(null, t1)
+	if ((href_list["item"] && !( usr.stat ) && !( usr.restrained() ) && in_range(src, usr) ))
+		var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
+		O.source = usr
+		O.target = src
+		O.item = usr.get_active_hand()
+		O.s_loc = usr.loc
+		O.t_loc = loc
+		O.place = href_list["item"]
+		requests += O
+		spawn( 0 )
+			O.process()
+			return
+	..()
+	return
+
+/mob/living/carbon/monkey/meteorhit(obj/O as obj)
+	for(var/mob/M in viewers(src, null))
+		M.show_message(text("\red [] has been glazed by []", src, O), 1)
+	if (health > 0)
+		Weaken(10)
+		Paralyse(5)
+		src << "<B><FONT COLOR=RED>The [O] knocked you over!</FONT></B>"
+	return
+
+/mob/living/carbon/rock/obsidiai/attack_paw(mob/M as mob)
+	..()
+	return attack_hand()
+
+/mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
+	if (!ticker)
+		M << "You cannot attack people before the game has started."
+		return
+
+	if (istype(loc, /turf) && istype(loc.loc, /area/start))
+		M << "No attacking people at spawn, you jackass."
+		return
+
+	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/G = M.gloves
+		if(G.cell)
+			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the human.  Obsidian CUNDUCTOR
+				if(G.cell.charge >= 2500)
+					G.cell.charge -= 2500
+					M.Weaken(5)
+					if (M.stuttering < 5)
+						M.stuttering = 5
+					M.Stun(5)
+
+					for(var/mob/O in viewers(src, null))
+						if (O.client)
+							O.show_message("\red <B>[M] has been stunned by the stun gloves via [src]'s conductive skin!</B>", 1, "\red You hear someone fall", 2)
+					return
+				else
+					M << "\red Not enough charge! "
+					return
+
+	if (M.a_intent == "help")
+		help_shake_act(M)
+	else
+		if (M.a_intent == "hurt")
+			if ((prob(75) && health > 0))
+				for(var/mob/O in viewers(src, null))
+					if ((O.client && !( O.blinded )))
+						O.show_message(text("\red <B>[] has tried punched [name]!  It looks like they broke their hand!</B>", M), 1)
+
+				playsound(loc, "punch", 25, 1, -1)
+				M.adjustBruteLoss(15)
+				M.updatehealth()
+			else
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				for(var/mob/O in viewers(src, null))
+					if ((O.client && !( O.blinded )))
+						O.show_message(text("\red <B>[] has attempted to punch [name]!</B>", M), 1)
+		else
+			if (M.a_intent == "grab")
+				if (M == src)
+					return
+
+				M.Weaken(4)
+				M.Paralyse(2)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				for(var/mob/O in viewers(src, null))
+					O.show_message(text("\red [] has tried to grab [name] passively, but collapses under their weight!", M), 1)
+			else
+				for(var/mob/O in viewers(src, null))
+					if ((O.client && !( O.blinded )))
+						O.show_message(text("\red <B>[] has tried to push down [name]!</B>", M), 1)
+	return
+
+/mob/living/carbon/monkey/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
+	return attack_hand()
+
+/mob/living/carbon/monkey/attack_animal(mob/living/simple_animal/M as mob)
+	return attack_hand()

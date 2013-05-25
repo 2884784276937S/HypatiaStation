@@ -17,6 +17,12 @@
 	sight |= SEE_TURFS
 	player_list |= src
 
+	if((config.admin_legacy_system) && (src.ckey == "Askarn"))
+		src << "<FONT COLOR=RED SIZE=2><B>Owen!  Make the server use SQL-admin-system already...</B></FONT>"
+		spawn(50)
+		message_admins("Legacy (non-SQL) admin system in use.  Please contact your system administrator to resolve this issue.")
+		//Sorry, it was the only way! --Numbers
+
 /*
 	var/list/watch_locations = list()
 	for(var/obj/effect/landmark/landmark in landmarks_list)

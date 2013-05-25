@@ -47,7 +47,7 @@
 
 	if(!gibbed)
 		for(var/mob/O in viewers(src, null))
-			O.show_message("<b>\proper[name]</b>'s aura extuingishes as it slowly collapses...", 1)
+			O.show_message("<b>[name]</b>'s aura extuingishes as it slowly collapses...", 1)
 	update_canmove()
 	if(blind)	blind.layer = 0
 
