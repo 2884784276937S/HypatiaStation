@@ -429,6 +429,9 @@
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
+	if (subject.stat == 2)
+		scantemp = "Error:  Subject's neural pathways collapsed."
+		return
 
 	subject.dna.check_integrity()
 

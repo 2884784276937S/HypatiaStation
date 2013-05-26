@@ -20,7 +20,8 @@
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for TGstation code. Please update BYOND"
+		world.log << "Your server's byond version does not meet the recommended requirements for Hypatia's code. Please update BYOND"
+		//BWAHAHAHHAHAHH BS Code, "for TGStations code"
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 
@@ -251,8 +252,8 @@
 		features += "closed"
 
 	features += abandon_allowed ? "respawn" : "no respawn"
-
-	if (config && config.allow_vote_mode)
+/*
+	if (config && config.allow_vote_mode)	//NO, NO, NO!
 		features += "vote"
 
 	if (config && config.allow_ai)
@@ -272,10 +273,15 @@
 	is there a reason for this? the byond site shows 'hosted by X' when there is a proper host already.
 	if (host)
 		features += "hosted by <b>[host]</b>"
-	*/
+	*/ */
 
 	if (!host && config && config.hostedby)
 		features += "hosted by <b>[config.hostedby]</b>"
+		features += "<br>"
+
+	features += "<a href=\"[config.forumurl]\">Forum</a>"
+	features += "<br>"
+	features += "<a href=\"[config.wikiurl]\">Wiki</a>"
 
 	if (features)
 		s += ": [dd_list2text(features, ", ")]"

@@ -131,7 +131,8 @@ var/global/floorIsLava = 0
 			body += "<A href='?src=\ref[src];simplemake=monkey;mob=\ref[M]'>Monkey</A> | "
 			body += "<A href='?src=\ref[src];simplemake=robot;mob=\ref[M]'>Cyborg</A> | "
 			body += "<A href='?src=\ref[src];simplemake=cat;mob=\ref[M]'>Cat</A> | "
-			body += "<A href='?src=\ref[src];simplemake=runtime;mob=\ref[M]'>Runtime</A> | "
+			body += "<A href='?src=\ref[src];simplemake=kitty;mob=\ref[M]'>Kitten</A> | "
+			body += "<A href='?src=\ref[src];simplemake=hk;mob=\ref[M]'>Happy Kitten</A> | "
 			body += "<A href='?src=\ref[src];simplemake=corgi;mob=\ref[M]'>Corgi</A> | "
 			body += "<A href='?src=\ref[src];simplemake=ian;mob=\ref[M]'>Ian</A> | "
 			body += "<A href='?src=\ref[src];simplemake=crab;mob=\ref[M]'>Crab</A> | "
@@ -1003,7 +1004,7 @@ var/global/floorIsLava = 0
 			S.laws.show_laws(usr)
 	if(!ai_number)
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
-/*
+
 /datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in world)
 	set category = "Admin"
 	set name = "Show Skills"
@@ -1017,7 +1018,7 @@ var/global/floorIsLava = 0
 	show_skill_window(usr, M)
 
 	return
-*/
+
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Admin"
 	set name = "Update Mob Sprite"

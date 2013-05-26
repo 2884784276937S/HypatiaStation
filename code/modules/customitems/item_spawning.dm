@@ -26,6 +26,41 @@
 				var/path = text2path(P)
 				var/obj/item/Item = new path()
 				if(istype(Item,/obj/item/weapon/card/id))
+					var/obj/item/weapon/card/id/I = Item
+					for(var/obj/item/weapon/card/id/C in M)
+						I.hname = M.real_name
+				else if(istype(M.back,/obj/item/weapon/storage) && M.back:contents.len < M.back:storage_slots) // Try to place it in something on the mob's back
+					Item.loc = M.back
+					M << "\blue <B>You feel your backpack suddenly get heavier.</B>"
+					ok = 1
+
+				else
+					for(var/obj/item/weapon/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
+						if (S.contents.len < S.storage_slots)
+							Item.loc = S
+							M << "\blue <B>You feel your [S] suddenly get heavier.</B>"
+							ok = 1
+							break
+
+				skip:
+				if (ok == 0) // Finally, since everything else failed, place it on the ground
+					Item.loc = get_turf(M.loc)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*if(istype(Item,/obj/item/weapon/card/id))
 					//id card needs to replace the original ID
 					if(M.ckey == "nerezza" && M.real_name == "Asher Spock" && M.mind.role_alt_title && M.mind.role_alt_title != "Emergency Physician")
 						//only spawn ID if asher is joining as an emergency physician
@@ -56,18 +91,4 @@
 						//replace old ID
 						del(C)
 						ok = M.equip_if_possible(I, slot_wear_id, 0)	//if 1, last argument deletes on fail
-						break
-				else if(istype(M.back,/obj/item/weapon/storage) && M.back:contents.len < M.back:storage_slots) // Try to place it in something on the mob's back
-					Item.loc = M.back
-					ok = 1
-
-				else
-					for(var/obj/item/weapon/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
-						if (S.contents.len < S.storage_slots)
-							Item.loc = S
-							ok = 1
-							break
-
-				skip:
-				if (ok == 0) // Finally, since everything else failed, place it on the ground
-					Item.loc = get_turf(M.loc)
+						break*/

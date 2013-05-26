@@ -205,6 +205,11 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	icon = 'icons/obj/doors/Dooratmo.dmi'
 	doortype = 19
 
+/obj/machinery/door/airlock/atmospherics
+	name = "Atmospherics Airlock"
+	icon = 'icons/obj/doors/Dooratmo.dmi'
+	doortype = 19
+
 /obj/machinery/door/airlock/research
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorresearch.dmi'

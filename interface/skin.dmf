@@ -550,12 +550,30 @@ menu "menu"
 		group = ""
 		is-disabled = false
 		saved-params = "is-checked"
+	elem "AMENU"
+		name = "Admin"
+		command = ""
+		category = ""
+		is-checked = false
+		can-check = false
+		group = ""
+		is-disabled = false
+		saved-params = "is-checked"
+	elem "PPM"
+		name = "Player Panel"
+		command = ""
+		category = "Admin"
+		is-checked = false
+		can-check = false
+		group = ""
+		is-disabled = true
+		saved-params = "is-checked"
 
 
 window "Telecomms IDE"
 	elem "Telecomms IDE"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 569x582
 		anchor1 = none
 		anchor2 = none
@@ -786,7 +804,7 @@ window "Telecomms IDE"
 window "chemdispenser"
 	elem "chemdispenser"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 340x480
 		anchor1 = none
 		anchor2 = none
@@ -1045,7 +1063,7 @@ window "chemdispenser"
 window "chemdispenser_reagents"
 	elem "chemdispenser_reagents"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 340x448
 		anchor1 = none
 		anchor2 = none
@@ -1287,7 +1305,7 @@ window "mainwindow"
 window "mapwindow"
 	elem "mapwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
@@ -1353,7 +1371,7 @@ window "mapwindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
@@ -1420,7 +1438,7 @@ window "outputwindow"
 window "rpane"
 	elem "rpane"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
@@ -1460,7 +1478,7 @@ window "rpane"
 	elem "rpanewindow"
 		type = CHILD
 		pos = 0,0
-		size = 640x499
+		size = 638x468
 		anchor1 = 0,0
 		anchor2 = 100,100
 		font-family = ""
@@ -1483,6 +1501,34 @@ window "rpane"
 		splitter = 50
 		show-splitter = true
 		lock = none
+	elem "donate"
+		type = BUTTON
+		pos = 411,0
+		size = 60x16
+		anchor1 = none
+		anchor2 = none
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = none
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = ""
+		image = 'D:\\Users\\Adin\\Downloads\\ss (2013-05-26 at 07.19.26).png'
+		command = "donate"
+		is-flat = false
+		stretch = false
+		is-checked = false
+		group = "rpanemode"
+		button-type = pushbox
 	elem "rulesb"
 		type = BUTTON
 		pos = 278,0
@@ -1625,7 +1671,7 @@ window "rpane"
 		button-type = pushbox
 	elem "browseb"
 		type = BUTTON
-		pos = 464,0
+		pos = 528,0
 		size = 60x16
 		anchor1 = none
 		anchor2 = none
@@ -1683,7 +1729,7 @@ window "rpane"
 window "browserwindow"
 	elem "browserwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
@@ -1750,7 +1796,7 @@ window "browserwindow"
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
-		pos = 281,0
+		pos = 372,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none

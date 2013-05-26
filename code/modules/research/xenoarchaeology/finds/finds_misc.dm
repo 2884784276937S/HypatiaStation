@@ -24,14 +24,10 @@
 	if ( istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			var/obj/item/stack/sheet/mineral/plasma/NG = new (user.loc)
-			for (var/obj/item/stack/sheet/mineral/plasma/G in user.loc)
-				if(G==NG)
-					continue
-				if(G.amount>=G.max_amount)
-					continue
-				G.attackby(NG, user)
-				usr << "You add the newly-formed plasma to the stack. It now contains [NG.amount] sheets."
+			var/turf/simulated/floor/F = src.loc
+			F.burn_tile()
+			F.icon_state = "wall_thermite"
+			usr << "You set the [src] alight!"
 			//SN src = null
 			del(src)
 			return

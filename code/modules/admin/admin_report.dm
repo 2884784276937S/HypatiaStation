@@ -2,6 +2,8 @@
 // while no admin was present. They work a bit similar to news, but
 // they can only be read by admins and moderators.
 
+//Modified/Completed by 2884784276937S
+
 // a single admin report
 datum/admin_report/var
 	ID     // the ID of the report
@@ -10,6 +12,8 @@ datum/admin_report/var
 	date   // date on which this was created
 	done   // whether this was handled
 	doneby //Who handled it
+	donewhen //when it was handled
+	logdate //date in a format that can be used to retrieve logs
 
 	offender_key // store the key of the offender
 	offender_cid // store the cid of the offender
@@ -26,7 +30,24 @@ datum/report_topic_handler
 		else if(href_list["action"] == "edit")
 			C.edit_report(text2num(href_list["ID"]))
 		else if(href_list["action"] == "logs")
-			C.getserverlog()
+			var/type = alert("Which log would you like to view?",,"Attack","Server","HREFs")
+			switch(type)
+				if("Attack")
+					type = " Attack.log"
+				if("Server")
+					type = ".log"
+				if("HREFs")
+					type = " hrefs.htm"
+				else
+					src << "Something weird hapened.  Reverting to Server logs."
+					type = ".log"
+			var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")][type]"
+			if( fexists(path) )
+				src << run( file(path) )
+			else
+				src << "<font color='red'>Error: href: logs: File not found/Invalid path([path]).</font>"
+			return
+		//	C.getserverlog()
 
 var/datum/report_topic_handler/report_topic_handler
 
@@ -113,7 +134,8 @@ client/proc/display_admin_reports()
 		if(!N.done)
 			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=remove;ID=[N.ID]'>Flag as Handled</a>"
 		else
-			output += "<B>Report Handled by [N.doneby]</B>"
+			output += "<B>Report Handled by [N.doneby]</B><br>"
+			output += "<small>at <B>[time2text(N.donewhen,"MM/DD hh:mm:ss")]</B></small><br>"
 		if(src.key == N.author)
 			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
 		output += "<br>"
@@ -136,7 +158,8 @@ client/verb/display_player_reports()
 			if(!N.done)
 				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=remove;ID=[N.ID]'>Flag as Handled</a>"
 			else
-				output += "<B>Report Handled by [N.doneby]</B>"
+				output += "<B>Report Handled by [N.doneby]</B><br>"
+				output += "<small>at <B>[time2text(N.donewhen,"MM/DD hh:mm:ss")]</B></small><br>"
 			if( (src.key == N.author) && (!N.done) )
 				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
 			output += "<br>"
@@ -178,6 +201,7 @@ client/proc/mark_report_done(ID as num)
 
 	found.done = 1
 	found.doneby = src.ckey
+	found.donewhen = world.realtime
 
 	Reports["reports"]   << reports
 

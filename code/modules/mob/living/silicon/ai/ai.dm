@@ -288,14 +288,11 @@ var/list/ai_list = list()
 
 	if(confirm == "Yes")
 		init_shift_change(usr)
-	/*	if(emergency_shuttle.online)
-			post_status("shuttle") //See below
-	*/
-	// hack to display shuttle timer
+
 	if(emergency_shuttle.online)
 		var/obj/machinery/computer/communications/C = locate() in machines
 		if(C)
-			C.post_status("shuttle") //HAX
+			C.post_status("shuttle")
 
 	return
 

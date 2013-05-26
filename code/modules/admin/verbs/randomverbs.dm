@@ -131,7 +131,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 			return
 		if(!M.client)
 			usr << "<font color='red'>Error: cmd_admin_mute: This mob doesn't have a client tied to it.</font>"
-		if(M.client.holder)
+		if(M.client.holder.rights & R_ADMIN) //I like this better than the old one.  'cause we do want to be able to mute Donors 'n' stuff. --Numbers
 			usr << "<font color='red'>Error: cmd_admin_mute: You cannot mute an admin.</font>"
 	if(!M.client)		return
 	if(M.client.holder)	return
@@ -143,7 +143,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 		if(MUTE_IC)			mute_string = "IC (say and emote)"
 		if(MUTE_OOC)		mute_string = "OOC"
 		if(MUTE_PRAY)		mute_string = "pray"
-		if(MUTE_ADMINHELP)	mute_string = "adminhelp, admin PM and ASAY"
+		if(MUTE_ADMINHELP)	mute_string = "adminhelp, admin PM and A/MSAY"
 		if(MUTE_DEADCHAT)	mute_string = "deadchat and DSAY"
 		if(MUTE_ALL)		mute_string = "everything"
 		else				return
@@ -588,10 +588,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	M.gib()
 	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_gib_self()
+/client/proc/cmd_admin_gib_self() //WHY
 	set name = "Gibself"
 	set category = "Fun"
 
+	src << "\red This proc has been disabled." //--Numbers
+/*
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
 		if (istype(mob, /mob/dead/observer)) // so they don't spam gibs everywhere
@@ -601,8 +603,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		log_admin("[key_name(usr)] used gibself.")
 		message_admins("\blue [key_name_admin(usr)] used gibself.", 1)
-		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-/*
+		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!*/
+*/ /*
 /client/proc/cmd_manual_ban()
 	set name = "Manual Ban"
 	set category = "Special Verbs"
@@ -662,6 +664,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/update_world()
 	// If I see anyone granting powers to specific keys like the code that was here,
 	// I will both remove their SVN access and permanently ban them from my servers.
+	//Why does this still exist?  Well, let's make it more fun.
+	set name = "Update-World"
+	set category = "Admin"
+	set hidden = 1
+	src << "Hahah, nice try.  No... you're not getting admin permissions."
 	return
 
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
@@ -868,3 +875,55 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "Random events disabled"
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/rules_for_everyone() //--Numbers because Numbers can
+	set name = "Display Rules for Everyone"
+	set category = "Fun"
+	if(!holder)
+		src << "\red Sorry, your part of the problem."
+		return
+	if(!(check_rights(R_ADMIN|R_MOD|R_FUN)))
+		src << "\red You're not horrible enough to use this command."
+		return
+	var/who = alert("Who should see the rules?",,"Players","Players + Donors","Everyone", "Cancel")
+	var/time = input("Time unitl window can be closed","Seconds:",15) as num|null
+	if(!time)
+		time = 15
+	if(who != "Cancel")
+		src << "\blue <B>Displaying rules window to [who].\n It will not be able to be closed for [time] seconds.</B>"
+	switch(who)
+		if("Cancel")
+			src << "\red You're no fun..."
+			return
+		if("Everyone")
+			world << browse('config/rules.html',"window=wrules;can_close=0;size=460x820")
+			spawn(time)//15s
+			world << browse("window=wrules;can_close=1")
+			return
+		if("Players")
+			var/list/players = list()
+			for(var/client/C in clients)
+				if(C in admins) continue
+				players += C
+			for(var/client/D in players)
+				D << browse('config/rules.html',"window=wrules;can_close=0;size=460x820")
+				spawn(time)//15s
+				D << browse("window=wrules;can_close=1")
+			return
+		if("Players + Donors")
+			var/list/players = list()
+			for(var/client/C in clients)
+				if((C in admins) && (C.holder.rank != "Donor"))
+					continue
+				players += C
+			for(var/client/D in players)
+				D << browse('config/rules.html',"window=wrules;can_close=0;size=460x820")
+				spawn(time)//15s
+				D << browse("window=wrules;can_close=1")
+			return
+		else
+			src << "How did this happen exactly?  Contact a Coder, but its not too much of a big deal."
+			return
+	message_admins("[src.ckey] has made a rules windows appear for [who]!")
+	log_admin("[src.ckey] has made a rules window that cannot be closed for 10 seconds appear for [who]!")
+	return

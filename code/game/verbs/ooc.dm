@@ -39,11 +39,12 @@ var/global/normal_ooc_colour = "#002eb8"
 			return
 		if(findtext(msg, "     "))
 			if(findtext(msg, "          "))
-				log_admin("[key_name(src)] has attempted to spam OOC, and potentially fake server messages..  They have been automatically muted.")
+				log_admin("[key_name(src)] has attempted to spam OOC, and potentially fake server messages.  They have been automatically muted.")
 				message_admins("[key_name(src)] has attempted to spam OOC, and potentially fake server messages.  They have been automatically muted.")
 				cmd_admin_mute(src, MUTE_OOC, 1)
 				//src << "\red  You have been muted by the automatic spam filter.  Please do not attempt to spam OOC."
 			else
+				src << "Your OOC message: [msg]\n was not sent because it contined a suspicious amount of spaces."
 				log_admin("[key_name(src)] has used a suspicious amount of spaces in an OOC message.  Please note, they may be attempting to spam OOC.")
 				message_admins("[key_name(src)] has used a suspicious amount of spaces in an OOC message.  Please note, they may be attempting to spam OOC.")
 			return

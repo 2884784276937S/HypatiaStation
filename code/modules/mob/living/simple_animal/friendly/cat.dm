@@ -5,10 +5,10 @@
 	icon_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
-	speak = list("Meow!","Esp!","Purr!","HSSSSS")
+	speak = list("Meow!","Esp!","Purr!","HSSSSS", "Meow?", "Grrr!")
 	speak_emote = list("purrs", "meows")
-	emote_hear = list("meows","mews")
-	emote_see = list("shakes its head", "shivers")
+	emote_hear = list("meows","mews", "growls", "moans")
+	emote_see = list("shakes its head", "shivers", "sticks its tongue out", "pounces", "licks its fur")
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
@@ -60,10 +60,11 @@
 				stop_automated_movement = 1
 				walk_to(src,movement_target,0,3)
 
-//RUNTIME IS ALIVE! SQUEEEEEEEE~
-/mob/living/simple_animal/cat/Runtime
-	name = "Runtime"
-	desc = "Its fur has the look and feel of velvet, and it's tail quivers occasionally."
+////RUNTIME IS ALIVE! SQUEEEEEEEE~
+//HK IS IN THE CODE
+/mob/living/simple_animal/cat/HappyKitten
+	name = "Happy Kitten"
+	desc = "Its fur has the look and feel of velvet, and it's tail quivers occasionally.\n For some reason, staring at it makes the words \"terrible person\" echo in your head."
 
 
 //PHEAR THE GHOSTKITTEH

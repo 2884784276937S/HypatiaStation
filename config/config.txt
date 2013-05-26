@@ -1,5 +1,5 @@
 ## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice
-SERVERNAME Hypatia Station - Roleplay
+SERVERNAME 2884784276937S Testing Server
 
 ## Alert levels
 ALERT_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
@@ -150,16 +150,20 @@ GUEST_BAN
 # USEWHITELIST
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
-SERVER 69.162.123.122:7246
+SERVER 74.91.120.106:64380
+#No...
 
 ## forum address
-FORUMURL http://www.hypatiastation.net/forum/index.php
+FORUMURL http://hypatiastation.net/forum/index.php
 
 ## Wiki address
-WIKIURL http://baystation12.net/wiki/index.php?title=Main_Page
+WIKIURL http://hypatiastation.net/wiki/index.php?title=Main_Page
+
+##Donation URL
+DONATEURL http://hypatiastation.net/forum/viewtopic.php?f=2&t=321
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS http://www.hypatiastation.net/forum/viewforum.php?f=16
+BANAPPEALS http://hypatiastation.net/forum/viewforum.php?f=16
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
@@ -211,5 +215,5 @@ NUDGE_SCRIPT_PATH nudge.py
 ## Comment this to unrestrict the number of alien players allowed in the round. The number represents the number of alien players for every human player.
 #ALIEN_PLAYER_RATIO 0.2
 
-##Remove the # to let ghosts spin chairs
+##Remove the # to let ghosts spin chairs 
 #GHOST_INTERACTION
