@@ -30,6 +30,7 @@ datum/report_topic_handler
 		else if(href_list["action"] == "edit")
 			C.edit_report(text2num(href_list["ID"]))
 		else if(href_list["action"] == "logs")
+			var/done = href_list["param"]
 			var/type = alert("Which log would you like to view?",,"Attack","Server","HREFs")
 			switch(type)
 				if("Attack")
@@ -41,7 +42,7 @@ datum/report_topic_handler
 				else
 					src << "Something weird hapened.  Reverting to Server logs."
 					type = ".log"
-			var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")][type]"
+			var/path = "data/logs/[time2text(done,"YYYY/MM-Month/DD-Day")][type]"
 			if( fexists(path) )
 				src << run( file(path) )
 			else
@@ -129,15 +130,13 @@ client/proc/display_admin_reports()
 		output += "<b>Reported player:</b> [N.offender_key]/([N.offender_name]) (CID: [N.offender_cid])<br>"
 		output += "<b>Offense:</b>[N.body]<br>"
 		output += "<small>Occured at [time2text(N.date,"MM/DD hh:mm:ss")]</small><br>"
-		output += "<a href='?src=\ref[report_topic_handler];client=\ref[src];action=logs'><small>Retrieve Logs</small></a><br>"
+		output += "<a href='?src=\ref[report_topic_handler];client=\ref[src];action=logs;param=[N.date]'><small>Retrieve Logs</small></a><br>"
 		output += "<small>authored by <i>[N.author]</i></small><br>"
 		if(!N.done)
 			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=remove;ID=[N.ID]'>Flag as Handled</a>"
 		else
 			output += "<B>Report Handled by [N.doneby]</B><br>"
 			output += "<small>at <B>[time2text(N.donewhen,"MM/DD hh:mm:ss")]</B></small><br>"
-		if(src.key == N.author)
-			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
 		output += "<br>"
 		output += "<br>"
 	usr << browse(output, "window=news;size=600x400")
@@ -160,7 +159,7 @@ client/verb/display_player_reports()
 			else
 				output += "<B>Report Handled by [N.doneby]</B><br>"
 				output += "<small>at <B>[time2text(N.donewhen,"MM/DD hh:mm:ss")]</B></small><br>"
-			if( (src.key == N.author) && (!N.done) )
+			if(!N.done)
 				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
 			output += "<br>"
 			output += "<br>"

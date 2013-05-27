@@ -1,4 +1,5 @@
 /var/create_object_html = null
+/var/reagent_html = null
 
 /datum/admins/proc/create_object(var/mob/user)
 	if (!create_object_html)
@@ -26,3 +27,8 @@
 		quick_create_object_html = replacetext(quick_create_object_html, "null /* object types */", "\"[objectjs]\"")
 
 	user << browse(replacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")
+
+/datum/admins/proc/create_reagent(var/mob/user)
+
+	user << "This proc does not exist.  You didn't type anything, and you didn't see this message."
+	return

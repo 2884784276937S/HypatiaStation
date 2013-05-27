@@ -12,8 +12,10 @@ var/list/admin_verbs_default = list(
 	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(
-	/client/proc/player_panel,			/*shows an interface for all players, with links to various panels (old style)*/
+//	/client/proc/player_panel,			/*shows an interface for all players, with links to various panels (old style)*/
+	///client/proc/show_torture,
 	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/
+	/client/proc/show_torture,			//TORTURE!!!!!!!!!!!!!!!!!!!!!!!!--Numbers
 	/client/proc/cmd_banhammer,			//BANHAMMER!!!!!! --Numbers
 	/client/proc/invisimin,				/*allows our mob to go invisible/visible*/
 //	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
@@ -227,19 +229,25 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/PlayerNotes,
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/cmd_mod_say,
-//	/client/proc/colorooc,
+	/client/proc/colorooc,
 	/client/proc/cmd_admin_subtle_message,	//12/5/2013 (GMT+10) Admin-meeting decision. --Numbers
 	/client/proc/cmd_admin_direct_narrate,
 	/datum/admins/proc/show_player_info,
+//	/client/proc/rules_for_everyone,
+	/client/proc/show_torture, //WEEEEEEEEEEEEEEEEE
 	/client/proc/player_panel_new,
 //	/datum/admins/proc/show_skills
+)
+var/list/admin_verbs_torture = list(
+	/client/proc/cmd_admin_torture_announce,
+	/client/proc/rules_for_everyone
 )
 var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessible anyway - just inconvenient.  Plus I want buttons, plus I added logs.  Becuase I like them.*/
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/colorooc,				//I think this is a cool thing for donors.
 	/client/proc/cmd_admin_say,
 	//Donors can access the old-style player panel anyway
-	/client/proc/player_panel,			/*shows an interface for all players, with links to various panels (old style)*/
+	///client/proc/player_panel,			/*shows an interface for all players, with links to various panels (old style)*/
 	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/  //LINKS REQUIRE ADDITIONAL PERMS
 	//They have it anyway, might as well make it more accessible. (the following commands)
 	/datum/admins/proc/show_player_info,
@@ -250,15 +258,20 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
 	/*Debugging Type Stuff*/			//Maybe this shouldn't go here.  But, they're still logs.
-	/client/proc/giveruntimelog,		/*allows us to give access to runtime logs to somebody*/
-	/client/proc/getruntimelog,			/*allows us to access runtime logs to somebody*/
-	/client/proc/getserverlog,			/*allows us to fetch server logs (diary) for other days*/
+	///client/proc/giveruntimelog,		/*allows us to give access to runtime logs to somebody*/
+	///client/proc/getruntimelog,			/*allows us to access runtime logs to somebody*/
+	///client/proc/getserverlog,			/*allows us to fetch server logs (diary) for other days*/
 )
+var/list/admin_verbs_root = list(
+)
+
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
 		if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
-		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
+		if(holder.rights & R_ADMIN)
+			verbs += admin_verbs_admin
+		//	verbs += admin_verbs_torture
 		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
 		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
 		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
@@ -271,6 +284,7 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
 		if(holder.rights & R_DONOR)			verbs += admin_verbs_donor
+//		if(holder.rights & R_ROOT)			verbs += admin_verbs_root
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -283,6 +297,7 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 		admin_verbs_debug,
 		admin_verbs_possess,
 		admin_verbs_permissions,
+		admin_verbs_torture,
 		/client/proc/stealth,
 		admin_verbs_rejuv,
 		admin_verbs_sounds,
@@ -307,6 +322,22 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 		/client/proc/splash,
 		/client/proc/cmd_admin_areatest
 		)
+
+/client/proc/show_torture()
+	set name = "Show Torture Verbs"
+	set category = "Fun"
+	verbs.Remove(/client/proc/show_torture)
+	verbs.Add(/client/proc/hide_torture)
+	verbs += admin_verbs_torture
+	return
+
+/client/proc/hide_torture()
+	set name = "Hide Torture Verbs"
+	set category = "Fun"
+	verbs -= admin_verbs_torture
+	verbs.Remove(/client/proc/hide_torture)
+	verbs.Add(/client/proc/show_torture)
+	return
 
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
 	set name = "Adminverbs - Hide Most"
@@ -479,13 +510,14 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 /client/proc/warn(warned_ckey)
 	if(!check_rights(R_ADMIN))	return
 
+	var/client/C = directory[warned_ckey]
+
 	if(!warned_ckey || !istext(warned_ckey))	return
-	if(warned_ckey in admin_datums)
+	if((warned_ckey in admin_datums) && (C.holder.rank != "Donor"))
 		usr << "<font color='red'>Error: warn(): You can't warn admins.</font>"
 		return
 
 	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
 	if(C)	D = C.prefs
 	else	D = preferences_datums[warned_ckey]
 

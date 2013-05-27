@@ -27,7 +27,7 @@
 	usr << "You will [(prefs.toggles & CHAT_RADIO) ? "now" : "no longer"] see radio chatter from nearby radios or speakers"
 	feedback_add_details("admin_verb","THR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/toggle_roll_letter() //--Numbers
+/client/verb/toggle_roll_letter() //--Numbers
 	set name = "Automatic Tajaran/Soghun Speech"
 	set category = "Preferences"
 	if(!ishuman(src.eye))
