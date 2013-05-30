@@ -189,12 +189,42 @@ var/list/mechtoys = list(
 				at_station = 1
 		moving = 0
 
+		//Mob handling blatantly stolen from Shuttle_controller
+		var/list/dstturfs = list()
+		var/throwy = world.maxy
+
+		for(var/turf/T in the_shuttles_way)
+			dstturfs += T
+			if(T.y < throwy)
+				throwy = T.y
+
+		for(var/turf/T in dstturfs)
+			// find the turf to move things to
+			var/turf/D = locate(T.x, throwy - 1, 1)
+			//var/turf/E = get_step(D, SOUTH)
+			for(var/atom/movable/AM as mob|obj in T)
+				AM.Move(D)
+				// NOTE: Commenting this out to avoid recreating mass driver glitch
+				/*
+				spawn(0)
+					AM.throw_at(E, 1, 1)
+					return
+				*/
+
+			if(istype(T, /turf/simulated))
+				del(T)
+
+		for(var/mob/living/carbon/bug in the_shuttles_way) // If someone somehow is still in the shuttle's docking area...
+			bug.gib()
+
+
+/* How mob handling used to be done
 		//Do I really need to explain this loop?
 		for(var/mob/living/unlucky_person in the_shuttles_way)
 			unlucky_person.gib()
 
 		from.move_contents_to(dest)
-
+*/
 	//Check whether the shuttle is allowed to move
 	proc/can_move()
 		if(moving) return 0
@@ -209,8 +239,9 @@ var/list/mechtoys = list(
 
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
-		if(istype(A,/mob/living))
-			return 1
+		if(at_station) //Calling it to the station? Someone or something in the way? It better move.
+			if(istype(A,/mob/living))
+				return 1
 		if(istype(A,/obj/item/weapon/disk/nuclear))
 			return 1
 		if(istype(A,/obj/machinery/nuclearbomb))
