@@ -1048,9 +1048,11 @@
 						I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
 				damageoverlay.overlays += I
 
+	//Setting sight to the appropriate vision flags based on living/dead, mutantrace, and equipment starts here.
+
 		if( stat == DEAD )
 			sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-			see_in_dark = 8
+			bdark_view = 8
 			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 			if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
 		else
@@ -1058,13 +1060,14 @@
 			if(dna)
 				switch(dna.mutantrace)
 					if("lizard","slime")
-						see_in_dark = 3
-						see_invisible = SEE_INVISIBLE_LEVEL_ONE
+						bdark_view = 3
+						binvis_view = SEE_INVISIBLE_LEVEL_ONE
 					if("shadow","tajaran")
-						see_in_dark = 8
-						see_invisible = SEE_INVISIBLE_LEVEL_ONE
+						bdark_view = 8
+						binvis_view = SEE_INVISIBLE_LEVEL_ONE
 					else
-						see_in_dark = 2
+						bdark_view = 2
+						binvis_view = SEE_INVISIBLE_LIVING
 
 			if(XRAY in mutations)
 				sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -1076,7 +1079,7 @@
 				if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
 					see_invisible = SEE_INVISIBLE_OBSERVER
 				else
-					see_invisible = SEE_INVISIBLE_LIVING
+					see_invisible = binvis_view
 					seer = 0
 
 			if(istype(wear_mask, /obj/item/clothing/mask/gas/voice/space_ninja))
@@ -1089,21 +1092,21 @@
 								target_list += target
 						if(target_list.len)//Everything else is handled by the ninja mask proc.
 							O.assess_targets(target_list, src)
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
+						if(!druggy)		see_invisible = binvis_view
 					if(1)
 						see_in_dark = 5
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
+						if(!druggy)		see_invisible = binvis_view
 					if(2)
 						sight |= SEE_MOBS
 						if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 					if(3)
 						sight |= SEE_TURFS
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
+						if(!druggy)		see_invisible = binvis_view
 
 			if(glasses)
 				var/obj/item/clothing/glasses/G = glasses
 				sight |= G.vision_flags //Apply any vision flags the glasses have. Doesn't do anything if 0.
-				see_in_dark = 2 + G.darkness_view //2 is base human. Glasses work from there.
+				see_in_dark = bdark_view + G.darkness_view //Previously worked from 2. Now works from base dark vision set above.
 
 	/* HUD shit goes here, as long as it doesn't modify sight flags */
 	// The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
@@ -1119,11 +1122,11 @@
 					if(!druggy && G.disdark)
 						see_invisible = SEE_INVISIBLE_MINIMUM
 					else
-						see_invisible = SEE_INVISIBLE_LIVING
+						see_invisible = binvis_view
 				else
-					see_invisible = G.invisa_view
+					see_invisible = max(G.invisa_view,binvis_view) //Invisible viewing glasses can't make it harder to see.
 			else
-				see_invisible = SEE_INVISIBLE_LIVING
+				see_invisible = binvis_view
 
 			if(healths)
 				switch(hal_screwyhud)

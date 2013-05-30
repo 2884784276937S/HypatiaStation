@@ -4,6 +4,8 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
+	var/bdark_view = 2 // Vision overhaul. Base darkness view to which modifiers from glasses are added to.
+	var/binvis_view = SEE_INVISIBLE_LIVING
 
 
 /mob/living/carbon/human/dummy
