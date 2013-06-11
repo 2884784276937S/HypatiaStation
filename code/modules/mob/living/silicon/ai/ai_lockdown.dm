@@ -15,7 +15,7 @@ var/list/lockdownlocs = list()
 
 /mob/living/silicon/ai/proc/lockdown()
 	set category = "AI Commands"
-	set name = "Lockdown"sk
+	set name = "Lockdown"
 
 	if(usr.stat == 2)
 		usr <<"You cannot initiate lockdown because you are dead!"

@@ -71,7 +71,7 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 //Following the new "rule" (refer to the #defines for admins in setup.dm, this works fine.  Yes, there could be a better way, but it works. --Numbers
 /proc/check_if_greater_rights_than(client/other)
 	if( (usr.client.holder.rights & R_HOST|R_PERMISSIONS) && (other.holder.rights & !R_HOST) )
-		return 1 //We have +PERMISSIONS or +HOST, they don't have +HOST.
+		return 1 //We have +PERMISSIONS or +HOST, they don't have +HOST.  //Disable for the meantime
 	if(other.holder.rights <= R_DONOR)
 		return 1 //Donors automatically get permissions overridden.
 	if(usr && usr.client)

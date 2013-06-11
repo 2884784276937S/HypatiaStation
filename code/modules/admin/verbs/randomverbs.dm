@@ -933,11 +933,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			else if(!isliving(T.mob))
 				continue
 			else
-				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T.mob
+				targets += T.mob
 		else
 			continue
 	var/list/sorted = sortList(targets)
-	var/target = input(src,"To whom shall we BSA?","BSA",null) in sorted|null
+	var/target = input(src,"To whom shall we BSA?","BSA",null) in sorted|null as mob
 
 	if(!isliving(target))
 		usr << "This can only be used on instances of type /mob/living"

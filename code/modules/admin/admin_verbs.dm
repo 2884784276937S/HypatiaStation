@@ -101,6 +101,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/set_ooc,
+	/client/proc/bsa,
 	/client/proc/editappear
 	)
 var/list/admin_verbs_spawn = list(
@@ -109,6 +110,7 @@ var/list/admin_verbs_spawn = list(
 	)
 var/list/admin_verbs_server = list(
 	/client/proc/Set_Holiday,
+	/client/proc/toggle_ic_ooc,
 	/client/proc/ToRban,
 	/client/proc/toggle_colours,
 	/datum/admins/proc/startnow,
@@ -147,6 +149,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/reload_admins,
 	/client/proc/restart_controller,
 	/client/proc/callproc,
+	/datum/admins/proc/Game,
 	/client/proc/enable_debug_verbs
 	)
 var/list/admin_verbs_possess = list(

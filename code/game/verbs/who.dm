@@ -111,9 +111,9 @@
 			misc += "\n"
 			num_misc_online++
 
-	admin += "<b>There are [num_admins_online] administrators online.</b>\n"
-	mod += "<b>There are [num_mods_online] moderators online.</b>\n"
-	misc += "<b>There are [num_misc_online] miscellaneous ranks online.</b>\n"
+//	admin += "<b>There are [num_admins_online] administrators online.</b>\n"
+//	mod += "<b>There are [num_mods_online] moderators online.</b>\n"
+	misc += "<b>There are [num_misc_online + num_mods_online + num_admins_online] administrators (and other ranks) online.</b>\n"
 
 	src << admin + "<BR>" + mod + "<BR>" + misc + "<BR>"
 

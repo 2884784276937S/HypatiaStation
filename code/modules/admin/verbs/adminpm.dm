@@ -10,6 +10,29 @@
 	feedback_add_details("admin_verb","APMM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
+/client/proc/cmd_long_pm_panel()
+	set category = "Admin"
+	set name = "Admin PM (Long)"
+	if(!holder)
+		src << "<font color='red'>Error: Admin-PM-Panel: Only administrators may use this command.</font>"
+		return
+	var/list/client/targets[0]
+	for(var/client/T)
+		if(T.mob)
+			if(istype(T.mob, /mob/new_player))
+				targets["(New Player) - [T]"] = T
+			else if(istype(T.mob, /mob/dead/observer))
+				targets["[T.mob.name](Ghost) - [T]"] = T
+			else
+				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
+		else
+			targets["(No Mob) - [T]"] = T
+	var/list/sorted = sortList(targets)
+	var/target = input(src,"To whom shall we send a message?","Admin PM",null) in sorted|null
+	var/msg = input(src,"Enter the message to PM the target with","Admin PM",null) as null|message
+	cmd_admin_pm(targets[target],msg)
+	feedback_add_details("admin_verb","APM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/cmd_admin_pm_panel()
 	set category = "Admin"
 	set name = "Admin PM"
@@ -91,9 +114,9 @@
 		src << "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>"
 		return
 
-	var/recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[key_name(src, C, 0)]</b>: [msg]</font>"
+	var/recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[key_name(src, C, 1)]</b>: [msg]</font>"
 	if(!C.holder)
-		recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[src.ckey]</b>: [msg]</font>"
+		recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[key_name(src, C, 0)]</b>: [msg]</font>"
 	//We don't want players knowing our IC names now do we.... --Numbers
 
 	if(holder && !C.holder)
@@ -182,4 +205,4 @@
 		//check client/X is an admin and isn't the sender or recipient
 		//only admins can see PMs
 		if(X.key!=key && X.key!=C.key && (X.holder.rights & R_ADMIN) || (X.holder.rights & R_MOD)|| (X.holder.rights & R_DONOR) ) //This is confusing...
-			X << "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;[key_name(C, X, 0)]:</B> \blue [msg]</font>" //inform X
+			X << "<B><font color='blue'>PM: [key_name(src, X, 1)]-&gt;[key_name(C, X, 1)]:</B> \blue [msg]</font>" //inform X
