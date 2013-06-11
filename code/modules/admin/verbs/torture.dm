@@ -38,9 +38,16 @@
 			return
 		if("Everyone")
 			world << browse(rules,"window=wrules;can_close=0;size=920x820;can_resize=0")
+			world << "\red Now displaying rules, it cannot be closed for [time / 10] seconds.  You will not be able to move during this time."
+			for(var/client/E in clients)
+				E.prefs.rules_active = 1
+				src.mob.canmove = 0
 			sleep(time)//15s
 		//	world << browse(null, "window=wrules")
 			world << browse(rules,"window=wrules;can_close=1;size=920x820")
+			for(var/client/E in clients)
+				E.prefs.rules_active = 0
+				src.mob.canmove = 1
 			return
 		if("Players")
 			var/list/players = list()
@@ -48,10 +55,15 @@
 				if(C in admins) continue
 				players += C
 			for(var/client/D in players)
+				D << "\red Now displaying rules, it cannot be closed for [time / 10] seconds.  You will not be able to move during this time."
 				D << browse(rules,"window=wrules;can_close=0;size=920x820;can_resize=0")
+				D.prefs.rules_active = 1
+				src.mob.canmove = 0
 				sleep(time)//15s
 			//	D << browse(null, "window=wrules")
 				D << browse(rules,"window=wrules;can_close=1;size=920x820")
+				D.prefs.rules_active = 0
+				src.mob.canmove = 1
 			return
 		if("Players + Donors")
 			var/list/players = list()
@@ -60,10 +72,15 @@
 					continue
 				players += C
 			for(var/client/D in players)
+				D << "\red Now displaying rules, it cannot be closed for [time / 10] seconds.  You will not be able to move during this time."
 				D << browse(rules,"window=wrules;can_close=0;size=920x820;can_resize=0")
+				D.prefs.rules_active = 1
+				src.mob.canmove = 0
 				sleep(time)//15s
 			//	D << browse(null, "window=wrules")
 				D << browse(rules,"window=wrules;can_close=1;size=920x820")
+				D.prefs.rules_active = 0
+				src.mob.canmove = 1
 			return
 		else
 			src << "How did this happen exactly?  Contact a Coder, but its not too much of a big deal."

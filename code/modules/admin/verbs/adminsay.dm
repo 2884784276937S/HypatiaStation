@@ -1,3 +1,8 @@
+/client/proc/cmd_admin_colour_set(newColour as color)
+	set name = "Change ASAY Colour"
+	set category = "Fun"
+	src.prefs.asaycolor = newColour
+
 /client/proc/cmd_admin_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
@@ -10,43 +15,46 @@
 	if(!msg)	return
 
 	log_admin("[key_name(src)] : [msg]")
-	var/color
-	var/title = uppertext(src.holder.rank)
+	var/title
+	var/color = src.prefs.asaycolor
 	switch(src.holder.rank)
 		if("TrialAdmin")
-			color = " style='color: #386aff'"
+	//		color = " style='color: #386aff'"
 			title = "TRIAL"
 		if("TempAdmin")
-			color = " class='adminmod'"
+	//		color = " class='adminmod'"
 			title = "TEMP"
 		if("Donor")
-			color = " style='color: #0099CC"
+	//		color = " style='color: #0099CC"
 			title = "DONOR"
 		if("Moderator")
-			color = " style='color: #735638'"
+	//		color = " style='color: #735638'"
 			title = "MOD"
 		if("Badmin")
-			color = " style='color: #38F2FF'"
+	//		color = " style='color: #38F2FF'"
 			title = "BADMIN"
 		if("GameMaster")
-			color = " style='color: #B338FF'"
+	//		color = " style='color: #B338FF'"
 			title = "GMASTER"
 		if("GameAdmin")
-			color = " style='color: #B338FF'"
+	//		color = " style='color: #B338FF'"
 			title = "GADMIN"
 		if("Host")
-			color = " style='color: #AA0000'"
+	//		color = " style='color: #AA0000'"
 			title = "HOST"
+		if("Moderator")
+			title = "MOD"
 		else
-			color = " style='color: #386aff'"
-		//	title = "ADMIN"
+	//		color = " style='color: #386aff'"
+	//		title = "ADMIN"
+			title = uppertext(src.holder.rank)
 
 	if(!asay_colours)
 		title = "ADMIN"
-		color = ""
+		color = "#386aff"
 
 	if(check_rights(R_ADMIN|R_DONOR,0))
-		msg = "<span class='admin'[color]><span class='prefix'>[title]:</span> <EM>[key_name(usr, 1)]</EM> (<a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"
+		msg = "<span class='admin' style='color: [color]'><span class='prefix'>[title]:</span> <EM>[key_name(usr, 1)]</EM> (<a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"
 		for(var/client/C in admins)
 			if(R_ADMIN||R_DONOR|R_MOD|R_DEBUG & C.holder.rights)
 				C << msg
@@ -58,6 +66,9 @@
 	set name = "Msay"
 	set hidden = 1
 //	return cmd_admin_say(msg)
+	if(asay_colours)
+		cmd_admin_say(msg)
+		return
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DONOR))	return
 

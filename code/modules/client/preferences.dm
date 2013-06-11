@@ -37,7 +37,10 @@ datum/preferences
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#b82e00"
+	var/asaycolor = "#386aff"
 	var/be_special = 0					//Special role selection
+	var/rules_closed = 0
+	var/rules_active = 0
 	var/UI_style = "Midnight"
 	var/toggles = TOGGLES_DEFAULT
 

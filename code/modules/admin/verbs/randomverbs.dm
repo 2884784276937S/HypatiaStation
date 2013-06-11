@@ -905,9 +905,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!asay_colours)
 		asay_colours = 1
 		message_admins("Admin [key_name_admin(usr)] has enabled ASAY colours.", 1)
+		for(var/client/C in admins)
+			verbs += /client/proc/cmd_admin_colour_set
 	else
 		asay_colours = 0
 		message_admins("Admin [key_name_admin(usr)] has disabled ASAY colours.", 1)
+		for(var/client/C in admins)
+			verbs -= /client/proc/cmd_admin_colour_set
+
 	feedback_add_details("admin_verb","COLOURS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	//I still have no idea what ^ does, but whatever
 	return

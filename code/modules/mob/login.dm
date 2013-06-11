@@ -27,6 +27,24 @@
 	player_list |= src
 	update_Login_details()
 	world.update_status()
+	if(src.client.prefs.rules_closed)
+		var/rules = {"
+			<html><head>
+			</head>
+
+			<body>
+			<iframe width='100%' height='97%' src="http://hypatiastation.net/wiki/index.php?title=Rules&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+
+			</html>"}
+		src << "<FONT COLOR=RED>You've been naughty, and closed your client whilst admins were forcing you to read the rules.  Now you have to read them for sixty seconds."
+		src << browse(rules,"window=wrules;can_close=0;size=920x820;can_resize=0")
+		src.client.prefs.rules_active = 1
+		src.canmove = 0
+		sleep(600)//15s
+		src << browse(rules,"window=wrules;can_close=1;size=920x820")
+		src.client.prefs.rules_active = 0
+		src.client.prefs.rules_closed = 0
+		src.canmove = 1
 
 	client.images = null				//remove the images such as AIs being unable to see runes
 	client.screen = null				//remove hud items just in case

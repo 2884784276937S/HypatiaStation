@@ -15,7 +15,7 @@
 			user << "\red You must remove the [held_container] first."
 		else
 			held_container = W //Hmm... silly coders....  You do this the other way around... --Numbers
-			user.drop_item(src) //All fixed, enjoy!
+			user.drop_item() //All fixed, enjoy! //Also, silly coders, you need to modify glass.dm for this.
 			held_container.loc = src
 			user << "\blue You put the [held_container] onto the [src]."
 			var/image/I = image("icon"=W, "layer"=FLOAT_LAYER)

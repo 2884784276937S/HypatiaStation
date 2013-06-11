@@ -116,14 +116,17 @@ client/verb/display_admin_reports()
 	set name = "Display Admin Reports"
 	if(!src.holder)
 		display_player_reports()
+		return
 
 	if(alert("Who's reports would you live to view?",,"Mine","Everyone's") != "Everyone's")
 		display_player_reports()
+		return
 
 
 	var/list/reports = load_reports()
 
 	var/output = ""
+	output += "<B><H3>Admin Reports (Admin-Mode)</H3></B>"
 	for(var/datum/admin_report/N in reports)
 		output += "<b>Reported player:</b> [N.offender_key]/([N.offender_name]) (CID: [N.offender_cid])<br>"
 		output += "<b>Offense:</b>[N.body]<br>"
@@ -149,11 +152,14 @@ client/verb/display_player_reports()
 	var/output = ""
 
 	// load the list of unhandled reports
+	output += "<B><H3>Your Admin Reports ([src.holder ? "Admin-Mode" : "Player-Mode"])</H3></B>"
 	for(var/datum/admin_report/N in reports)
 		if(N.author == src.key)
 			output += "<b>Reported player:</b> [N.offender_key]/([N.offender_name]) (CID: [N.offender_cid])<br>"
 			output += "<b>Offense:</b>[N.body]<br>"
 			output += "<small>Occured at [time2text(N.date,"MM/DD hh:mm:ss")]</small><br>"
+			if(src.holder)
+				output += "<a href='?src=\ref[report_topic_handler];client=\ref[src];action=logs;param=[N.date]'><small>Retrieve Logs</small></a><br>"
 			output += "<small>authored by <i>[N.author]</i></small><br>"
 			if(!N.done)
 				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"

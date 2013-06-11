@@ -93,6 +93,9 @@
 		else if(istype(target, /obj/item/clothing/suit/space/space_ninja))
 			return
 
+		else if(istype(target, /obj/machinery/bunsen_burner))
+			return
+
 		else if(reagents.total_volume)
 			user << "\blue You splash the solution onto [target]."
 			src.reagents.reaction(target, TOUCH)
