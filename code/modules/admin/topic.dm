@@ -145,7 +145,7 @@
 			if(admin_ranks.len)
 				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (admin_ranks|"*New Rank*")
 			else
-				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*")
+				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Host", "Game Master","Game Admin", "Coder", "Badmin", "Trial Admin", "Temp Admin", "Donor", "Admin Observer","*New Rank*")
 
 			var/rights = 0
 			if(D)
@@ -685,7 +685,7 @@
 			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 				if("Yes")
 					if(config.ban_legacy_system)
-						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
+						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Go moan at Owen. Aborting ban." //I didn't touch anything...
 						return
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
@@ -711,6 +711,7 @@
 					M << "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>"
 					M << "\red <B>The reason is: [reason]</B>"
 					M << "\red This jobban will be lifted in [mins] minutes."
+					M << "\blue If you feel this is unfair, please appeal the ban at: [config.banappeals]"
 					href_list["jobban2"] = 1 // lets it fall through and refresh
 					return 1
 				if("No")
@@ -731,6 +732,7 @@
 						M << "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>"
 						M << "\red <B>The reason is: [reason]</B>"
 						M << "\red Jobban can be lifted only upon request."
+						M << "\blue If you feel this is unfair, please appeal the ban at: [config.banappeals]"
 						href_list["jobban2"] = 1 // lets it fall through and refresh
 						return 1
 				if("Cancel")
@@ -1357,7 +1359,7 @@
 		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
 
 	else if(href_list["BlueSpaceArtillery"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG))	return
 
 		var/mob/living/M = locate(href_list["BlueSpaceArtillery"])
 		if(!isliving(M))
@@ -1670,6 +1672,10 @@
 				if(usr.client.strike_team())
 					feedback_inc("admin_secrets_fun_used",1)
 					feedback_add_details("admin_secrets_fun_used","Strike")
+			if("syndi_striketeam")
+				usr.client.syndicate_strike_team()
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","Syndi_Strike")
 			if("tripleAI")
 				usr.client.triple_ai()
 				feedback_inc("admin_secrets_fun_used",1)
@@ -1714,22 +1720,18 @@
 				feedback_add_details("admin_secrets_fun_used","AP")
 				world << "\blue <B>Transit signature detected.</B>"
 				world << "\blue <B>Incoming shuttle.</B>"
-				/*
-				var/A = locate(/area/shuttle_prison)
+/*				var/A = locate(/area/shuttle_prison)
 				for(var/atom/movable/AM as mob|obj in A)
 					AM.z = 1
-					AM.Move()
-				*/
+					AM.Move() */
 				message_admins("\blue [key_name_admin(usr)] sent the prison shuttle to the station.", 1)
 			if("deactivateprison")
-				/*
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","DP")
-				var/A = locate(/area/shuttle_prison)
+	/*			var/A = locate(/area/shuttle_prison)
 				for(var/atom/movable/AM as mob|obj in A)
 					AM.z = 2
-					AM.Move()
-				*/
+					AM.Move()*/
 				message_admins("\blue [key_name_admin(usr)] sent the prison shuttle back.", 1)
 			if("toggleprisonstatus")
 				feedback_inc("admin_secrets_fun_used",1)

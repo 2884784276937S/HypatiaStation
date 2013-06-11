@@ -11,7 +11,6 @@
 /datum/event/brand_intelligence/announce()
 	command_alert("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
 
-
 /datum/event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in machines)
 		if(V.z != 1)	continue
@@ -55,3 +54,6 @@
 		if(prob(90))
 			infectedMachine.shut_up = 1
 			infectedMachine.shoot_inventory = 0
+			command_alert("All machines aboard [station_name()] have been successfully re-programmed, enjoy the remainder of your shift.", "Machines Reprogrammed")
+		else
+			command_alert("Attempted machine re-programming aboard [station_name()] has failed.", "Machine Malfunction")

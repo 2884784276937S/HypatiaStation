@@ -1,8 +1,11 @@
 /client/proc/air_report()
 	set category = "Debug"
 	set name = "Show Air Report"
-
-	/*(!master_controller || !air_master)
+	set hidden = 1
+	src << "ERROR"
+	return
+/*
+	if(!master_controller || !air_master)
 		alert(usr,"Master_controller or air_master not found.","Air Report")
 		return 0
 
@@ -44,8 +47,10 @@
 /client/proc/air_status(turf/target as turf)
 	set category = "Debug"
 	set name = "Display Air Status"
+	set hidden = 1
+/*
 
-	/*(!isturf(target))
+	(!isturf(target))
 		return
 
 	var/datum/gas_mixture/GM = target.return_air()
@@ -59,7 +64,7 @@
 	for(var/datum/gas/trace_gas in GM.trace_gases)
 		usr << "[trace_gas.type]: [trace_gas.moles]"
 	feedback_add_details("admin_verb","DAST") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	*/
+*/
 
 /client/proc/fix_next_move()
 	set category = "Debug"
@@ -165,7 +170,8 @@
 	set name = "Kill Local Airgroup"
 	set desc = "Use this to allow manual manupliation of atmospherics."
 	set category = "Debug"
-	/*
+	set hidden = 1
+/*
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
@@ -182,7 +188,7 @@
 	else
 		usr << "Local airgroup is unsimulated!"
 	feedback_add_details("admin_verb","KLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	*/
+*/
 
 /client/proc/print_jobban_old()
 	set name = "Print Jobban Log"

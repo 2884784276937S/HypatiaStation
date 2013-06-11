@@ -16,6 +16,30 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	world << sound("sound/voice/banhammer.ogg")
 
 //returns a reason if M is banned from rank, returns 0 otherwise
+/proc/jobban_whobanned(mob/M, rank) //--Numbers
+	if(M && rank)
+		for (var/s in jobban_keylist)
+			if( findtext(s,"[M.ckey] - [rank]") == 1 )
+				var/startpos = findtext(s, "; By ")+4
+				var/stoppos = findtext(s, " on ")
+				if(startpos && startpos<length(s))
+					var/text = copytext(s, startpos, stoppos)
+					if(text)
+						return text
+				return "???"
+	return 0
+
+/proc/jobban_whenbanned(mob/M, rank) //--Numbers
+	if(M && rank)
+		for (var/s in jobban_keylist)
+			if( findtext(s,"[M.ckey] - [rank]") == 1 )
+				var/startpos = findtext(s, " on ")+4
+				if(startpos && startpos<length(s))
+					var/text = copytext(s, startpos, 0)
+					if(text)
+						return text
+				return "???"
+	return 0
 /proc/jobban_isbanned(mob/M, rank)
 	if(M && rank)
 		/*
@@ -29,8 +53,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		for (var/s in jobban_keylist)
 			if( findtext(s,"[M.ckey] - [rank]") == 1 )
 				var/startpos = findtext(s, "## ")+3
+				var/stoppos = findtext(s, "; By ")
 				if(startpos && startpos<length(s))
-					var/text = copytext(s, startpos, 0)
+					var/text = copytext(s, startpos, stoppos)
 					if(text)
 						return text
 				return "Reason Unspecified"
@@ -69,7 +94,7 @@ DEBUG
 			return
 
 		//Job permabans
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
+		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, job FROM ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
 		query.Execute()
 
 		while(query.NextRow())
@@ -79,7 +104,7 @@ DEBUG
 			jobban_keylist.Add("[ckey] - [job]")
 
 		//Job tempbans
-		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
 		query1.Execute()
 
 		while(query1.NextRow())

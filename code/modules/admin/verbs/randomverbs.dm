@@ -171,7 +171,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 
 
 /client/proc/cmd_admin_add_random_ai_law()
-	set category = "Fun"
+	set category = "Event"
 	set name = "Add Random AI Law"
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -412,7 +412,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return new_character
 
 /client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Fun"
+	set category = "Event"
 	set name = "Add Custom AI law"
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -460,7 +460,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_create_centcom_report()
-	set category = "Special Verbs"
+	set category = "Event"
 	set name = "Create Command Report"
 	if(!holder)
 		src << "Only administrators may use this command."
@@ -665,7 +665,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	// If I see anyone granting powers to specific keys like the code that was here,
 	// I will both remove their SVN access and permanently ban them from my servers.
 	//Why does this still exist?  Well, let's make it more fun.
-	set name = "Update-World"
+	set name = "Update World"
 	set category = "Admin"
 	set hidden = 1
 	src << "Hahah, nice try.  No... you're not getting admin permissions."
@@ -802,7 +802,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/admin_deny_shuttle()
-	set category = "Admin"
+	set category = "Server"
 	set name = "Toggle Deny Shuttle"
 
 	if (!ticker)
@@ -875,4 +875,101 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		usr << "Random events disabled"
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/toggle_ic_ooc()
+	set category = "Server"
+	set name = "Toggle OOC in IC"
+
+	set desc = "Toggle automatic filtering of (<OOC MESSAGE>) and ((<OOC MESSAGE>)) in say messages."
+
+	if(!check_rights(R_ADMIN|R_SERVER|R_DEBUG)) return
+
+	if(!ic_ooc_allowed)
+		ic_ooc_allowed = 1
+		usr << "((OOC)) messages in IC chat have now been enabled."
+		message_admins("Admin [key_name_admin(usr)] has enabled OOC in IC.", 1)
+	else
+		ic_ooc_allowed = 0
+		usr << "((OOC)) messages in IC chat have now been disabled."
+		message_admins("Admin [key_name_admin(usr)] has disabled OOC in IC.", 1)
+	feedback_add_details("admin_verb","ICKYOCKY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	//I still have no idea what ^ does, but whatever
+	return
+
+/client/proc/toggle_colours()
+	set category = "Server"
+	set name = "Toggle ASAY Colours"
+
+	if(!check_rights(R_ADMIN|R_SERVER|R_DEBUG)) return
+
+	if(!asay_colours)
+		asay_colours = 1
+		message_admins("Admin [key_name_admin(usr)] has enabled ASAY colours.", 1)
+	else
+		asay_colours = 0
+		message_admins("Admin [key_name_admin(usr)] has disabled ASAY colours.", 1)
+	feedback_add_details("admin_verb","COLOURS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	//I still have no idea what ^ does, but whatever
+	return
+
+/client/proc/bsa()
+	set category = "Fun"
+	set name = "BlueSpace Artillery"
+	set desc = "BSA SOME POOR SOUL!"
+
+	if(!holder)
+		src << "Naval authorisation failed.  Launch aborted."
+
+	var/list/client/targets[0]
+	for(var/client/T)
+		if(T.mob)
+			if(istype(T.mob, /mob/new_player))
+				continue
+			else if(!isliving(T.mob))
+				continue
+			else
+				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T.mob
+		else
+			continue
+	var/list/sorted = sortList(targets)
+	var/target = input(src,"To whom shall we BSA?","BSA",null) in sorted|null
+
+	if(!isliving(target))
+		usr << "This can only be used on instances of type /mob/living"
+		return
+
+	if(alert(src, "Are you sure you wish to hit [key_name(target)] with Blue Space Artillery?",  "Confirm Firing?" , "Yes" , "No") != "Yes")
+		return
+
+	if(BSACooldown)
+		src << "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!"
+		return
+
+	BSACooldown = 1
+	spawn(50)
+		BSACooldown = 0
+
+	target << "You've been hit by bluespace artillery!"
+	log_admin("[key_name(target)] has been hit by Bluespace Artillery fired by [key_name(src)]")
+	message_admins("[key_name(target)] has been hit by Bluespace Artillery fired by [key_name(src)]")
+	var/mob/living/M = target
+	var/obj/effect/stop/S
+	S = new /obj/effect/stop
+	S.victim = M
+	S.loc = M.loc
+	spawn(20)
+		del(S)
+
+	var/turf/simulated/floor/T = get_turf(target)
+	if(istype(T))
+		if(prob(80))	T.break_tile_to_plating()
+		else			T.break_tile()
+
+	if(M.health == 1)
+		M.gib()
+	else
+		M.adjustBruteLoss( min( 99 , (M.health - 1) )    )
+		M.Stun(20)
+		M.Weaken(20)
+		M.stuttering = 20
 

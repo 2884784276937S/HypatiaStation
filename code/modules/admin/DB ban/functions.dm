@@ -1,5 +1,5 @@
 
-datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)
+datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null, var/override = 0, var/whobanned = "ANONYMOUS", var/banid = null, var/banip = null, var/expired = 0)
 
 	if(!check_rights(R_BAN))	return
 
@@ -41,15 +41,17 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	else if(banckey)
 		ckey = ckey(banckey)
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_player WHERE ckey = '[ckey]'")
+	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM player WHERE ckey = '[ckey]'")
 	query.Execute()
 	var/validckey = 0
 	if(query.NextRow())
 		validckey = 1
 	if(!validckey)
-		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
+		if( (!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key))) && (!override) )
 			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet. Please only ban actual players.</font>",1)
 			return
+		else if(override)
+			message_admins("<font color='red'>[key_name_admin(usr)] has overridden abuse checks and banned [ckey] with spoofed paramatets.</font>",1)
 
 	var/a_ckey
 	var/a_computerid
@@ -59,6 +61,14 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		a_ckey = src.owner:ckey
 		a_computerid = src.owner:computer_id
 		a_ip = src.owner:address
+	if(override) //This is mainly for importing
+		a_ckey = whobanned
+		a_ip = "NOT SPECIFIED"
+		a_computerid = "NOT SPECIFIED"
+
+		computerid = banid
+		ip = banip
+
 
 	var/who
 	for(var/client/C in clients)
@@ -76,7 +86,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 	reason = sql_sanitize_text(reason)
 
-	var/sql = "INSERT INTO erro_ban (`id`,`bantime`,`serverip`,`bantype`,`reason`,`job`,`duration`,`rounds`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`,`edits`,`unbanned`,`unbanned_datetime`,`unbanned_ckey`,`unbanned_computerid`,`unbanned_ip`) VALUES (null, Now(), '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"
+	var/sql = "INSERT INTO ban (`id`,`bantime`,`serverip`,`bantype`,`reason`,`job`,`duration`,`rounds`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`,`edits`,`unbanned`,`unbanned_datetime`,`unbanned_ckey`,`unbanned_computerid`,`unbanned_ip`) VALUES (null, Now(), '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"
 	var/DBQuery/query_insert = dbcon.NewQuery(sql)
 	query_insert.Execute()
 	usr << "\blue Ban saved to database."
@@ -115,7 +125,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 	else
 		bantype_sql = "bantype = '[bantype_str]'"
 
-	var/sql = "SELECT id FROM erro_ban WHERE ckey = '[ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
+	var/sql = "SELECT id FROM ban WHERE ckey = '[ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
 	if(job)
 		sql += " AND job = '[job]'"
 
@@ -156,7 +166,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		usr << "Cancelled"
 		return
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, duration, reason FROM erro_ban WHERE id = [banid]")
+	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, duration, reason FROM ban WHERE id = [banid]")
 	query.Execute()
 
 	var/eckey = usr.ckey	//Editing admin ckey
@@ -184,7 +194,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					usr << "Cancelled"
 					return
 
-			var/DBQuery/update_query = dbcon.NewQuery("UPDATE erro_ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
+			var/DBQuery/update_query = dbcon.NewQuery("UPDATE ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
 			update_query.Execute()
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
 		if("duration")
@@ -194,7 +204,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					usr << "Cancelled"
 					return
 
-			var/DBQuery/update_query = dbcon.NewQuery("UPDATE erro_ban SET duration = [value], edits = CONCAT(edits,'- [eckey] changed ban duration from [duration] to [value]<br>'), expiration_time = DATE_ADD(bantime, INTERVAL [value] MINUTE) WHERE id = [banid]")
+			var/DBQuery/update_query = dbcon.NewQuery("UPDATE ban SET duration = [value], edits = CONCAT(edits,'- [eckey] changed ban duration from [duration] to [value]<br>'), expiration_time = DATE_ADD(bantime, INTERVAL [value] MINUTE) WHERE id = [banid]")
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s duration from [duration] to [value]",1)
 			update_query.Execute()
 		if("unban")
@@ -212,7 +222,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	if(!check_rights(R_BAN))	return
 
-	var/sql = "SELECT ckey FROM erro_ban WHERE id = [id]"
+	var/sql = "SELECT ckey FROM ban WHERE id = [id]"
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
@@ -242,7 +252,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	var/unban_computerid = src.owner:computer_id
 	var/unban_ip = src.owner:address
 
-	var/sql_update = "UPDATE erro_ban SET unbanned = 1, unbanned_datetime = Now(), unbanned_ckey = '[unban_ckey]', unbanned_computerid = '[unban_computerid]', unbanned_ip = '[unban_ip]' WHERE id = [id]"
+	var/sql_update = "UPDATE ban SET unbanned = 1, unbanned_datetime = Now(), unbanned_ckey = '[unban_ckey]', unbanned_computerid = '[unban_computerid]', unbanned_ip = '[unban_ip]' WHERE id = [id]"
 	message_admins("[key_name_admin(usr)] has lifted [pckey]'s ban.",1)
 
 	var/DBQuery/query_update = dbcon.NewQuery(sql_update)
@@ -250,7 +260,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 
 /client/proc/DB_ban_panel()
-	set category = "Admin"
+	set category = "Ban"
 	set name = "Banning Panel"
 	set desc = "Edit admin permissions"
 
@@ -258,6 +268,79 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		return
 
 	holder.DB_ban_panel()
+
+/client/proc/ban_test(var/ckey as text)
+	set name = "Ban Test"
+	set category = "Ban"
+	set desc = "NOT FOR IN-GAME USE"
+
+//	var/ckey
+
+	var/output = CheckBan(ckey)
+	src << output
+/datum/admins/proc/cmd_import_legacy_bans() //DON'T USE THIS PROC IN-GAME
+	set category = "Ban"
+	set name = "Import Legacy Bans (NOT FOR INGAME USE)"
+	set desc = "NOT FOR IN-GAME USE"
+
+	var/job
+	var/svr
+	switch(alert("Which bans do you wish to import?",,"Job","Server","All"))
+		if("Job")
+			job = 1
+		if("Server")
+			svr = 1
+		if("All")
+			job = 1
+			svr = 1
+
+	world << "<FONT COLOR=RED SIZE=2><B>DEBUG WARNING:</B> [key_name(src)] has used a very resource-intensive proc.  Expect lag in five seconds.</FONT>"
+
+	sleep(50)
+
+	if(svr)
+		world << "<FONT COLOR=RED><B>DEBUG LOG:</B> Importing legacy bans...</FONT>"
+		Banlist.cd = "/base"
+		for(var/A in Banlist.dir)
+			Banlist.cd = "/base/[A]"
+			var/key = Banlist["key"]
+			var/id = Banlist["id"]
+			var/ip = Banlist["ip"]
+			var/reason = Banlist["reason"] + " (LEGACY BAN)"
+			var/bannedby = Banlist["bannedby"]
+			var/temp = Banlist["temp"]
+			var/min = GetExpEx(Banlist["minutes"])
+			if( (!min) || (!temp) )
+				min = -1
+			world << "\blue <B>BAN FOUND:</B> \black CKEY:[key] CID:[id] IP:[ip]\nWHY:[reason] BY:[bannedby] TEMP? [temp] MIN:[min]\n"
+			var/type
+			if(!temp)
+				type = BANTYPE_PERMA
+			else
+				type = BANTYPE_TEMP
+
+			usr.client.holder.DB_ban_record(type, null, min, reason, "", 0, key, 1, bannedby, id, ip)
+
+			world << "\blue <B>Ban added to DB</B>\n\n"
+	if(job)
+		world << "\red<B>Now switching to job-bans.</B>"
+		Banlistjob.cd = "/base"
+		for(var/J in Banlistjob.dir)
+			Banlistjob.cd = "/base/[J]"
+			var/ckey = Banlistjob["key"]
+			var/id = Banlistjob["id"]
+			var/rank = Banlistjob["rank"]
+			var/reason = Banlistjob["reason"] + " (LEGACY BAN)"
+			var/bannedby = Banlistjob["bannedby"]
+			var/temp = Banlistjob["temp"]
+			var/min = -1
+			var/type = BANTYPE_JOB_PERMA
+			if(temp)
+				min = GetExpEx(Banlistjob["minutes"])
+				type = BANTYPE_JOB_TEMP
+			world << "\blue <B>BAN FOUND:</B> \black CKEY:[ckey] CID:[id] RANK:[rank]\nWHY:[reason] BY:[bannedby] TEMP? [temp] MIN:[min]\n"
+			usr.client.holder.DB_ban_record(type, null, min, reason, rank, 0, ckey, 1, bannedby, id)
+			world << "\blue <B>Ban added to DB</B>\n\n"
 
 
 /datum/admins/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null)
@@ -341,7 +424,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		if(playerckey)
 			playersearch = "AND ckey = '[playerckey]' "
 
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT id, bantime, bantype, reason, job, duration, expiration_time, ckey, a_ckey, unbanned, unbanned_ckey, unbanned_datetime, edits FROM erro_ban WHERE 1 [playersearch] [adminsearch] ORDER BY bantime DESC")
+		var/DBQuery/select_query = dbcon.NewQuery("SELECT id, bantime, bantype, reason, job, duration, expiration_time, ckey, a_ckey, unbanned, unbanned_ckey, unbanned_datetime, edits FROM ban WHERE 1 [playersearch] [adminsearch] ORDER BY bantime DESC")
 		select_query.Execute()
 
 		while(select_query.NextRow())

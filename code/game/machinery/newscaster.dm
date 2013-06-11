@@ -510,7 +510,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			src.updateUsrDialog()
 
 		else if(href_list["set_new_message"])
-			src.msg = strip_html(input(usr, "Write your Feed story", "Network Channel Handler", ""))
+			src.msg = strip_html(input(usr, "Write your Feed story", "Network Channel Handler", "") as message|null) //You'll thank me for the as message part
 			//PSEUDO-BBCODE PARSING
 			//Maybe add some more for newscasters.
 			src.msg = replacetext(src.msg, "\[center\]", "<center>")
@@ -524,7 +524,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			src.msg = replacetext(src.msg, "\[/u\]", "</U>")
 			src.msg = replacetext(src.msg, "\[large\]", "<font size=\"4\">")
 			src.msg = replacetext(src.msg, "\[/large\]", "</font>")
-			src.msg = replacetext(src.msg, "\[field\]", "<span class=\"paper_field\"></span>")
 
 			while (findtext(src.msg," ") == 1)
 				src.msg = copytext(src.msg,2,lentext(src.msg)+1)

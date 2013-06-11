@@ -3,6 +3,54 @@
 //gives item to specific people when they join if it can
 //for multiple items just add mutliple entries, unless i change it to be a listlistlist
 //yes, it has to be an item, you can't pick up nonitems
+//Lazy people, Numbers made this use DB
+
+/proc/EquipCustomItemsDB(mob/living/carbon/human/M)
+	establish_round_db_connection()
+	if(!dbcon_round.IsConnected())
+		world.log << "Failed to connect to database in custom_items(). Reverting to legacy system."
+		diary << "Failed to connect to database in custom_items(). Reverting to legacy system."
+		EquipCustomItems(M)
+		return
+	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, character, item FROM custom_items")
+	query.Execute()
+	while(query.NextRow())
+		var/ckey = query.item[1]
+		var/char = query.item[2]
+		var/path_list = query.item[3]
+	/*	if(istext(path))
+			path = text2path(path)	*/
+		if(ckey == M.ckey && char == M.real_name)
+			var/list/Paths = text2list(path_list, ",")
+			for(var/P in Paths)
+				var/ok = 0
+				P = trim(P) //What?
+				var/path = text2path(P)
+				var/obj/item/Item = new path()
+				//Begining item code, i.e. if is a permit, apply real_name to document
+				if(istype(Item,/obj/item/weapon/paper/fluff/mechpermit))
+					var/obj/item/weapon/paper/fluff/mechpermit/Q = Item
+					for(Q in M)
+						Q.hname = M.real_name
+						Q.update()
+				else if(istype(M.back,/obj/item/weapon/storage) && M.back:contents.len < M.back:storage_slots) // Try to place it in something on the mob's back
+					Item.loc = M.back
+					M << "\blue <B>You feel your [M.back] suddenly get heavier.</B>"
+					ok = 1
+					break
+				else
+					for(var/obj/item/weapon/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
+						if (S.contents.len < S.storage_slots)
+							Item.loc = S
+							M << "\blue <B>You feel your [S] suddenly get heavier.</B>"
+							ok = 1
+							break
+				skip:
+				if (ok == 0) // Finally, since everything else failed, place it on the ground
+					Item.loc = get_turf(M.loc)
+	return
+
+
 
 /proc/EquipCustomItems(mob/living/carbon/human/M)
 	// load lines
@@ -25,10 +73,11 @@
 				P = trim(P)
 				var/path = text2path(P)
 				var/obj/item/Item = new path()
-				if(istype(Item,/obj/item/weapon/card/id))
-					var/obj/item/weapon/card/id/I = Item
-					for(var/obj/item/weapon/card/id/C in M)
-						I.hname = M.real_name
+				if(istype(Item,/obj/item/weapon/paper/fluff/mechpermit))
+					var/obj/item/weapon/paper/fluff/mechpermit/Q = Item
+					for(Q in M)
+						Q.hname = M.real_name
+						Q.update()
 				else if(istype(M.back,/obj/item/weapon/storage) && M.back:contents.len < M.back:storage_slots) // Try to place it in something on the mob's back
 					Item.loc = M.back
 					M << "\blue <B>You feel your backpack suddenly get heavier.</B>"
@@ -42,10 +91,11 @@
 							ok = 1
 							break
 
+
 				skip:
 				if (ok == 0) // Finally, since everything else failed, place it on the ground
 					Item.loc = get_turf(M.loc)
-
+	return
 
 
 

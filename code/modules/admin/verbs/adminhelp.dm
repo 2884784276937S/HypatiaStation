@@ -114,6 +114,9 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
+	if(admin_number_present <= 0) //Hoow owuld it be below zero?
+		src << "<font color='blue'>There are no non-AFK admins online.</font>"
+
 proc/send2irc(msg,msg2)
 	if(config.useircbot)
 		shell("python [config.nudge_script_path] [msg] [msg2]")

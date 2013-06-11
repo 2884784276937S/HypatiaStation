@@ -6,6 +6,15 @@
 		usr << "\red Speech is currently admin-disabled."
 		return
 
+	if(isai(src))
+		src << "Silly [src.name], AIs don't pray."
+		return
+	if(isrobot(src))
+		src << "Silly [src.name], cyborgs pray to their mother AI unit, not some human's concept of a non-existant deity they like to call \"god\"."
+		return
+
+	//Did you see something?  I didn't...
+
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	if(!msg)	return
 

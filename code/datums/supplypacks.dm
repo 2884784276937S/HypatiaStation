@@ -546,7 +546,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "Particle Accelerator crate"
 	access = access_ce
 	group = "Engineering"
-
+/*
 /datum/supply_packs/mecha_ripley
 	name = "Circuit Crate (\"Ripley\" APLU)"
 	contains = list(/obj/item/weapon/book/manual/ripley_build_and_repair,
@@ -568,7 +568,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_robotics
 	group = "Engineering"
 
-
+*/	//I'm removing these, they were supposed to be removed, they use supply points, and they in a way discourage inter-departmental RP to a degree.
 /datum/supply_packs/robotics
 	name = "Robotics Assembly Crate"
 	contains = list(/obj/item/device/assembly/prox_sensor,

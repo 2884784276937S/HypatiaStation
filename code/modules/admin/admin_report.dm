@@ -30,24 +30,18 @@ datum/report_topic_handler
 		else if(href_list["action"] == "edit")
 			C.edit_report(text2num(href_list["ID"]))
 		else if(href_list["action"] == "logs")
-			var/done = href_list["param"]
+			var/date = href_list["param"]
 			var/type = alert("Which log would you like to view?",,"Attack","Server","HREFs")
 			switch(type)
 				if("Attack")
-					type = " Attack.log"
+					C.view_atk_log_for(date)
 				if("Server")
-					type = ".log"
+					C.view_txt_log_for(date)
 				if("HREFs")
-					type = " hrefs.htm"
+					C.view_href_log_for(date)
 				else
 					src << "Something weird hapened.  Reverting to Server logs."
-					type = ".log"
-			var/path = "data/logs/[time2text(done,"YYYY/MM-Month/DD-Day")][type]"
-			if( fexists(path) )
-				src << run( file(path) )
-			else
-				src << "<font color='red'>Error: href: logs: File not found/Invalid path([path]).</font>"
-			return
+					C.view_txt_log_for(date)
 		//	C.getserverlog()
 
 var/datum/report_topic_handler/report_topic_handler
@@ -117,11 +111,15 @@ client/proc/is_reported()
 	return 0
 
 // display only the reports that haven't been handled
-client/proc/display_admin_reports()
-	set category = "Admin"
+client/verb/display_admin_reports()
+	set category = "Player"
 	set name = "Display Admin Reports"
 	if(!src.holder)
 		display_player_reports()
+
+	if(alert("Who's reports would you live to view?",,"Mine","Everyone's") != "Everyone's")
+		display_player_reports()
+
 
 	var/list/reports = load_reports()
 
@@ -134,6 +132,8 @@ client/proc/display_admin_reports()
 		output += "<small>authored by <i>[N.author]</i></small><br>"
 		if(!N.done)
 			output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=remove;ID=[N.ID]'>Flag as Handled</a>"
+			if(N.author == src.ckey)
+				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
 		else
 			output += "<B>Report Handled by [N.doneby]</B><br>"
 			output += "<small>at <B>[time2text(N.donewhen,"MM/DD hh:mm:ss")]</B></small><br>"
@@ -142,8 +142,9 @@ client/proc/display_admin_reports()
 	usr << browse(output, "window=news;size=600x400")
 
 client/verb/display_player_reports()
-	set category = "Admin"
+	set category = "Player"
 	set name = "Display Your Admin Reports"
+	set hidden = 1
 	var/list/reports = load_reports()
 	var/output = ""
 
@@ -155,26 +156,24 @@ client/verb/display_player_reports()
 			output += "<small>Occured at [time2text(N.date,"MM/DD hh:mm:ss")]</small><br>"
 			output += "<small>authored by <i>[N.author]</i></small><br>"
 			if(!N.done)
-				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=remove;ID=[N.ID]'>Flag as Handled</a>"
+				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
 			else
 				output += "<B>Report Handled by [N.doneby]</B><br>"
 				output += "<small>at <B>[time2text(N.donewhen,"MM/DD hh:mm:ss")]</B></small><br>"
-			if(!N.done)
-				output += " <a href='?src=\ref[report_topic_handler];client=\ref[src];action=edit;ID=[N.ID]'>Edit</a>"
 			output += "<br>"
 			output += "<br>"
 	usr << browse(output, "window=news;size=600x400")
 
 
 client/verb/Report(mob/M as mob in world)
-	set category = "Admin"
+	set category = "Player"
 	set name = "Create Admin Report"
 
 	var/CID = "Unknown"
 	if(M.client)
 		CID = M.client.computer_id
 
-	var/body = input(src.mob, "Describe in detail what you're reporting [M] for", "Report") as null|text
+	var/body = input(src.mob, "Describe in detail what you're reporting [M] for", "Report") as null|message
 	if(!body) return
 
 
@@ -221,9 +220,11 @@ client/proc/edit_report(ID as num)
 			found = N
 	if(!found) src << "<b>* An error occured, sorry.</b>"
 
+	var/edit = "<BR>Edited at <B>[time2text(world.realtime,"MM/DD hh:mm:ss")]</B><BR>"
 	var/body = input(src.mob, "Enter a body for the news", "Body") as null|message
 	if(!body) return
+	body = edit + body
 
-	found.body = body
+	found.body = found.body + body
 
 	Reports["reports"]   << reports

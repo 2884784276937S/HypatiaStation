@@ -327,6 +327,40 @@ proc/establish_db_connection()
 	else
 		return 1
 
+//Round persistant db procs
+proc/setup_round_database_connection()
+
+	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+		return 0
+
+	if(!dbcon_round)
+		dbcon_round = new()
+
+	var/user = sql_round_login
+	var/pass = sql_round_pass
+	var/db = sql_round_db
+	var/address = sqladdress
+	var/port = sqlport
+
+	dbcon_round.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	. = dbcon_round.IsConnected()
+	if ( . )
+		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
+	else
+		failed_db_connections++		//If it failed, increase the failed connections counter.
+
+	return .
+
+//This proc ensures that the connection to the feedback database (global variable dbcon) is established
+proc/establish_round_db_connection()
+	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+		return 0
+
+	if(!dbcon_round || !dbcon_round.IsConnected())
+		return setup_round_database_connection()
+	else
+		return 1
+
 
 
 
@@ -351,17 +385,20 @@ proc/setup_old_database_connection()
 		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_old_db_connections++		//If it failed, increase the failed connections counter.
+	log_game("OLD_DB setup proc called.")
 
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 proc/establish_old_db_connection()
+/*
 	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
 	if(!dbcon_old || !dbcon_old.IsConnected())
 		return setup_old_database_connection()
 	else
-		return 1
+		return 1 */
+	message_admins("<FONT COLOR=RED>A database-(SQL)-process has been called which is currently phased out has been called.</FONT>  Please contact a coder and/or SQL admin and provide them with the logs for when this occured.")
 
 #undef FAILED_DB_CONNECTION_CUTOFF

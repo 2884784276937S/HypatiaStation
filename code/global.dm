@@ -83,9 +83,11 @@ var/datum/engine_eject/engine_eject_control = null
 var/host = null
 var/aliens_allowed = 0
 var/ooc_allowed = 1
+var/ic_ooc_allowed = 1 //Magic
 var/dooc_allowed = 1
 var/traitor_scaling = 1
 //var/goonsay_allowed = 0
+var/asay_colours = 0
 var/dna_ident = 1
 var/abandon_allowed = 1
 var/enter_allowed = 1
@@ -212,6 +214,10 @@ var/sqlfdbkpass = ""
 
 var/sqllogging = 0 // Should we log deaths, population stats, etc?
 
+var/sql_round_db = "round_persist"
+var/sql_round_login = "root"
+var/sql_round_pass = ""
+
 
 
 	// Forum MySQL configuration (for use with forum account/key authentication)
@@ -234,4 +240,6 @@ var/custom_event_msg = null
 //Database connections
 //A connection is established on world creation. Ideally, the connection dies when the server restarts (After feedback logging.).
 var/DBConnection/dbcon = new()	//Feedback database (New database)
+var/DBConnection/dbcon_round = new() //Round-persistant stuff
+//dbcon_round.Connect("dbi:mysql:[sql_round_db]:[sqladdress]:[sqlport]","[sql_round_login]","[sql_round_pass]")
 var/DBConnection/dbcon_old = new()	//Tgstation database (Old database) - See the files in the SQL folder for information what goes where.

@@ -270,6 +270,9 @@ var/list/forbidden_varedit_object_types = list(
 
 	var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "cuffed", "ka", "last_eaten", "icon", "icon_state", "mutantrace")
 
+	if(check_rights(R_PERMISSIONS))
+		forbidden_varedit_object_types -= /datum/admins //Makes senseish
+
 	for(var/p in forbidden_varedit_object_types)
 		if( istype(O,p) )
 			usr << "\red It is forbidden to edit this object's variables."

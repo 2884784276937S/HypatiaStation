@@ -75,6 +75,24 @@ datum/controller/vote
 						choices[master_mode] += non_voters
 						if(choices[master_mode] >= greatest_votes)
 							greatest_votes = choices[master_mode]
+				else if(mode == "crew_transfer")
+					var/factor = 0.5
+					switch(world.time / (10 * 60)) // minutes
+						if(0 to 60)
+							factor = 0.5
+						if(61 to 120)
+							factor = 0.8
+						if(121 to 240)
+							factor = 1
+						if(241 to 300)
+							factor = 1.2
+						else
+							factor = 1.4
+					choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
+					world << "<font color='purple'>Crew Transfer Factor: [factor]</font>"
+					greatest_votes = max(choices["Initiate Crew Transfer"], choices["Continue The Round"])
+
+
 		//get all options with that many votes and return them in a list
 		. = list()
 		if(greatest_votes)
@@ -114,6 +132,9 @@ datum/controller/vote
 							restart = 1
 						else
 							master_mode = .
+					if(!going)
+						going = 1
+						world << "<font color='red'><b>The round will start soon.</b></font>"
 				if("crew_transfer")
 					if(. == "Initiate Crew Transfer")
 						init_shift_change(null, 1)
@@ -144,7 +165,7 @@ datum/controller/vote
 
 	proc/initiate_vote(var/vote_type, var/initiator_key)
 		if(!mode)
-			if(started_time != null)
+			if(started_time != null && !check_rights(R_ADMIN))
 				var/next_allowed_time = (started_time + config.vote_delay)
 				if(next_allowed_time > world.time)
 					return 0
@@ -176,8 +197,20 @@ datum/controller/vote
 			var/text = "[capitalize(mode)] vote started by [initiator]."
 			if(mode == "custom")
 				text += "\n[question]"
+
 			log_vote(text)
 			world << "<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
+			switch(vote_type)
+				if("crew_transfer")
+					world << sound('sound/voice/Serithi/Shuttlehere.ogg')
+				if("gamemode")
+					world << sound('sound/voice/Serithi/pretenddemoc.ogg')
+				if("custom")
+					world << sound('sound/voice/Serithi/weneedvote.ogg')
+			if(mode == "gamemode" && going)
+				going = 0
+				world << "<font color='red'><b>Round start has been delayed.</b></font>"
+
 			time_remaining = round(config.vote_period/10)
 			return 1
 		return 0

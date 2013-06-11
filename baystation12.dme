@@ -48,6 +48,7 @@
 #define FILE_DIR "sound/piano"
 #define FILE_DIR "sound/violin"
 #define FILE_DIR "sound/voice"
+#define FILE_DIR "sound/voice/Serithi"
 #define FILE_DIR "sound/weapons"
 // END_FILE_DIR
 // BEGIN_PREFERENCES
@@ -428,7 +429,6 @@
 #include "code\game\objects\items.dm"
 #include "code\game\objects\objs.dm"
 #include "code\game\objects\structures.dm"
-#include "code\game\objects\weapons.dm"
 #include "code\game\objects\closets\walllocker.dm"
 #include "code\game\objects\effects\aliens.dm"
 #include "code\game\objects\effects\barsign.dm"
@@ -772,6 +772,7 @@
 #include "code\modules\clothing\under\jobs\medsci.dm"
 #include "code\modules\clothing\under\jobs\security.dm"
 #include "code\modules\customitems\item_defines.dm"
+#include "code\modules\customitems\item_spawning.dm"
 #include "code\modules\destilery\main.dm"
 #include "code\modules\DetectiveWork\detective_work.dm"
 #include "code\modules\DetectiveWork\evidence.dm"

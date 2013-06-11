@@ -92,6 +92,9 @@
 		return
 
 	var/recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[key_name(src, C, 0)]</b>: [msg]</font>"
+	if(!C.holder)
+		recieve_message = "<font color='[recieve_color]'>[recieve_pm_type] PM from-<b>[src.ckey]</b>: [msg]</font>"
+	//We don't want players knowing our IC names now do we.... --Numbers
 
 	if(holder && !C.holder)
 		recieve_message = "<font color='[recieve_color]' size='4'><b>-- Administrator private message --</b></font>\n" + recieve_message
@@ -178,5 +181,5 @@
 	for(var/client/X in admins)
 		//check client/X is an admin and isn't the sender or recipient
 		//only admins can see PMs
-		if(X.key!=key && X.key!=C.key && (X.holder.rights & R_ADMIN) || (X.holder.rights & R_MOD) )
+		if(X.key!=key && X.key!=C.key && (X.holder.rights & R_ADMIN) || (X.holder.rights & R_MOD)|| (X.holder.rights & R_DONOR) ) //This is confusing...
 			X << "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;[key_name(C, X, 0)]:</B> \blue [msg]</font>" //inform X

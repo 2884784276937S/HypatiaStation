@@ -4,20 +4,21 @@ var/list/preferences_datums = list()
 
 var/global/list/special_roles = list( //keep synced with the defines BE_* in setup.dm --rastaf
 //some autodetection here.
-	"traitor" = IS_MODE_COMPILED("traitor"),             // 0
-	"operative" = IS_MODE_COMPILED("nuclear"),           // 1
-	"changeling" = IS_MODE_COMPILED("changeling"),       // 2
-	"wizard" = IS_MODE_COMPILED("wizard"),               // 3
-	"malf AI" = IS_MODE_COMPILED("malfunction"),         // 4
-	"revolutionary" = IS_MODE_COMPILED("revolution"),    // 5
-	"alien candidate" = 1, //always show                 // 6
+	"traitor" = 0/*IS_MODE_COMPILED("traitor")*/,             // 0
+	"operative" = 0/*IS_MODE_COMPILED("nuclear")*/,           // 1
+	"changeling" = 0/*IS_MODE_COMPILED("changeling")*/,       // 2
+	"wizard" = 0/*IS_MODE_COMPILED("wizard")*/,               // 3
+	"malf AI" = 0/*IS_MODE_COMPILED("malfunction")*/,         // 4
+	"revolutionary" = 0/*IS_MODE_COMPILED("revolution")*/,    // 5
+	"alien candidate" = 0, //always show--Numbers says no     // 6
 	"pAI candidate" = 1, // -- TLE                       // 7
-	"cultist" = IS_MODE_COMPILED("cult"),                // 8
-	"infested monkey" = IS_MODE_COMPILED("monkey"),      // 9
+	"cultist" = 0/*IS_MODE_COMPILED("cult")*/,                // 8
+	"infested monkey" = 0/*IS_MODE_COMPILED("monkey")*/,      // 9
 	"space ninja" = "true",								 // 10
+	"part of admin events" = 1, //11
 )
 
-var/const/MAX_SAVE_SLOTS = 10
+var/const/MAX_SAVE_SLOTS = 15 //Numbers
 
 
 datum/preferences
@@ -45,7 +46,7 @@ datum/preferences
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
-	var/b_type = "A+"					//blood type (not-chooseable)
+	var/b_type = "O+"					//blood type (not-chooseable)
 	var/underwear = 1					//underwear type
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
@@ -114,94 +115,95 @@ datum/preferences
 					return
 	gender = pick(MALE, FEMALE)
 	real_name = random_name(gender)
-
+//OWEN, HAVE YOU NEVER HEARD OF /* and */ !? INSANE PEOPLE USE // FOR EVERY LINE!  NOW I MUST UNDO THEM ALL!
 /datum/preferences
-//	proc/ZeroSkills(var/forced = 0)
-//		for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
-//			if(!skills.Find(S.ID) || forced)
-//				skills[S.ID] = SKILL_NONE
-//	proc/CalculateSkillPoints()
-//		used_skillpoints = 0
-//		for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
-//			var/multiplier = 1
-//			switch(skills[S.ID])
-//				if(SKILL_NONE)
-//					used_skillpoints += 0 * multiplier
-//				if(SKILL_BASIC)
-//					used_skillpoints += 1 * multiplier
-//				if(SKILL_ADEPT)
-//					// secondary skills cost less
-//					if(S.secondary)
-//						used_skillpoints += 1 * multiplier
-//					else
-//						used_skillpoints += 3 * multiplier
-//				if(SKILL_EXPERT)
-//					// secondary skills cost less
-//					if(S.secondary)
-//						used_skillpoints += 3 * multiplier
-//					else
-//						used_skillpoints += 6 * multiplier
 
-//	proc/GetSkillClass(points)
+	proc/ZeroSkills(var/forced = 0)
+		for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
+			if(!skills.Find(S.ID) || forced)
+				skills[S.ID] = SKILL_NONE
+	proc/CalculateSkillPoints()
+		used_skillpoints = 0
+		for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
+			var/multiplier = 1
+			switch(skills[S.ID])
+				if(SKILL_NONE)
+					used_skillpoints += 0 * multiplier
+				if(SKILL_BASIC)
+					used_skillpoints += 1 * multiplier
+				if(SKILL_ADEPT)
+					// secondary skills cost less
+					if(S.secondary)
+						used_skillpoints += 1 * multiplier
+					else
+						used_skillpoints += 3 * multiplier
+				if(SKILL_EXPERT)
+					// secondary skills cost less
+					if(S.secondary)
+						used_skillpoints += 3 * multiplier
+					else
+						used_skillpoints += 6 * multiplier
+
+	proc/GetSkillClass(points)
 		// skill classes describe how your character compares in total points
-//		var/original_points = points
-//		points -= min(round((age - 20) / 2.5), 4) // every 2.5 years after 20, one extra skillpoint
-//		if(age > 30)
-//			points -= round((age - 30) / 5) // every 5 years after 30, one extra skillpoint
-//		if(original_points > 0 && points <= 0) points = 1
-//		switch(points)
-//			if(0)
-//				return "Unconfigured"
-//			if(1 to 3)
-//				return "Terrifying"
-//			if(4 to 6)
-//				return "Below Average"
-//			if(7 to 10)
-//				return "Average"
-//			if(11 to 14)
-//				return "Above Average"
-//			if(15 to 18)
-//				return "Exceptional"
-//			if(19 to 24)
-//				return "Genius"
-//			if(24 to 1000)
-//				return "God"
+		var/original_points = points
+		points -= min(round((age - 20) / 1.5), 4) // every 2.5 years after 20, one extra skillpoint //Numbers says 1.5
+		if(age > 30)
+			points -= round((age - 30) / 3) // every 5 years after 30, one extra skillpoint //Numbers says 3
+		if(original_points > 0 && points <= 0) points = 1
+		switch(points)
+			if(0)
+				return "Unconfigured"
+			if(1 to 3)
+				return "Severely Underskilled"
+			if(4 to 6)
+				return "Underskilled"
+			if(7 to 10)
+				return "Average"
+			if(11 to 14)
+				return "Above Average"
+			if(15 to 18)
+				return "Overskilled"
+			if(19 to 24)
+				return "Genius"
+			if(24 to 1000)
+				return "God"
 
-//	proc/SetSkills(mob/user)
-//		if(SKILLS == null)
-//			setup_skills()
+	proc/SetSkills(mob/user)
+		if(SKILLS == null)
+			setup_skills()
 
-//		if(skills.len == 0)
-//			ZeroSkills()
+		if(skills.len == 0)
+			ZeroSkills()
 
 
-//		var/HTML = "<body>"
-//		HTML += "<b>Select your Skills</b><br>"
-//		HTML += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
-//		HTML += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
-//		HTML += "<table>"
-//		for(var/V in SKILLS)
-//			HTML += "<tr><th colspan = 5><b>[V]</b>"
-//			HTML += "</th></tr>"
-//			for(var/datum/skill/S in SKILLS[V])
-//				var/level = skills[S.ID]
-//				HTML += "<tr style='text-align:left;'>"
-//				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
-//				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
-//				// secondary skills don't have an amateur level
-//				if(S.secondary)
-//					HTML += "<th></th>"
-//				else
-//					HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_BASIC]'><font color=[(level == SKILL_BASIC) ? "red" : "black"]>\[Amateur\]</font></a></th>"
-//				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_ADEPT]'><font color=[(level == SKILL_ADEPT) ? "red" : "black"]>\[Trained\]</font></a></th>"
-//				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_EXPERT]'><font color=[(level == SKILL_EXPERT) ? "red" : "black"]>\[Professional\]</font></a></th>"
-//				HTML += "</tr>"
-//		HTML += "</table>"
-//		HTML += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
-//
-//		user << browse(null, "window=preferences")
-//		user << browse(HTML, "window=show_skills;size=600x800")
-//		return
+		var/HTML = "<body>"
+		HTML += "<b>Select your Skills</b><br>"
+		HTML += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
+		HTML += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
+		HTML += "<table>"
+		for(var/V in SKILLS)
+			HTML += "<tr><th colspan = 5><b>[V]</b>"
+			HTML += "</th></tr>"
+			for(var/datum/skill/S in SKILLS[V])
+				var/level = skills[S.ID]
+				HTML += "<tr style='text-align:left;'>"
+				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
+				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
+				// secondary skills don't have an amateur level
+				if(S.secondary)
+					HTML += "<th></th>"
+				else
+					HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_BASIC]'><font color=[(level == SKILL_BASIC) ? "red" : "black"]>\[Amateur\]</font></a></th>"
+				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_ADEPT]'><font color=[(level == SKILL_ADEPT) ? "red" : "black"]>\[Trained\]</font></a></th>"
+				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_EXPERT]'><font color=[(level == SKILL_EXPERT) ? "red" : "black"]>\[Professional\]</font></a></th>"
+				HTML += "</tr>"
+		HTML += "</table>"
+		HTML += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
+
+		user << browse(null, "window=preferences")
+		user << browse(HTML, "window=show_skills;size=600x800")
+		return
 
 	proc/ShowChoices(mob/user)
 		if(!user || !user.client)	return
@@ -251,7 +253,8 @@ datum/preferences
 		dat += "Species: <a href='byond://?src=\ref[user];preference=species;task=input'>[species]</a><br>"
 		dat += "Blood Type: <a href='byond://?src=\ref[user];preference=b_type;task=input'>[b_type]</a><br>"
 		dat += "Skin Tone: <a href='?_src_=prefs;preference=s_tone;task=input'>[-s_tone + 35]/220<br></a>"
-		//dat += "Skin pattern: <a href='byond://?src=\ref[user];preference=skin_style;task=input'>Adjust</a><br>"
+		if(species != "Human")
+			dat += "Skin pattern: <a href='byond://?src=\ref[user];preference=skin_style;task=input'>Adjust</a><br>"
 		dat += "Limbs: <a href='byond://?src=\ref[user];preference=limbs;task=input'>Adjust</a><br>"
 
 		//display limbs below
@@ -313,7 +316,7 @@ datum/preferences
 		else
 			dat += "<b><a href=\"byond://?src=\ref[user];preference=records;record=1\">Character Records</a></b><br>"
 
-//		dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)][used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
+		dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)][used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
 
 		dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=input'><b>Set Flavor Text</b></a><br>"
 		if(lentext(flavor_text) <= 40)
@@ -400,7 +403,7 @@ datum/preferences
 			var/rank = job.title
 			lastJob = job
 			if(jobban_isbanned(user, rank))
-				HTML += "<font color=red>[rank]</font></td><td><font color=red><b> \[BANNED]</b></font></td></tr>"
+				HTML += "<font color=red>[rank]</font></td><td><A href='?_src_=prefs;preference=ban;task=check;rank=[rank];player=\ref[user]'><font color=red><b> \[BANNED]</b></font></A></td></tr>"
 				continue
 			if(!job.player_old_enough(user.client))
 				var/available_in_days = job.available_in_days(user.client)
@@ -659,41 +662,51 @@ datum/preferences
 				else
 					SetChoices(user)
 			return 1
-//		else if(href_list["preference"] == "skills")
-//			if(href_list["cancel"])
-//				user << browse(null, "window=show_skills")
-//				ShowChoices(user)
-//			else if(href_list["skillinfo"])
-//				var/datum/skill/S = locate(href_list["skillinfo"])
-//				var/HTML = "<b>[S.name]</b><br>[S.desc]"
-//				user << browse(HTML, "window=\ref[user]skillinfo")
-//			else if(href_list["setskill"])
-//				var/datum/skill/S = locate(href_list["setskill"])
-//				var/value = text2num(href_list["newvalue"])
-//				skills[S.ID] = value
-//				CalculateSkillPoints()
-//				SetSkills(user)
-//			else if(href_list["preconfigured"])
-//				var/selected = input(user, "Select a skillset", "Skillset") as null|anything in SKILL_PRE
-//				if(!selected) return
+		else if(href_list["preference"] == "skills")
+			if(href_list["cancel"])
+				user << browse(null, "window=show_skills")
+				ShowChoices(user)
+			else if(href_list["skillinfo"])
+				var/datum/skill/S = locate(href_list["skillinfo"])
+				var/HTML = "<b>[S.name]</b><br>[S.desc]"
+				user << browse(HTML, "window=\ref[user]skillinfo")
+			else if(href_list["setskill"])
+				var/datum/skill/S = locate(href_list["setskill"])
+				var/value = text2num(href_list["newvalue"])
+				skills[S.ID] = value
+				CalculateSkillPoints()
+				SetSkills(user)
+			else if(href_list["preconfigured"])
+				var/selected = input(user, "Select a skillset", "Skillset") as null|anything in SKILL_PRE
+				if(!selected) return
 
-//				ZeroSkills(1)
-//				for(var/V in SKILL_PRE[selected])
-//					if(V == "field")
-//						skill_specialization = SKILL_PRE[selected]["field"]
-//						continue
-//					skills[V] = SKILL_PRE[selected][V]
-//				CalculateSkillPoints()
+				ZeroSkills(1)
+				for(var/V in SKILL_PRE[selected])
+					if(V == "field")
+						skill_specialization = SKILL_PRE[selected]["field"]
+						continue
+					skills[V] = SKILL_PRE[selected][V]
+				CalculateSkillPoints()
 
-//				SetSkills(user)
-//			else if(href_list["setspecialization"])
-//				skill_specialization = href_list["setspecialization"]
-//				CalculateSkillPoints()
-//				SetSkills(user)
-//			else
-//				SetSkills(user)
-//			return 1
-
+				SetSkills(user)
+			else if(href_list["setspecialization"])
+				skill_specialization = href_list["setspecialization"]
+				CalculateSkillPoints()
+				SetSkills(user)
+			else
+				SetSkills(user)
+			return 1
+		else if(href_list["preference"] == "ban")
+			if(href_list["task"] == "check")
+				if(!dbcon.IsConnected())
+					usr << "\red <B>ERROR:</B> Unable to connect to database, please refer this message to admins or coders."
+					message_admins("Someone go moan at Owen/(Askarn)...  The ban system isn't using SQL (database).") //Shh, you didn't see this part.
+				//	return
+				var/rank = href_list["rank"]
+				var/who = jobban_whobanned(usr, rank) //Yes, I made this proc just for this
+				var/why = jobban_isbanned(usr, rank)
+				var/when = jobban_whenbanned(usr, rank) //Yes, I made this proc just for this
+				usr << "\red <B>You were banned from</B> <i>[rank]</i> <B>by</B> <i>[who]</i> <B>on</B> <i>[when]</i>.\n<B>The reason provided is:</B>\n<i>[why]</i>"
 		else if(href_list["preference"] == "records")
 			if(text2num(href_list["record"]) >= 1)
 				SetRecords(user)
@@ -783,7 +796,7 @@ datum/preferences
 								whitelisted = 1
 
 							if(!whitelisted)
-								alert(user, "You cannot change your species as you need to be whitelisted. If you wish to be whitelisted contact an admin in-game, on the forums, or on IRC.")
+								alert(user, "You cannot change your species as you need to be whitelisted. If you wish to be whitelisted, please make an application on the <a href=\"[config.forumurl]\">forums</a>.")
 						else //Not using the whitelist? Aliens for everyone!
 							new_species += "Tajaran"
 							new_species += "Soghun"
@@ -950,6 +963,14 @@ datum/preferences
 						else
 							user << browse(null, "window=disabil")
 
+/*					if("perks")
+						if(text2num(href_list["perks"]) >= -1)
+							if(text2num(href_list["perks"]) >= 0)
+								perks ^= (1<<text2num(href_list["perks"]))
+							SetPerks(user)
+							return
+						else
+							user << browse(null, "window=perks") */
 					if("limbs")
 						var/limb_name = input(user, "Which limb do you want to change?") as null|anything in list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand")
 						if(!limb_name) return
@@ -1075,11 +1096,16 @@ datum/preferences
 
 		if(config.humans_need_surnames)
 			var/firstspace = findtext(real_name, " ")
+			var/secspace = findtext(real_name, " ", firstspace+1)
 			var/name_length = length(real_name)
 			if(!firstspace)	//we need a surname
 				real_name += " [pick(last_names)]"
 			else if(firstspace == name_length)
 				real_name += "[pick(last_names)]"
+			while(secspace > 0)
+				usr << "\red Your character name includes a middle name, please enter a new name without a middle name."
+				sleep(20)
+				real_name = input("Choose a new name for your character.","Your Name",real_name)
 
 		character.real_name = real_name
 		character.name = character.real_name

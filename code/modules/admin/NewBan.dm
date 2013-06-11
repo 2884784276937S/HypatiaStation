@@ -1,7 +1,6 @@
 var/CMinutes = null
 var/savefile/Banlist
 
-
 /proc/CheckBan(var/ckey, var/id, var/address)
 	if(!Banlist)		// if Banlist cannot be located for some reason
 		LoadBans()		// try to load the bans
@@ -54,7 +53,7 @@ var/savefile/Banlist
 				return .
 	return 0
 
-/proc/UpdateTime() //No idea why i made this a proc.
+/proc/UpdateTime() //No idea why i made this a proc. //The hell does this even do...
 	CMinutes = (world.realtime / 10) / 60
 	return 1
 
@@ -161,6 +160,14 @@ var/savefile/Banlist
 		else
 			timeleftstring = "[exp] Minutes"
 		return timeleftstring
+
+/proc/GetExpEx(minutes as num) //purist
+	UpdateTime()
+	var/exp = minutes - CMinutes
+	if (exp <= 0)
+		return 0
+	else
+		return exp
 
 /datum/admins/proc/unbanpanel()
 	var/count = 0

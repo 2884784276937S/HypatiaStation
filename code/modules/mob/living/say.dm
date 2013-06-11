@@ -77,6 +77,15 @@ var/list/department_radio_keys = list(
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 	message = capitalize(message)
 
+	if(!ic_ooc_allowed)
+		if( (findtext(message, "(")) || (findtext(message, ")")) )
+			src << "\red IC (( OOC )) has been disabled.  IC (( OOC )) text in your message has been filtered."
+		message = replacetext(message, "((", "<!--") //Double brackets are included first to avoid commented comments, so a messsage with the content, "((Sorry, computer issues))" doesn't come out as, "-->"
+		message = replacetext(message, "(", "<!--")
+		message = replacetext(message, "))", "-->")
+		message = replacetext(message, ")", "-->")
+	//Sorry, but this is ingenious ^
+
 	if (!message)
 		return
 

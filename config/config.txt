@@ -156,11 +156,11 @@ SERVER 74.91.120.106:64380
 ## forum address
 FORUMURL http://hypatiastation.net/forum/index.php
 
-## Wiki address
-WIKIURL http://hypatiastation.net/wiki/index.php?title=Main_Page
+## Wiki address  ##Please note, wiki URL should NOT AT ALL include the index.php?title=Main_Page part.  Nor should it include the / after wiki
+WIKIURL http://hypatiastation.net/wiki
 
 ##Donation URL
-DONATEURL http://hypatiastation.net/forum/viewtopic.php?f=2&t=321
+DONATEURL https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hauptmannheinrich%40gmail%2ecom&lc=AU&item_name=Hypatia%20Station%20%2d%20Donation&no_note=0&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 BANAPPEALS http://hypatiastation.net/forum/viewforum.php?f=16

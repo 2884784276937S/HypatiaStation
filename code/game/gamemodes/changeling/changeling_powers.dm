@@ -342,7 +342,7 @@
 	return 1
 
 
-//Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.
+//Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short .
 /mob/proc/changeling_fakedeath()
 	set category = "Changeling"
 	set name = "Regenerative Stasis (20)"

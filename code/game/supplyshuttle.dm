@@ -38,13 +38,37 @@ var/list/mechtoys = list(
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper Plastic flaps"
-	desc = "I definitely cant get past those. No way."
+	desc = "I definitely cant get past those. No way.\nNot without some big-ass scissors anyway..."
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
 	density = 0
 	anchored = 1
 	layer = 4
 	explosion_resistance = 5
+
+/obj/structure/plasticflaps/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(istype(O, /obj/item/weapon/wirecutters))
+		user << "\red You put all your strength into cutting \the [src]."
+		for(var/mob/V in viewers(world.view, user))
+			V << "\red<B>You watch \the [src] slowly being cut away with the [O] by [user].</B>"
+		sleep(50)
+		user << "\red You cut away \the [src]."
+		for(var/mob/V in viewers(world.view, user))
+			V << "\red<B>\the [src] has been cut away by [user]."
+		del(src)
+		return
+	else if(istype(O, /obj/item/weapon/screwdriver))
+		user << "\blue You start [anchored ? "unscrewing" : "screwing in"] \the [src]."
+		sleep(50)
+		anchored = !anchored
+		user << "\blue You [anchored ? "screw in" : "unscrew"] \the [src]."
+		return
+	else
+		user << "\blue You slot \the [O] through \the [src]."
+		user.drop_item()
+		O.loc = src.loc
+		return
+	return
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
@@ -71,10 +95,11 @@ var/list/mechtoys = list(
 			if (prob(5))
 				del(src)
 
-/obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
-	name = "\improper Airtight plastic flaps"
-	desc = "Heavy duty, airtight, plastic flaps."
+/obj/structure/plasticflaps/mining
+	name = "\improper airtight plastic-flaps"
+	desc = "These look tough... heavy duty, airtight. Mmm... I so wanna use some wirecutters on these."
 
+ //No... plastic flaps don't stop air....
 	New() //set the turf below the flaps to block air
 		var/turf/T = get_turf(loc)
 		if(T)
@@ -87,6 +112,11 @@ var/list/mechtoys = list(
 			if(istype(T, /turf/simulated/floor))
 				T.blocks_air = 0
 		..()
+
+
+/obj/structure/plasticflaps/cargo //A specific type for mining that doesn't allow airflow because of them damn crates //Nope
+	name = "\improper heavy-duty plastic flaps"
+	desc = "I definitely cant get past those. No way.\nNot without some big-ass scissors anyway..." + " This particular one seems to be extra-heavy duty.\n<FONT COLOR=BLUE>A crudely stuck on label reads, \"<FONT COLOR=RED>THESE DON'T BLOCK AIR IDIOT!</FONT>\".</FONT>"
 
 /obj/machinery/computer/supplycomp
 	name = "Supply shuttle console"

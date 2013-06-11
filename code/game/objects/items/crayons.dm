@@ -70,11 +70,32 @@
 		var/drawtype = input("Choose what you'd like to draw.", "Crayon scribbles") in list("graffiti","rune","letter")
 		switch(drawtype)
 			if("letter")
+				if(user.job == "Chaplain")
+					user << "<B>You hear a voice in your head...</B>\blue You feel a moral obligation to refrain from graffiti, after all, vandalists burn in hell." //What...
+					return
+				if(user.job == "Counselor")
+					user << "<B>You hear a voice in your head...</B>\red You feel you're setting a bad example for your patients."
+					user << "On second thought, I'm not going to do this."
+					return
 				drawtype = input("Choose the letter.", "Crayon scribbles") in list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
 				user << "You start drawing a letter on the [target.name]."
 			if("graffiti")
+				if(user.job == "Chaplain")
+					user << "<B>You hear a voice in your head...</B>\blue You feel a moral obligation to refrain from graffiti, after all, vandalists burn in hell." //What...
+					return
+				if(user.job == "Counselor")
+					user << "<B>You hear a voice in your head...</B>\red You feel you're setting a bad example for your patients."
+					user << "On second thought, I'm not going to do this."
+					return
 				user << "You start drawing graffiti on the [target.name]."
 			if("rune")
+				if(user.job == "Chaplain")
+					user << "<B>You hear a voice in your head...</B>\blue You feel a moral obligation to refrain from graffiti, after all, vandalists burn in hell." //What...
+					return
+				if(user.job == "Counselor")
+					user << "<B>You hear a voice in your head...</B>\red You feel you're setting a bad example for your patients."
+					user << "On second thought, I'm not going to do this."
+					return
 				user << "You start drawing a rune on the [target.name]."
 		if(instant || do_after(user, 50))
 			new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)

@@ -61,8 +61,8 @@ datum/skill/management
 
 datum/skill/knowledge/law
     ID = "law"
-    name = "NanoTrasen Law"
-    desc = "Your knowledge of NanoTrasen law and procedures. This includes Space Law, as well as general station rulings and procedures. A low level in this skill is typical for security officers, a high level in this skill is typical for captains."
+    name = "NanoTrasen Law & Procedures"
+    desc = "Your knowledge of NanoTrasen law and procedures. This includes Space Law, as well as general station rulings ,procedures and <a href=\"http://hypatiastation.net/wiki/index.php?title=Standard_Operating_Procedure\"><i>Standard Operating Procedure (SOP)</i></a>. A low level in this skill is typical for security officers, a high level in this skill is typical for captains, and a <b><u>very</u></b> high level for magistrates."
     field = "Security"
     secondary = 1
 
@@ -137,11 +137,20 @@ datum/skill/botany
 	ID = "botany"
 	name = "Botany"
 	desc = "Describes how good a character is at growing and maintaining plants."
+	field = "Civillian"
 
 datum/skill/cooking
 	ID = "cooking"
 	name = "Cooking"
-	desc = "Describes a character's skill at preparing meals and other consumable goods. This includes mixing alcoholic beverages."
+	desc = "Describes a character's skill at preparing meals and other consumable goods. This <b><u>does not</u><b> mixing alcoholic beverages."
+	field = "Civillian"
+
+datum/skill/alchohol
+	ID = "drunk"
+	name = "Drinks"
+	desc = "Describes a character's skill at making interesting, exciting and tasty liquid concoctions."
+	secondary = 1
+	field = "Civillian"
 
 datum/skill/science
 	ID = "science"
@@ -170,15 +179,15 @@ proc/setup_skills()
 mob/living/carbon/human/proc/GetSkillClass(points)
 	// skill classes describe how your character compares in total points
 	var/original_points = points
-	points -= min(round((age - 20) / 2.5), 4) // every 2.5 years after 20, one extra skillpoint
+	points -= min(round((age - 20) / 1.5), 4) // every 2.5 years after 20, one extra skillpoint
 	if(age > 30)
-		points -= round((age - 30) / 5) // every 5 years after 30, one extra skillpoint
+		points -= round((age - 30) / 4) // every 5 years after 30, one extra skillpoint
 	if(original_points > 0 && points <= 0) points = 1
 	switch(points)
 		if(0)
 			return "Unconfigured"
 		if(1 to 3)
-			return "Terrifying"
+			return "Severely Underskilled"
 		if(4 to 6)
 			return "Below Average"
 		if(7 to 10)
@@ -186,7 +195,7 @@ mob/living/carbon/human/proc/GetSkillClass(points)
 		if(11 to 14)
 			return "Above Average"
 		if(15 to 18)
-			return "Exceptional"
+			return "Overskilled"
 		if(19 to 24)
 			return "Genius"
 		if(24 to 1000)

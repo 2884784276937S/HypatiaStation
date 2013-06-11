@@ -8,7 +8,7 @@ var/list/admin_verbs_default = list(
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/check_antagonists,		/*shows all antags*/
 	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/ //Shows ADMIN, MOD, DEV, etc depending on permissions
-	/client/proc/display_admin_reports,
+//	/client/proc/display_admin_reports,
 	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(
@@ -16,6 +16,9 @@ var/list/admin_verbs_admin = list(
 	///client/proc/show_torture,
 	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/
 	/client/proc/show_torture,			//TORTURE!!!!!!!!!!!!!!!!!!!!!!!!--Numbers
+	/client/proc/toggle_ic_ooc,
+	/datum/admins/proc/delay,
+//	/client/proc/toggle_colours,
 	/client/proc/cmd_banhammer,			//BANHAMMER!!!!!! --Numbers
 	/client/proc/invisimin,				/*allows our mob to go invisible/visible*/
 //	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
@@ -63,19 +66,21 @@ var/list/admin_verbs_admin = list(
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
 	/datum/admins/proc/PlayerNotes,
+	/client/proc/toggledebuglogs,
 	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
 	/client/proc/free_slot,			/*frees slot for chosen job*/
 	/client/proc/cmd_admin_change_custom_event,
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/toggleattacklogs,
+	/client/proc/bsa, //This has been needed --NUmbers
 //	/datum/admins/proc/show_skills
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
 	/client/proc/jobbans,
 	/client/proc/unjobban_panel,
-	// /client/proc/DB_ban_panel
+	/client/proc/DB_ban_panel
 	)
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
@@ -105,7 +110,9 @@ var/list/admin_verbs_spawn = list(
 var/list/admin_verbs_server = list(
 	/client/proc/Set_Holiday,
 	/client/proc/ToRban,
+	/client/proc/toggle_colours,
 	/datum/admins/proc/startnow,
+	/proc/givetestverbs,
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
@@ -124,7 +131,9 @@ var/list/admin_verbs_server = list(
 	)
 var/list/admin_verbs_debug = list(
 	/client/proc/restart_controller,
+	/client/proc/toggledebuglogs,
 	/client/proc/cmd_admin_list_open_jobs,
+	/proc/givetestverbs,
 	/client/proc/Debug2,
 	/client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
@@ -142,6 +151,7 @@ var/list/admin_verbs_debug = list(
 	)
 var/list/admin_verbs_possess = list(
 	/proc/possess,
+	/proc/givetestverbs,
 	/proc/release
 	)
 var/list/admin_verbs_permissions = list(
@@ -154,6 +164,7 @@ var/list/admin_verbs_rejuv = list(
 //verbs which can be hidden - needs work
 var/list/admin_verbs_hideable = list(
 	/client/proc/set_ooc,
+	/client/proc/toggledebuglogs,
 	/client/proc/deadmin_self,
 	/client/proc/deadchat,
 	/client/proc/toggleprayers,
@@ -235,6 +246,7 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_info,
 //	/client/proc/rules_for_everyone,
 	/client/proc/show_torture, //WEEEEEEEEEEEEEEEEE
+	/client/proc/toggledebuglogs,
 	/client/proc/player_panel_new,
 //	/datum/admins/proc/show_skills
 )
@@ -242,7 +254,7 @@ var/list/admin_verbs_torture = list(
 	/client/proc/cmd_admin_torture_announce,
 	/client/proc/rules_for_everyone
 )
-var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessible anyway - just inconvenient.  Plus I want buttons, plus I added logs.  Becuase I like them.*/
+var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessible anyway - just inconvenient.*/
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/colorooc,				//I think this is a cool thing for donors.
 	/client/proc/cmd_admin_say,
@@ -255,12 +267,7 @@ var/list/admin_verbs_donor = list(		/*I added this stuff, because it's accessibl
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
 	/client/proc/cmd_mod_say,
-	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/toggleattacklogs,
-	/*Debugging Type Stuff*/			//Maybe this shouldn't go here.  But, they're still logs.
-	///client/proc/giveruntimelog,		/*allows us to give access to runtime logs to somebody*/
-	///client/proc/getruntimelog,			/*allows us to access runtime logs to somebody*/
-	///client/proc/getserverlog,			/*allows us to fetch server logs (diary) for other days*/
 )
 var/list/admin_verbs_root = list(
 )
@@ -303,6 +310,7 @@ var/list/admin_verbs_root = list(
 		admin_verbs_sounds,
 		admin_verbs_spawn,
 		/*Debug verbs added by "show debug verbs"*/
+		/datum/admins/proc/cmd_import_legacy_bans,
 		/client/proc/Cell,
 		/client/proc/do_not_use_these,
 		/client/proc/camera_view,
@@ -413,18 +421,18 @@ var/list/admin_verbs_root = list(
 			mob.icon_state = "ghost"
 			mob.icon = 'mob.dmi'
 
-
+/*
 /client/proc/player_panel()
 	set name = "Player Panel"
 	set category = "Admin"
 	if(holder)
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
+	return*/
 
 /client/proc/player_panel_new()
-	set name = "Player Panel New"
-	set category = "Admin"
+	set name = "Player Panel"
+	set category = "Player"
 	if(holder)
 		holder.player_panel_new()
 	feedback_add_details("admin_verb","PPN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -441,7 +449,7 @@ var/list/admin_verbs_root = list(
 
 /client/proc/jobbans()
 	set name = "Display Job bans"
-	set category = "Admin"
+	set category = "Ban"
 	if(holder)
 		if(config.ban_legacy_system)
 			holder.Jobbans()
@@ -452,7 +460,7 @@ var/list/admin_verbs_root = list(
 
 /client/proc/unban_panel()
 	set name = "Unban Panel"
-	set category = "Admin"
+	set category = "Ban"
 	if(holder)
 		if(config.ban_legacy_system)
 			holder.unbanpanel()
@@ -508,7 +516,7 @@ var/list/admin_verbs_root = list(
 #define AUTOBANTIME 10
 
 /client/proc/warn(warned_ckey)
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN|R_MOD))	return
 
 	var/client/C = directory[warned_ckey]
 
@@ -683,18 +691,18 @@ var/list/admin_verbs_root = list(
 
 
 //---- bs12 verbs ----
-
+/*
 /client/proc/mod_panel()
 	set name = "Moderator Panel"
 	set category = "Admin"
-/*	if(holder)
-		holder.mod_panel()*/
-//	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	if(holder)
+		holder.mod_panel()
+	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
-
+*/
 /client/proc/editappear(mob/living/carbon/human/M as mob in world)
 	set name = "Edit Appearance"
-	set category = "Fun"
+	set category = "Event"
 
 	if(!check_rights(R_FUN))	return
 
@@ -750,7 +758,7 @@ var/list/admin_verbs_root = list(
 
 /client/proc/playernotes()
 	set name = "Show Player Info"
-	set category = "Admin"
+	set category = "Player"
 	if(holder)
 		holder.PlayerNotes()
 	return
@@ -780,3 +788,13 @@ var/list/admin_verbs_root = list(
 		usr << "You now will get attack log messages"
 	else
 		usr << "You now won't get attack log messages"
+
+/client/proc/toggledebuglogs()
+	set name = "Toggle Debug Log Messages"
+	set category = "Preferences"
+
+	prefs.toggles ^= CHAT_DEBUGLOGS
+	if (prefs.toggles & CHAT_DEBUGLOGS)
+		usr << "You now will get debug log messages"
+	else
+		usr << "You now won't get debug log messages"

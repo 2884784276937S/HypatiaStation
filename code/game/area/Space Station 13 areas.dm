@@ -100,7 +100,6 @@ proc/process_ghost_teleport_locs()
 				not_in_order = 1
 	while(not_in_order)
 
-
 /*-----------------------------------------------------------------------------*/
 
 /area/engine/

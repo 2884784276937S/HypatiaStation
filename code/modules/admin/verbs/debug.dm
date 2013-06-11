@@ -112,6 +112,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 					var/mob/temp = input("Select mob", "Selection", usr) as mob in world
 					lst[i] = temp.loc
 
+		if( (findtext(procname,"log")) || (findtext(procname,"message")) || (findtext(procname,"msg")) )
+			message_admins("<FONT COLOR=RED>WARNING:</FONT> [key_name(usr)] has tampered with game logs.")
+			log_admin("<FONT COLOR=RED>WARNING:</FONT> [key_name(usr)] has tampered with game logs.") //--Numbers
+
 		if(targetselected)
 			if(!target)
 				usr << "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>"
@@ -525,7 +529,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		world << "* [areatype]"
 
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
-	set category = "Fun"
+	set category = "Event"
 	set name = "Select equipment"
 	if(!ishuman(M))
 		alert("Invalid mob")
@@ -924,7 +928,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(SMES.anchored)
 			SMES.chargemode = 1
 	log_admin("[key_name(usr)] has admin-setup the singularity.")
-	message_admins("[key_name(usr)] has admin-setup the singularity. \n <FONT COLOR=RED>PLEASE NOTE: THIS IS INTENDED FOR DEBUG-ONLY.  THIS MAY HAVE CERTAIN UNDESIRED EFFECTS.</FONT>")
+	message_admins("[key_name(usr)] has admin-setup the singularity. \n<FONT COLOR=RED>PLEASE NOTE: THIS IS INTENDED FOR DEBUG-ONLY.  THIS MAY HAVE CERTAIN UNDESIRED EFFECTS.</FONT>")
 
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"

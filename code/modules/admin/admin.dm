@@ -24,9 +24,10 @@ var/global/floorIsLava = 0
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = "Player"
 	set name = "Show Player Panel"
-	set desc="Edit player (respawn, ban, heal, etc)"
+	set desc= "DEFERRED"
+	set hidden = 1
 
 	if(!M)
 		usr << "You seem to be selecting a mob that doesn't exist anymore."
@@ -169,7 +170,7 @@ var/global/floorIsLava = 0
 
 #define PLAYER_NOTES_ENTRIES_PER_PAGE 50
 /datum/admins/proc/PlayerNotes()
-	set category = "Admin"
+	set category = "Player"
 	set name = "Player Notes"
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
@@ -227,7 +228,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/show_player_info(var/key as text)
-	set category = "Admin"
+	set category = "Player"
 	set name = "Show Player Info"
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
@@ -545,6 +546,7 @@ var/global/floorIsLava = 0
 			<A href='?src=\ref[src];secretsfun=spiders'>Trigger a Spider infestation</A><BR>
 			<A href='?src=\ref[src];secretsfun=spaceninja'>Send in a space ninja</A><BR>
 			<A href='?src=\ref[src];secretsfun=striketeam'>Send in a strike team</A><BR>
+			<A href='?src=\ref[src];secretsfun=syndi_striketeam'>Send in a syndacite strike team</A><BR>
 			<A href='?src=\ref[src];secretsfun=carp'>Trigger an Carp migration</A><BR>
 			<A href='?src=\ref[src];secretsfun=radiation'>Irradiate the station</A><BR>
 			<A href='?src=\ref[src];secretsfun=prison_break'>Trigger a Prison Break</A><BR>

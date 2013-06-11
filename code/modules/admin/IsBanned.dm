@@ -51,7 +51,7 @@ world/IsBanned(key,address,computer_id)
 			failedcid = 0
 			cidquery = " OR computerid = '[computer_id]' "
 
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_Ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
+		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM Ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
 
 		query.Execute()
 
@@ -78,4 +78,5 @@ world/IsBanned(key,address,computer_id)
 			message_admins("[key] has logged in with a blank computer id in the ban check.")
 		if (failedip)
 			message_admins("[key] has logged in with a blank ip in the ban check.")
+
 		return ..()	//default pager ban stuff

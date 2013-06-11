@@ -30,8 +30,9 @@
 Admin Observer
 Donor			+DONOR
 Moderator		+MOD
-Admin Candidate	+ADMIN
-Trial Admin		+@ +SPAWN +REJUV +VAREDIT +BAN
+Admin Candidate		+ADMIN
+Temp Admin		+@ +BAN +REJUV
+Trial Admin		+@ +SPAWN +VAREDIT
 Badmin			+@ +POSSESS +BUILDMODE +SERVER +FUN
 Game Admin		+@ +STEALTH +SOUNDS +DEBUG
 Game Master		+EVERYTHING

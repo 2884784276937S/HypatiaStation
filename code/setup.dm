@@ -587,24 +587,29 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 
+/*
+Admin permissions #defines, their values don't matter, just must be unique.  Do not change without advising SQL administrators.
+This has been edited to make sense with certain permission checks.
+All "single-tasked" permissions are going first, e.g. REJUV
 
-//Please don't edit these values without speaking to Errorage first	~Carn //Owen totally violated this rule --NUMBERS
-//Admin Permissions
-#define R_BUILDMODE		1
-#define R_ADMIN			2
-#define R_BAN			4
-#define R_FUN			8
-#define R_SERVER		16
-#define R_DEBUG			32
-#define R_POSSESS		64
-#define R_PERMISSIONS	128
-#define R_STEALTH		256
-#define R_REJUVINATE	512
-#define R_VAREDIT		1024
-#define R_SOUNDS		2048
-#define R_SPAWN			4096
-#define R_MOD			8192
-#define R_DONOR			16384
+New rule: Their "number" must be higher as their "importance" goes up, e.g. DONOR is low PERMISSIONS is high.
+--Numbers
+*/
+#define R_REJUVINATE 1
+#define R_BUILDMODE 2
+#define R_POSSESS 4
+#define R_STEALTH 8
+#define R_SOUNDS 16 //sort of singe-tasked
+#define R_SPAWN 32
+#define R_VAREDIT 64
+#define R_DONOR 128//lowest "rank"/perm
+#define R_MOD 256//MOD > DONOR
+#define R_BAN 512
+#define R_ADMIN 1024
+#define R_FUN 2048
+#define R_SERVER 4096
+#define R_DEBUG 8192
+#define R_PERMISSIONS 16384
 
 #define R_MAXPERMISSION 16384 //This holds the maximum value for a permission. It is used in iteration, so keep it updated.
 
@@ -623,6 +628,7 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define CHAT_RADIO		512
 #define CHAT_ATTACKLOGS	1024
 #define CHAT_ROLL 2048
+#define CHAT_DEBUGLOGS 4196
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_ROLL)
 //

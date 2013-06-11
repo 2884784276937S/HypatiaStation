@@ -97,7 +97,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/Getmob(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = "Player"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	if(!src.holder)
@@ -112,7 +112,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/Getkey()
-	set category = "Admin"
+	set category = "Player"
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
@@ -140,7 +140,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/sendmob(var/mob/M in sortmobs())
-	set category = "Admin"
+	set category = "Player"
 	set name = "Send Mob"
 	if(!src.holder)
 		src << "Only administrators may use this command."
