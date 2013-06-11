@@ -90,6 +90,8 @@
 		new /obj/item/weapon/melee/baton(src)
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/clothing/tie/holster/waist(src)
+		new /obj/item/taperoll/police(src)
+		new /obj/item/taperoll/police(src)
 		return
 
 
