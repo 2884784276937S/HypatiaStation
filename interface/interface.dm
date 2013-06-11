@@ -23,20 +23,31 @@
 		src << "\red The forum URL is not set in the server configuration."
 	return
 
-#define RULES_FILE "config/rules.html"
-/client/verb/rules()
+//#define RULES_FILE "config/rules.html"
+/client/verb/rules() //This is better --Numbers
 	set name = "Rules"
 	set desc = "Show Server Rules."
 	set hidden = 1
-	src << browse(file(RULES_FILE), "window=rules;size=480x320")
-#undef RULES_FILE
+
+	var/rules = {"
+		<html><head>
+		</head>
+
+		<body>
+		<iframe width='100%' height='97%' src="[config.wikiurl]/index.php?title=Rules&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>		</body>
+
+		</html>"}
+
+	//src << browse(file(RULES_FILE), "window=rules;size=480x320")
+	src << browse(rules, "window=rules;size=920x820") //:)
+//#undef RULES_FILE
 
 /client/verb/donate()
 	set name = "donate"
 	set desc = "Donate to the server."
 	set hidden = 1
 	if( config.donateurl )
-		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
+		if(alert("This will open the donation URL in your browser. Are you sure?",,"Yes","No")=="No")
 			return
 		src << link(config.donateurl)
 	else

@@ -1522,7 +1522,7 @@ window "rpane"
 		saved-params = "is-checked"
 		on-size = ""
 		text = ""
-		image = 'D:\\Users\\Adin\\Downloads\\ss (2013-05-26 at 07.19.26).png'
+		image = 'icons\\misc\\donate.png'
 		command = "donate"
 		is-flat = false
 		stretch = false
