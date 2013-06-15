@@ -5,6 +5,7 @@
 
 	if(Debug2)
 		Debug2 = 0
+
 		message_admins("[key_name(src)] toggled debugging off.")
 		log_admin("[key_name(src)] toggled debugging off.")
 	else

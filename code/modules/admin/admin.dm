@@ -8,14 +8,14 @@ var/global/floorIsLava = 0
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
 	for(var/client/C in admins)
-		if(R_ADMIN|R_DONOR & C.holder.rights)
+		if(R_ADMIN|R_MOD & C.holder.rights)
 			C << msg
 
-/proc/msg_admin_attack(var/text) //Toggleable Attack Messages
-	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[text]</span></span>"
+/proc/msg_admin_attack(var/text,var/attacker as mob,var/victim as mob) //Toggleable Attack Messages
+	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[text]</span>(JMP: <a href='?src=\ref[src];adminplayerobservejump=\ref[attacker]'>ATTACKER</a>|<a href='?src=\ref[src];adminplayerobservejump=\ref[victim]'>VICTIM</a>)</span>"
 	log_adminwarn(rendered)
 	for(var/client/C in admins)
-		if(R_ADMIN|R_DONOR & C.holder.rights)
+		if(R_ADMIN|R_MOD & C.holder.rights)
 			if(C.prefs.toggles & CHAT_ATTACKLOGS)
 				var/msg = rendered
 				C << msg

@@ -1,6 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 // The communications computer
+
+var/global/cc_station_levels = list(1,2,3)
 /obj/machinery/computer/communications
 	name = "Communications Console"
 	desc = "This can be used for various important functions. Still under developement."
@@ -35,6 +37,7 @@
 
 
 
+
 /obj/machinery/computer/communications/process()
 	if(..())
 		if(state != STATE_STATUSDISPLAY)
@@ -44,8 +47,8 @@
 /obj/machinery/computer/communications/Topic(href, href_list)
 	if(..())
 		return
-	if (src.z > 1)
-		usr << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+	if ( !(src.z in cc_station_levels) )
+		usr << "\red <b>Unable to establish a connection</b>: \black You're too far away from <i>Telecommunications Satellites!<br>Please try installing <i>Blue-Space Telecommunications repeaters</i>, and try again."
 		return
 	usr.set_machine(src)
 
@@ -122,6 +125,7 @@
 				if(emergency_shuttle.online)
 					post_status("shuttle")
 			src.state = STATE_DEFAULT
+			src.authenticated = 0
 		if("crewtransfer")
 			src.state= STATE_DEFAULT
 			if(src.authenticated)
@@ -131,6 +135,7 @@
 				init_shift_change(usr) //key difference here
 				if(emergency_shuttle.online)
 					post_status("shuttle")
+			src.authenticated = 0
 		if("cancelshuttle")
 			src.state = STATE_DEFAULT
 			if(src.authenticated)
@@ -190,12 +195,12 @@
 				if(centcomm_message_cooldown)
 					usr << "Arrays recycling.  Please stand by."
 					return
-				var/input = stripped_input(usr, "Please choose a message to transmit to Centcomm via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response.", "To abort, send an empty message.", "")
+				var/input = stripped_input(usr, "Please choose a message to transmit to Central Command via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response.", "To abort, send an empty message.", "")
 				if(!input || !(usr in view(1,src)))
 					return
 				Centcomm_announce(input, usr)
 				usr << "Message transmitted."
-				log_say("[key_name(usr)] has made a Centcomm announcement: [input]")
+				log_say("[key_name(usr)] has made a Central Command announcement: [input]")
 				centcomm_message_cooldown = 1
 				spawn(600)//10 minute cooldown
 					centcomm_message_cooldown = 0
@@ -233,6 +238,12 @@
 		if("ai-callshuttle2")
 			call_shuttle_proc(usr)
 			src.aistate = STATE_DEFAULT
+		if("ai-crewtransfer")
+			src.state = STATE_CREWTRANSFER
+		if("ai-crewtransfer2")
+			init_shift_change(usr) //key difference here
+			if(emergency_shuttle.online)
+				post_status("shuttle")
 		if("ai-messagelist")
 			src.aicurrmsg = 0
 			src.aistate = STATE_MESSAGELIST
@@ -277,6 +288,7 @@
 	..()
 
 /obj/machinery/computer/communications/attack_ai(var/mob/user as mob)
+	src.authenticated = 1
 	return src.attack_hand(user)
 
 
@@ -287,8 +299,9 @@
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	if (src.z != 1 | 2)
-		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
+	var/locz = src.z //Ignore this redundancy, YOU LEAVE MY REDUNDANCY ALONE!
+	if( (locz != 1) && (locz != 2) && (locz != 3) )
+		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from <i>Telecommunications Satellites!<br>Please try installing <i>Blue-Space Telecommunications repeaters</i>, and try again."
 		return
 
 	user.set_machine(src)
@@ -296,14 +309,15 @@
 	if (emergency_shuttle.online && emergency_shuttle.location==0)
 		var/timeleft = emergency_shuttle.timeleft()
 		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
-
-	if ((istype(user, /mob/living/silicon)) && (user.client.holder))
-		var/dat2 = src.interact_ai(user) // give the AI a different interact proc to limit its access
+/*
+	if ((istype(user, /mob/living/silicon)) && (user.client.holder)) //Wha
+/*		var/dat2 = src.interact_ai(user) // give the AI a different interact proc to limit its access
 		if(dat2)
 			dat +=  dat2
 			user << browse(dat, "window=communications;size=400x500")
 			onclose(user, "communications")
-		return
+		return*/
+		authenticated = 1 */
 
 	switch(src.state)
 		if(STATE_DEFAULT)
@@ -387,6 +401,7 @@
 
 
 /obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)
+	authenticated = 1
 	var/dat = ""
 	switch(src.aistate)
 		if(STATE_DEFAULT)

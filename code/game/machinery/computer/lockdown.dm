@@ -3,12 +3,13 @@
 
 /obj/machinery/computer/lockdown
 	//for reference
-	/*name = "Lockdown Control"
+/*
+	name = "Lockdown Control"
 	desc = "Used to control blast doors."
 	icon_state = "lockdown"
 	circuit = "/obj/item/weapon/circuitboard/lockdown"
-	var/connected_doors
-	var/department*/
+//	var/connected_doors = list()
+	var/department = "Engineering" */
 	var/list/displayedNetworks
 
 	New()

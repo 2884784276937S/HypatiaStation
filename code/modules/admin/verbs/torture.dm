@@ -117,7 +117,7 @@
 	world << "<br>"
 /////////////////////////////////////////////////////////////////
 /client/proc/cmd_admin_weaken(var/poor_soul as mob)
-	set category = null
+	set category = "Fun"
 	set name = "Weaken"
 	set desc = "Weaken some pour soul with your admin fuckery"
 

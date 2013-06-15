@@ -211,9 +211,9 @@ client/proc/mark_report_done(ID as num)
 
 
 client/proc/edit_report(ID as num)
-	if(!src.holder)
-		src << "<b>You tried to modify the news, but you're not an admin!"
-		return
+//	if(!src.holder)
+//		src << "<b>You tried to modify the news, but you're not an admin!"
+//		return
 
 	var/savefile/Reports = new("data/reports.sav")
 	var/list/reports

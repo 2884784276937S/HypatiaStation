@@ -285,6 +285,10 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	var/job
 	var/svr
+
+	if(alert("Are you sure?",,"Yes","No")!="Yes")
+		return
+
 	switch(alert("Which bans do you wish to import?",,"Job","Server","All"))
 		if("Job")
 			job = 1

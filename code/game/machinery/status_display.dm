@@ -284,6 +284,50 @@
 		set_picture("ai_bsod")
 		..(severity)
 
+		// return an icon of a time text string (tn)
+	// valid characters are 0-9 and :
+	// px, py are pixel offsets
+/*	proc/texticon(var/tn, var/px = 0, var/py = 0)
+		var/image/I = image('icons/obj/status_display.dmi', "blank")
+
+
+		var/len = lentext(tn)
+
+		for(var/d = 1 to len)
+
+
+			var/char = copytext(tn, len-d+1, len-d+2)
+
+			if(char == " ")
+				continue
+
+			var/image/ID = image('icons/obj/status_display.dmi', icon_state=char)
+
+			ID.pixel_x = -(d-1)*5 + px
+			ID.pixel_y = py
+
+			I.overlays += ID
+
+		return I
+
+	proc/update_display(var/line1, var/line2)
+
+		if(line1 == lastdisplayline1 && line2 == lastdisplayline2)
+			return			// no change, no need to update
+
+		lastdisplayline1 = line1
+		lastdisplayline2 = line2
+
+		if(line2 == null)		// single line display
+			overlays.Cut()
+			overlays += texticon(line1, 23, -13)
+		else					// dual line display
+
+			overlays.Cut()
+			overlays += texticon(line1, 23, -9)
+			overlays += texticon(line2, 23, -17)
+
+*/
 	proc/update()
 
 		if(mode==0) //Blank
@@ -328,15 +372,66 @@
 					set_picture("ai_fishtank")
 				if("Plump Helmet")
 					set_picture("ai_plump")
-
+				if("Custom Text")
+					mode = 3
+					update()
 			return
 
 		if(mode==2)	// BSOD
 			set_picture("ai_bsod")
 			return
 
+		if(mode==3)
+			mode = 1
+			update()
+/*			var/line1
+			var/line2
+
+			if(!index1)
+				line1 = message1
+			else
+				line1 = copytext(message1+message1, index1, index1+5)
+				if(index1++ > (lentext(message1)))
+					index1 = 1
+
+			if(!index2)
+				line2 = message2
+			else
+				line2 = copytext(message2+message2, index2, index2+5)
+				if(index2++ > (lentext(message2)))
+					index2 = 1
+
+			update_display(line1, line2)
+
+			// the following allows 2 updates per process, giving faster scrolling
+			if((index1 || index2) && repeat_update)	// if either line is scrolling
+													// and we haven't forced an update yet
+
+				spawn(5)
+					repeat_update = 0
+					update()		// set to update again in 5 ticks
+					repeat_update = 1
+
+*/
 
 	proc/set_picture(var/state)
 		picture_state = state
 		overlays.Cut()
 		overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
+/*
+	proc/set_message(var/m1, var/m2)
+		if(m1)
+			index1 = (lentext(m1) > 5)
+			message1 = uppertext(m1)
+		else
+			message1 = ""
+			index1 = 0
+
+		if(m2)
+			index2 = (lentext(m2) > 5)
+			message2 = uppertext(m2)
+		else
+			message2 = null
+			index2 = 0
+		repeat_update = 1
+*/

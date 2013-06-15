@@ -669,7 +669,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set hidden = 1
 	src << "Hahah, nice try.  No... you're not getting admin permissions."
-	return
+	return "Hahah, nice try.  No... you're not getting admin permissions."
 
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
 	set category = "Special Verbs"

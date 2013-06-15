@@ -567,7 +567,7 @@
 	..()
 	return
 
-/mob/living/carbon/monkey/meteorhit(obj/O as obj)
+/mob/living/carbon/rock/obsidiai/meteorhit(obj/O as obj)
 	for(var/mob/M in viewers(src, null))
 		M.show_message(text("\red [] has been glazed by []", src, O), 1)
 	if (health > 0)
@@ -580,7 +580,7 @@
 	..()
 	return attack_hand()
 
-/mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/obsidiai/attack_hand(mob/living/carbon/human/M as mob)
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
 		return
@@ -641,8 +641,8 @@
 						O.show_message(text("\red <B>[] has tried to push down [name]!</B>", M), 1)
 	return
 
-/mob/living/carbon/monkey/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
+/mob/living/carbon/rock/obsidiai/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
 	return attack_hand()
 
-/mob/living/carbon/monkey/attack_animal(mob/living/simple_animal/M as mob)
+/mob/living/carbon/rock/obsidiai/attack_animal(mob/living/simple_animal/M as mob)
 	return attack_hand()

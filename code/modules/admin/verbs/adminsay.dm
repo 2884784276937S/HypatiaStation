@@ -67,8 +67,8 @@
 	set hidden = 1
 //	return cmd_admin_say(msg)
 	if(asay_colours)
-		cmd_admin_say(msg)
-		return
+	//	cmd_admin_say(msg)
+		return cmd_admin_say(msg)
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DONOR))	return
 

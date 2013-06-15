@@ -1,6 +1,6 @@
 // DM Environment file for baystation12.dme.
-// All manual changes should be made outside the BEGIN_ and END_ blocks.
- // New source code should be placed in .dm files: choose File/New --> Code File.
+// All manual changes should be made outside the BEGIN_ and END_ blocks. 
+ // New source code should be placed in .dm files: choose File/New --> Code File. 
 // BEGIN_INTERNALS
 // END_INTERNALS
 // BEGIN_FILE_DIR
@@ -51,9 +51,11 @@
 #define FILE_DIR "sound/voice/Serithi"
 #define FILE_DIR "sound/weapons"
 // END_FILE_DIR
+
 // BEGIN_PREFERENCES
 #define DEBUG
 // END_PREFERENCES
+
 // BEGIN_INCLUDE
 #include "code\global.dm"
 #include "code\hub.dm"

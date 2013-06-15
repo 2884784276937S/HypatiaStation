@@ -1,0 +1,18 @@
+"EVA Storage",21.8366,82.1472,0,0,293.15,55000
+"Abandoned Mining Station",0.01,0.01,0,0,2.7,2500
+"Mining Station Starboard Wing",21.8366,82.1472,0,0,293.15,5000
+"The Bridge",21.8366,82.1472,0,0,293.15,5000
+"The Syndicate Forward Operating Base",21.8366,82.1472,0,0,293.15,92500
+"The Prison Wing",21.8366,82.1472,0,0,293.15,7500
+"Medbay",21.8366,82.1472,0,0,293.15,17500
+"The Bridge",21.8366,82.1472,0,0,293.15,2500
+"The Central Primary Hallway",21.8366,82.1472,0,0,293.15,10000
+"Mining Station Port Wing",21.8366,82.1472,0,0,293.15,12500
+"EVA Storage",21.8366,82.1472,0,0,293.15,92500
+"The Derelict Primary Hallway",1.4013e-045,1.4013e-045,0,0,2.7,317500
+"The Toxins Mixing Room",21.8366,82.1472,0,0,293.15,10000
+"Atmospherics",21.8366,82.1472,0,0,293.15,87500
+"The Dormitory Toilets",21.8366,82.1472,0,0,293.15,57500
+"Science Maintenance",21.8366,82.1472,0,0,293.15,7500
+"The Emergency Shuttle Centcom",21.8366,82.1472,0,0,293.15,50000
+"Medbay Treatment Center",21.8366,82.1472,0,0,293.15,40000

@@ -1,0 +1,51 @@
+"Mining Station Starboard Wing",21.8366,82.1472,0,0,293.15,12500
+"Atmospherics",21.8366,82.1472,0,0,293.15,530000
+"Engineering",21.8366,82.1472,0,0,293.15,5000
+"The Abandoned Ship",21.8366,82.1472,0,0,293.15,60000
+"The Aft Block",21.8366,82.1472,0,0,293.15,60000
+"Mining Research Station",17.4713,65.7198,0,0,235.06,12500
+"The Xenobiology Lab",21.8366,82.1472,0,0,293.15,5000
+"The Telecoms Teleporter",21.8366,82.1472,0,0,293.15,2500
+"Space",1.4013e-045,1.4013e-045,0,0,2.7,2500
+"The Prison Wing",21.8366,82.1472,0,0,293.15,25000
+"The Xenobiology Lab",21.8366,82.1472,0,0,293.15,2500
+"Medbay",21.8366,82.1472,0,0,293.15,5000
+"Virology",21.8366,82.1472,0,0,293.15,7500
+"EVA Maintenance",21.8366,82.1472,0,0,293.15,2500
+"The Xenobiology Lab",21.8366,82.1472,0,0,293.15,2500
+"The Brig",21.8366,82.1472,0,0,293.15,42500
+"The Emergency Shuttle Centcom",21.8366,82.1472,0,0,293.15,2500
+"The Chief Medical Officer's office",21.8366,82.1472,0,0,293.15,7500
+"The Gateway",21.8366,82.1472,0,0,293.15,52500
+"The Security Office",21.8366,82.1472,0,0,293.15,2500
+"The Holodeck Alpha",21.8366,82.1472,0,0,293.15,130000
+"Space",1.4013e-045,1.4013e-045,0,0,179.736,262500
+"Mining Station Port Wing",21.8366,82.1472,0,0,293.15,2500
+"The Centcom Emergency Shuttle",1.4013e-045,1.4013e-045,0,0,2.7,7500
+"The Administration Shuttle Centcom",21.8366,82.1472,0,0,293.15,12500
+"The Toxins Test Area",0.01,0.01,0,0,2.7,17500
+"Research Division",21.8366,82.1472,0,0,293.15,7500
+"Atmospherics",0.01,0.01,0,0,2.7,2500
+"Auxiliary Tool Storage",21.8366,82.1472,0,0,293.15,10000
+"Space",1.4013e-045,1.4013e-045,0,0,2.7,20000
+"The Research and Development",21.8366,82.1472,0,0,293.15,2500
+"The Cargo Office",21.8366,82.1472,0,0,293.15,10000
+"The Bar",21.8323,82.1498,0.00104166,0,293.15,320000
+"The Xenobiology Lab",21.8366,82.1472,0,0,293.15,7500
+"The Kitchen",21.8366,82.1472,0,0,293.15,45000
+"Space",1.4013e-045,1.4013e-045,0,0,2.7,7500
+"Aft Starboard Solar Maintenance",21.8366,82.1472,0,0,293.15,25000
+"Space",1.4013e-045,1.4013e-045,0,0,2.7,7500
+"Mining Station EVA",21.8366,82.1472,0,0,293.15,2500
+"Mining Research Station",21.8366,82.1472,0,0,293.15,5000
+"The Bar",21.8366,82.1472,0,0,293.15,47500
+"Anomaly Research Lab",21.8366,82.1472,0,0,293.15,5000
+"The Chapel",21.8366,82.1472,0,0,293.15,5000
+"Engineering",21.8366,82.1472,0,0,293.15,50000
+"The Centcom Emergency Shuttle",21.8366,82.1472,0,0,293.15,12500
+"The Toxins Test Area",0.01,0.01,0,0,2.7,15000
+"Art Supply Storage",21.8366,82.1472,0,0,293.15,22500
+"Abandoned Mining Station",5.60519e-045,5.60519e-045,0,0,293.15,7500
+"Medbay Maintenance",21.8366,82.1472,0,0,293.15,40000
+"Medbay",21.8366,82.1472,0,0,293.15,17500
+"The Fore Block",1.4013e-045,1.4013e-045,0,0,2.7,37500

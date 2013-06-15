@@ -31,6 +31,15 @@ world/IsBanned(key,address,computer_id)
 
 	else
 
+		/* LEGACY BAN CHECKING/ALERNATE TO IMPORTING */
+		if(config.check_legacy_ban)
+			. = CheckBan( ckey(key), computer_id, address )
+			if(.)
+				log_access("Failed Login: [key] [computer_id] [address] - Banned [.["reason"]]")
+				message_admins("\blue Failed Login: [key] id:[computer_id] ip:[address] - Banned [.["reason"]]")
+				return .
+		/* END STUFF */
+
 		var/ckeytext = ckey(key)
 
 		if(!establish_db_connection())
