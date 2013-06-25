@@ -1,8 +1,8 @@
 /mob/Logout()
 	player_list -= src
 	log_access("Logout: [key_name(src)]")
-	if(src.client.prefs.rules_active)
-		src.client.prefs.rules_closed = 1
+//	if(src.client.prefs.rules_active)
+//		src.client.prefs.rules_closed = 1
 	if(admin_datums[src.ckey])
 		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
 			var/admins_number = admins.len

@@ -21,6 +21,8 @@
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
 	return 100.0*charge/maxcharge
+		if maxcharge = 0
+			return 0
 
 // use power from a cell
 /obj/item/weapon/cell/proc/use(var/amount)

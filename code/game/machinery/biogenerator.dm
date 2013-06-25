@@ -90,7 +90,7 @@
 					dat += "<A href='?src=\ref[src];action=detach'>Detach Container</A><BR><BR>"
 					dat += "Food<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=milk;cost=20'>10 milk</A> <FONT COLOR=blue>(20)</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>(50)</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>(50)</FONT><BR> | <A href='?src=\ref[src];action=create;item=meat5;cost=250'>x5</A><BR>"
 					dat += "Nutrient<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=ez;cost=10'>E-Z-Nutrient</A> <FONT COLOR=blue>(10)</FONT> | <A href='?src=\ref[src];action=create;item=ez5;cost=50'>x5</A><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=l4z;cost=20'>Left 4 Zed</A> <FONT COLOR=blue>(20)</FONT> | <A href='?src=\ref[src];action=create;item=l4z5;cost=100'>x5</A><BR>"
@@ -186,6 +186,12 @@
 			new/obj/item/nutrient/rh(src.loc)
 			new/obj/item/nutrient/rh(src.loc)
 			new/obj/item/nutrient/rh(src.loc)
+		if("meat5")
+			new/obj/item/weapon/reagent_containers/food/snacks/meat(src.loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/meat(src.loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/meat(src.loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/meat(src.loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/meat(src.loc)
 		if("wallet")
 			new/obj/item/weapon/storage/wallet(src.loc)
 		if("gloves")
