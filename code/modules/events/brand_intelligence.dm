@@ -54,6 +54,6 @@
 		if(prob(90))
 			infectedMachine.shut_up = 1
 			infectedMachine.shoot_inventory = 0
-			command_alert("All machines aboard [station_name()] have been successfully re-programmed, enjoy the remainder of your shift.", "Machines Reprogrammed")
-		else
-			command_alert("Attempted machine re-programming aboard [station_name()] has failed.", "Machine Malfunction")
+//			command_alert("All machines aboard [station_name()] have been successfully re-programmed, enjoy the remainder of your shift.", "Machines Reprogrammed") // For some reason this message spams numerous times. I have a vague idea why, need to test though.
+//		else
+//			command_alert("Attempted machine re-programming aboard [station_name()] has failed.", "Machine Malfunction")

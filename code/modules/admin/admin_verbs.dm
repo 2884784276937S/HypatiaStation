@@ -424,17 +424,17 @@ var/list/admin_verbs_root = list(
 			mob.icon_state = "ghost"
 			mob.icon = 'mob.dmi'
 
-/*
+
 /client/proc/player_panel()
 	set name = "Player Panel"
 	set category = "Admin"
 	if(holder)
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return*/
+	return
 
 /client/proc/player_panel_new()
-	set name = "Player Panel"
+	set name = "Player Panel New"
 	set category = "Player"
 	if(holder)
 		holder.player_panel_new()
