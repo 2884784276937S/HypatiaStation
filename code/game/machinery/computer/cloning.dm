@@ -429,10 +429,11 @@
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
-	if (subject.stat == 2)
+/*
+	if (subject.stat == 2) // This is the defining stat for death. Any other value is alive.
 		scantemp = "Error:  Subject's neural pathways collapsed."
 		return
-
+*/
 	subject.dna.check_integrity()
 
 	var/datum/data/record/R = new /datum/data/record(  )
