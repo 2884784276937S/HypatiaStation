@@ -74,6 +74,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/toggleattacklogs,
 	/client/proc/bsa, //This has been needed --NUmbers
+	/client/proc/cmd_mob_weaken,
+	/client/proc/cmd_mob_unweaken
 //	/datum/admins/proc/show_skills
 )
 var/list/admin_verbs_ban = list(
