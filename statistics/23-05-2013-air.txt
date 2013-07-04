@@ -1,1 +1,0 @@
-"The AI Satellite Teleporter Room",0.00106869,0.00106869,0,0,2.7,2500

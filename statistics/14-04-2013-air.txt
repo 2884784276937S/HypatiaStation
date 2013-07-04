@@ -1,5 +1,0 @@
-"Atmospherics",21.8366,82.1472,0,0,293.15,2500
-"Atmospherics",4.44453e-005,4.44453e-005,0,0,293.15,22500
-"EVA Maintenance",21.8366,82.1472,0,0,293.15,22500
-"The Centcom Emergency Shuttle",21.8366,82.1472,0,0,293.15,37500
-"Medbay Treatment Center",21.8366,82.1472,0,0,293.15,2500

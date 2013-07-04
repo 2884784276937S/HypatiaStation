@@ -1,6 +1,0 @@
-"The Administration Shuttle Centcom",21.8366,82.1472,0,0,293.15,17500
-"The Cargo Office",21.8324,82.1316,0,0,293.15,392500
-"The Syndicate Forward Operating Base",21.8366,82.1472,0,0,293.15,25000
-"Medbay Treatment Center",21.8366,82.1472,0,0,293.15,5000
-"The Thunderdome",21.8366,82.1472,0,0,293.15,2500
-"West Mining Outpost",21.8366,82.1472,0,0,293.15,2500

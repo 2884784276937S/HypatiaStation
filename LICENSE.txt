@@ -1,3 +1,5 @@
+(HypatiaStation is derivative work of:)
+
 Baystation12
 Copyright (C) 2010-2012 Baystation12 and tgstation13.
 

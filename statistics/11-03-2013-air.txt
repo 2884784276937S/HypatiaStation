@@ -1,2 +1,0 @@
-"Engineering Maintenance",21.8366,82.1472,0,0,293.15,10000
-"Research Mining Outpost",21.8366,82.1472,0,0,293.15,5000
