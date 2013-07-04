@@ -388,6 +388,8 @@
 				records.Remove(C)
 				del(C)
 				menu = 1
+			else if(!( pod1.hascells() ))
+				temp = "Error:  Subject's neural pathways collapsed." //Avoid pre-emptive (refer below) message
 			else
 				var/mob/selected = find_dead_player("[C.fields["ckey"]]")
 				selected << 'chime.ogg'	//probably not the best sound but I think it's reasonable
@@ -429,11 +431,11 @@
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
-/*
-	if (subject.stat == 2) // This is the defining stat for death. Any other value is alive.
+//8m grace period.
+	if ( (subject.stat == 2) && ( (world.time - subject.timeofdeath) >= 4800 ) ) // This is the defining stat for death. Any other value is alive.
 		scantemp = "Error:  Subject's neural pathways collapsed."
 		return
-*/
+
 	subject.dna.check_integrity()
 
 	var/datum/data/record/R = new /datum/data/record(  )

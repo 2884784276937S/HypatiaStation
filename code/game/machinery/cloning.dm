@@ -48,7 +48,7 @@
 	read_only = 1
 
 
-//Part ouf our new cloning system, stem-cell charges!  Can abort fetuses save YOUR LIFE?  Find out, next.
+//Part ouf our new cloning system, stem-cell charges!
 
 /obj/item/cloning/charge
 	name = "Short-Term Biological Suspension Unit (SBSU)"
@@ -133,6 +133,14 @@
 	return
 
 //Clonepod
+
+//A proc, to avodid "Would you like to be cloned?" messages, before they should be.
+/obj/machinery/clonepod/proc/havecells()
+	if(src.charges >= 1)
+		return 1
+	else
+		return 0
+	return 0
 
 //Start growing a human clone in the pod!
 /obj/machinery/clonepod/proc/growclone(var/ckey, var/clonename, var/ui, var/se, var/mindref, var/mrace)
