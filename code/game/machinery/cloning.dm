@@ -135,7 +135,7 @@
 //Clonepod
 
 //A proc, to avodid "Would you like to be cloned?" messages, before they should be.
-/obj/machinery/clonepod/proc/havecells()
+/obj/machinery/clonepod/proc/hascells()
 	if(src.charges >= 1)
 		return 1
 	else
