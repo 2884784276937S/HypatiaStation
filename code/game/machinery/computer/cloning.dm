@@ -431,11 +431,12 @@
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
+/* This needs more discussion with the admin/mod team before we can set it appropriately.
 //8m grace period.
-	if ( (subject.stat == 2) && ( (world.time - subject.timeofdeath) >= 4800 ) ) // This is the defining stat for death. Any other value is alive.
+	if ( (subject.stat == 2) && ( (world.time - subject.timeofdeath) >= 4800 ) )
 		scantemp = "Error:  Subject's neural pathways collapsed."
 		return
-
+*/
 	subject.dna.check_integrity()
 
 	var/datum/data/record/R = new /datum/data/record(  )
