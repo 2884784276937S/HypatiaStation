@@ -166,10 +166,12 @@
 
 
 /client/Center()
+	/* This is a 2D spessman game. We don't do that 3D movement thing.
 	if (isobj(mob.loc))
 		var/obj/O = mob.loc
 		if (mob.canmove)
 			return O.relaymove(mob, 16)
+	*/
 	return
 
 
