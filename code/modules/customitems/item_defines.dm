@@ -75,6 +75,12 @@ hi
 
 	src.add_fingerprint(user)
 	return
+
+// Override /obj/item/weapon/paper/update_icon() to prevent the permit from vanishing
+/obj/item/weapon/paper/fluff/mechpermit/update_icon()
+	icon_state = "fingerprint1"
+	icon = 'icons/obj/card.dmi'
+
 /obj/item/weapon/paper/fluff/mechpermit/proc/update()
 	info = "<h4><center><b>Military Exosuit Manufacturing Permit</b></center></h4> \
 	<br><br> \
