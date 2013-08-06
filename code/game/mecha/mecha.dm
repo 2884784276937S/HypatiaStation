@@ -1712,6 +1712,8 @@
 	delay = 7
 
 	process(var/obj/mecha/mecha as obj,direction)
+		if(direction == 16) // Wat. You can't go up, silly mecha.
+			src.stop()
 		if(direction)
 			if(!step(mecha, direction)||mecha.check_for_support())
 				src.stop()
