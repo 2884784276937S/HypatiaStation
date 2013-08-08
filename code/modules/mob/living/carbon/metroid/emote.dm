@@ -1,4 +1,4 @@
-/mob/living/carbon/slime/emote(var/act)
+/mob/living/carbon/slime/emote(var/act, var/type, var/desc)
 
 
 	if (findtext(act, "-", 1, null))

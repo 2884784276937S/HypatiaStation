@@ -1,4 +1,4 @@
-/mob/living/carbon/roro/emote(var/act)
+/mob/living/carbon/roro/emote(var/act, var/type, var/desc)
 
 
 	if (findtext(act, "-", 1, null))
@@ -13,6 +13,7 @@
 	var/message
 
 	switch(act)
+
 		if("moan")
 			message = "<B>The [src.name]</B> moans."
 			m_type = 2

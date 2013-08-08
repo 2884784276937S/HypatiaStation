@@ -743,6 +743,13 @@ client
 			H.dna.mutantrace = new_mutantrace
 			H.update_mutantrace()
 
+		if (H.dna.mutantrace == "tajaran")
+			H.tajaran_talk_understand = 1
+		if (H.dna.mutantrace == "lizard")
+			H.soghun_talk_understand = 1
+		if (H.dna.mutantrace == "skrell")
+			H.skrell_talk_understand = 1
+
 	else if(href_list["regenerateicons"])
 		if(!check_rights(0))	return
 

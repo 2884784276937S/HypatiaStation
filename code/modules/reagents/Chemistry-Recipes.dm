@@ -1019,7 +1019,10 @@ datum
 					/mob/living/simple_animal/hostile/orionblades,
 					/mob/living/simple_animal/hostile/alien/queen/large,
 					/mob/living/simple_animal/hostile/retaliate,
-					/mob/living/simple_animal/hostile/retaliate/clown
+					/mob/living/simple_animal/hostile/retaliate/clown,
+					/mob/living/simple_animal/hostile/hivebot/juggerbot,
+					/mob/living/simple_animal/hostile/hivebot/reaper,
+					/mob/living/simple_animal/hostile/tribesman
 					)//exclusion list for things you don't want the reaction to create.
 				var/list/critters = typesof(/mob/living/simple_animal/hostile) - blocked // list of possible hostile mobs
 
