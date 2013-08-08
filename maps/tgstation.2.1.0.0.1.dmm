@@ -8441,7 +8441,7 @@
 "dgq" = (/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
 "dgr" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor,/area/mine/north_outpost/dock)
 "dgs" = (/turf/simulated/floor,/area/mine/north_outpost/dock)
-"dgt" = (/obj/machinery/door/airlock/external{name = "Mining Shuttle Airlock"; req_access_txt = "48"},/turf/simulated/floor,/area/mine/north_outpost/dock)
+"dgt" = (/obj/machinery/door/airlock/external{name = "Mining Shuttle Airlock"; req_access_txt = "7"},/turf/simulated/floor,/area/mine/north_outpost/dock)
 "dgu" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/turf/simulated/floor/plating,/area/mine/north_outpost/hallway)
 "dgv" = (/obj/machinery/camera{c_tag = "Research Mining Lobby"; dir = 2},/obj/structure/closet/secure_closet/xenoarchaeologist,/turf/simulated/floor{icon_state = "white"},/area/mine/north_outpost/hallway)
 "dgw" = (/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/obj/machinery/power/apc{dir = 1; name = "Anomaly Research Hallway APC"; pixel_y = 24},/obj/structure/closet/secure_closet/xenoarchaeologist,/turf/simulated/floor{icon_state = "white"},/area/mine/north_outpost/hallway)

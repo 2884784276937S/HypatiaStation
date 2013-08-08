@@ -698,6 +698,7 @@
 		reagents.add_reagent("nutriment", 6)
 		bitesize = 2
 
+/*
 /obj/item/weapon/reagent_containers/food/snacks/roburger
 	name = "roburger"
 	desc = "The lettuce is the only organic component. Beep."
@@ -716,6 +717,7 @@
 		..()
 		reagents.add_reagent("nanites", 100)
 		bitesize = 0.1
+*/
 
 /obj/item/weapon/reagent_containers/food/snacks/xenoburger
 	name = "xenoburger"
