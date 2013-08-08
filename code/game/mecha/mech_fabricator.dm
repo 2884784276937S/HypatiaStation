@@ -495,7 +495,7 @@
 	if(!silent)
 		temp = "Updating local R&D database..."
 		src.updateUsrDialog()
-		sleep(30) //only sleep if called by user
+		// sleep(30) //only sleep if called by user // "bug" fix attempt
 	for(var/obj/machinery/computer/rdconsole/RDC in get_area(src))
 		if(!RDC.sync)
 			continue
