@@ -372,18 +372,20 @@
 					set_picture("ai_fishtank")
 				if("Plump Helmet")
 					set_picture("ai_plump")
+				/* Infinite loop, same as below.
 				if("Custom Text")
 					mode = 3
-					update()
+					update()*/
 			return
 
 		if(mode==2)	// BSOD
 			set_picture("ai_bsod")
 			return
 
+/* Removed due to risk of infinite loop
 		if(mode==3)
 			mode = 1
-			update()
+			update() */
 /*			var/line1
 			var/line2
 
