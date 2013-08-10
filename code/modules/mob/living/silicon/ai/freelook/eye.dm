@@ -36,6 +36,23 @@
 // Use this when setting the aiEye's location.
 // It will also stream the chunk that the new loc is in.
 
+/mob/aiEye/show_message(msg, type, alt, alt_type)//Pass visible messages (type 1) to AI. Remove audible-only
+	if(!ai)
+		return
+	var/mob/living/silicon/ai/A = ai
+	
+	if(type==2)
+		if(alt_type==2)
+			return
+		msg = alt
+		type = alt_type
+		alt = null
+		alt_type = null
+	if(alt_type==2)
+		alt = null
+		alt_type = null
+	A.show_message(msg, type, alt, alt_type)
+
 /mob/aiEye/proc/setLoc(var/T)
 
 	if(ai)
