@@ -47,6 +47,8 @@
 		var/client/C = M.client
 		var/icon/tempHud = 'icons/mob/hud.dmi'
 		for(var/mob/living/carbon/human/patient in view(M))
+			if(!C) continue
+			if(M.see_invisible < patient.invisibility) continue
 			var/foundVirus = 0
 			for(var/datum/disease/D in patient.viruses)
 				if(!D.hidden[SCANNER])
@@ -83,6 +85,7 @@
 	var/icon/tempHud = 'icons/mob/hud.dmi'
 	for(var/mob/living/carbon/human/perp in view(M))
 		if(!C) continue
+		if(M.see_invisible < perp.invisibility) continue
 		var/perpname = perp.name
 		if(perp.wear_id)
 			var/obj/item/weapon/card/id/I = perp.wear_id.GetID()
