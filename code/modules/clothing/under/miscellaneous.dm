@@ -241,6 +241,34 @@
 	color = "bride_orange"
 	flags_inv = HIDESHOES
 
+/obj/item/clothing/under/wedding/bride_purple
+	name = "purple wedding dress"
+	desc = "A big and puffy purple dress."
+	icon_state = "bride_purple"
+	color = "bride_purple"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/wedding/bride_blue
+	name = "blue wedding dress"
+	desc = "A big and puffy blue dress."
+	icon_state = "bride_blue"
+	color = "bride_blue"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/wedding/bride_red
+	name = "red wedding dress"
+	desc = "A big and puffy red dress."
+	icon_state = "bride_red"
+	color = "bride_red"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/wedding/bride_white
+	name = "orange wedding dress"
+	desc = "A white wedding gown made from the finest silk."
+	icon_state = "bride_white"
+	color = "bride_white"
+	flags_inv = HIDESHOES
+
 /obj/item/clothing/under/wedding/suit_white
 	name = "white suit"
 	desc = "A fabulous white suit with orange shirt."
@@ -255,47 +283,71 @@
 	item_state = "creamsuit"
 	color = "bridesmaid"
 
-/obj/item/clothing/under/wedding/firedress
+
+//dresses I guess
+/obj/item/clothing/under/firedress
 	name = "flaming hot black dress"
 	desc = "A small black dress with blue flames print on it."
 	icon_state = "dress_fire"
 	item_state = "creamsuit"
 	color = "dress_fire"
 
-/obj/item/clothing/under/wedding/dress_orange
+/obj/item/clothing/under/dress_orange
 	name = "orange dress"
-	icon_state = "d_orange"
-	color = "d_orange"
+	icon_state = "dress_orange"
+	color = "dress_orange"
 
-/obj/item/clothing/under/wedding/dress_green
+/obj/item/clothing/under/dress_green
 	name = "green dress"
-	icon_state = "d_green"
-	color = "d_green"
+	icon_state = "dress_green"
+	color = "dress_green"
 
-/obj/item/clothing/under/wedding/dress_purple
+/obj/item/clothing/under/dress_pink
 	name = "purple dress"
-	icon_state = "d_purple"
-	color = "d_purple"
+	icon_state = "dress_pink"
+	color = "dress_pink"
 
-/obj/item/clothing/under/wedding/dress_red
-	name = "red dress"
-	icon_state = "d_red"
-	color = "d_red"
+/obj/item/clothing/under/dress/dress_saloon
+	name = "saloon girl dress"
+	desc = "A old western inspired gown for the girl who likes to drink."
+	icon_state = "dress_saloon"
+	color = "dress_saloon"
 
-/obj/item/clothing/under/wedding/dress_blue
-	name = "blue dress"
-	icon_state = "d_blue"
-	color = "d_blue"
+/obj/item/clothing/under/dress/dress_rd
+	name = "research director dress uniform"
+	desc = "Feminine fashion for the style concious RD."
+	icon_state = "dress_rd"
+	color = "dress_rd"
 
-/obj/item/clothing/under/wedding/officer_blue
-	name = "blue officer dress"
-	icon_state = "officer_blue"
-	color = "officer_blue"
+/obj/item/clothing/under/dress/dress_cap
+	name = "captain dress uniform"
+	desc = "Feminine fashion for the style concious captain."
+	icon_state = "dress_cap"
+	color = "dress_cap"
 
-/obj/item/clothing/under/wedding/dress_vampire
-	name = "vampire dress"
-	icon_state = "d_vampire"
-	color = "d_vampire"
+/obj/item/clothing/under/dress/dress_hop
+	name = "head of personal dress uniform"
+	desc = "Feminine fashion for the style concious HoP."
+	icon_state = "dress_hop"
+	color = "dress_hop"
+
+/obj/item/clothing/under/dress/plaid_blue
+	name = "blue plaid skirt"
+	desc = "A preppy blue skirt with a white blouse."
+	icon_state = "plaid_blue"
+	color = "plaid_blue"
+
+/obj/item/clothing/under/dress/plaid_red
+	name = "red plaid skirt"
+	desc = "A preppy red skirt with a white blouse."
+	icon_state = "plaid_red"
+	color = "plaid_red"
+
+/obj/item/clothing/under/dress/plaid_purple
+	name = "blue purple skirt"
+	desc = "A preppy purple skirt with a white blouse."
+	icon_state = "plaid_purple"
+	color = "plaid_purple"
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
