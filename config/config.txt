@@ -160,7 +160,7 @@ FORUMURL http://hypatiastation.net/forum/index.php
 WIKIURL http://hypatiastation.net/wiki
 
 ##Donation URL
-DONATEURL https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hauptmannheinrich%40gmail%2ecom&lc=AU&item_name=Hypatia%20Station%20%2d%20Donation&no_note=0&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
+DONATEURL https://www.nfoservers.com/donate.pl?force_recipient=1&recipient=hauptmannheinrich@gmail.com
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 BANAPPEALS http://hypatiastation.net/forum/viewforum.php?f=16
