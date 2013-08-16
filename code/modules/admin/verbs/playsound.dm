@@ -4,10 +4,24 @@
 	if(!check_rights(R_SOUNDS))	return
 
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	var/soundtype = input("Select the type of track",
+                      "Sound Type",
+                      "music") in list("music","voice","other")
 	uploaded_sound.priority = 250
+	var/vol = 101
+	switch(soundtype)
+		if("music")
+			vol = 30
+		if("voice")
+			vol = 75
+		if("other")
+			while(vol > 75)
+				vol = input("Select a volume level between 0 and 75","Volume",40) as num
+				vol = max(vol,0)
 
-	log_admin("[key_name(src)] played sound [S]")
-	message_admins("[key_name_admin(src)] played sound [S]", 1)
+	uploaded_sound.volume = vol
+	log_admin("[key_name(src)] played sound [S] at [vol] percent volume")
+	message_admins("[key_name_admin(src)] played sound [S] at [vol] percent volume", 1)
 	for(var/mob/M in player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
 			M << uploaded_sound
