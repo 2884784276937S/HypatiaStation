@@ -91,11 +91,11 @@
 			newMsg.body = "A [pick("festival","week long celebration","day of revelry","planet-wide holiday")] has been declared on [affected_dest.name] by [pick("Governor","Commissioner","General","Commandant","Administrator")] [random_name(pick(MALE,FEMALE))] to celebrate [pick("the birth of their [pick("son","daughter")]","coming of age of their [pick("son","daughter")]","the pacification of rogue military cell","the apprehension of a violent criminal who had been terrorising the planet")]. Massive stocks of food and meat have been bought driving up prices across the planet."
 
 	for(var/datum/feed_channel/FC in news_network.network_channels)
-		if(FC.channel_name == "Tau Ceti Daily")
+		if(FC.channel_name == "Andromeda Today")
 			FC.messages += newMsg
 			break
 	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
-		NEWSCASTER.newsAlert("Tau Ceti Daily")
+		NEWSCASTER.newsAlert("Andromeda Today")
 
 /datum/event/economic_event/end()
 	for(var/good_type in dearer_goods)

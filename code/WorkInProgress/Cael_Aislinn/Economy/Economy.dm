@@ -56,7 +56,7 @@
 var/setup_economy = 0
 /proc/setup_economy()
 	var/datum/feed_channel/newChannel = new /datum/feed_channel
-	newChannel.channel_name = "Tau Ceti Daily"
+	newChannel.channel_name = "Andromeda Today"
 	newChannel.author = "CentComm Minister of Information"
 	newChannel.locked = 1
 	newChannel.is_admin_channel = 1
