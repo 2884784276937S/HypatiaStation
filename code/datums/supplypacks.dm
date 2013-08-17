@@ -305,10 +305,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/exoticseeds
 	name = "Exotic Seeds Crate"
 	contains = list(/obj/item/seeds/nettleseed,
+					/*/obj/item/seeds/replicapod,
 					/obj/item/seeds/replicapod,
 					/obj/item/seeds/replicapod,
-					/obj/item/seeds/replicapod,
-					/obj/item/seeds/plumpmycelium,
+					*//obj/item/seeds/plumpmycelium,
 					/obj/item/seeds/libertymycelium,
 					/obj/item/seeds/amanitamycelium,
 					/obj/item/seeds/reishimycelium,
