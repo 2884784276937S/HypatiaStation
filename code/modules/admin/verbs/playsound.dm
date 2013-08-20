@@ -11,7 +11,7 @@
 	var/vol = 101
 	switch(soundtype)
 		if("music")
-			vol = 30
+			vol = 45
 		if("voice")
 			vol = 75
 		if("other")
