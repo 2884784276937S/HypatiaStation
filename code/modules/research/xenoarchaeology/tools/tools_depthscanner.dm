@@ -22,6 +22,7 @@
 	var/clearance = 0
 	var/record_index = 1
 	var/dissonance_spread = 1
+	var/material = "unknown"
 
 /obj/item/device/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
 	user.visible_message("\blue [user] scans [A], the air around them humming gently.")
@@ -34,12 +35,14 @@
 			D.coords = "[M.x].[rand(0,9)]:[M.y].[rand(0,9)]:[10 * M.z].[rand(0,9)]"
 			D.time = worldtime2text()
 			D.record_index = positive_locations.len + 1
+			D.material = M.mineralName
 
 			//find whichever is closer: find or mineral
 			if(M.finds.len)
 				var/datum/find/F = M.finds[1]
 				D.depth = F.excavation_required * 2
 				D.clearance = F.clearance_range * 2
+				D.material = get_responsive_reagent(F.find_type)
 			if(M.excavation_minerals.len)
 				if(M.excavation_minerals[1] < D.depth)
 					D.depth = M.excavation_minerals[1]
@@ -82,6 +85,7 @@
 		dat += "Anomaly depth: [current.depth] cm<br>"
 		dat += "Clearance above anomaly depth: [current.clearance] cm<br>"
 		dat += "Dissonance spread: [current.dissonance_spread]<br>"
+		dat += "Anomaly material: [current.material]<br>"
 		dat += "<A href='?src=\ref[src];clear=[current.record_index]'>clear entry</a><br>"
 	else
 		dat += "Select an entry from the list<br>"

@@ -9,7 +9,7 @@
 	var/view_range = 20				//how close excavation has to come to show an overlay on the turf
 	var/clearance_range = 3			//how close excavation has to come to extract the item
 									//if excavation hits var/excavation_required exactly, it's contained find is extracted cleanly without the ore
-	var/prob_delicate = 75			//probability it requires an active suspension field to not insta-crumble
+	var/prob_delicate = 90			//probability it requires an active suspension field to not insta-crumble
 	var/dissonance_spread = 1		//proportion of the tile that is affected by this find
 									//used in conjunction with analysis machines to determine correct suspension field type
 
@@ -51,7 +51,7 @@
 		if(w.isOn())
 			if(w.get_fuel() >= 4 && !src.method)
 				if(inside)
-					inside.loc = src.loc
+					inside.loc = get_turf(src)
 					for(var/mob/M in viewers(world.view, user))
 						M.show_message("<span class='info'>[src] burns away revealing [inside].</span>",1)
 				else
@@ -143,7 +143,7 @@
 			icon_state = "statuette"
 			additional_desc = "It depicts a [pick("small","ferocious","wild","pleasing","hulking")] \
 			[pick("alien figure","rodent-like creature","reptilian alien","primate","unidentifiable object")] \
-			[pick("performing unspeakable acts","posing heroically","in a feotal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]."
+			[pick("performing unspeakable acts","posing heroically","in a fetal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]."
 		if(5)
 			item_type = "instrument"
 			icon_state = "instrument"
@@ -276,6 +276,7 @@
 		if(19)
 			apply_prefix = 0
 			new_item = new /obj/item/weapon/claymore(src.loc)
+			new_item.force = 10
 			item_type = new_item.name
 		if(20)
 			//arcane clothing
@@ -318,14 +319,15 @@
 		if(25)
 			apply_prefix = 0
 			new_item = new /obj/item/weapon/katana(src.loc)
+			new_item.force = 10
 			item_type = new_item.name
 		if(26)
 			//energy gun
-			var/spawn_type = pick(
-			/obj/item/weapon/gun/energy/laser/practice;prob(100),
-			/obj/item/weapon/gun/energy/laser;prob(75),
-			/obj/item/weapon/gun/energy/xray;prob(50),
-			/obj/item/weapon/gun/energy/laser/captain;prob(25),
+			var/spawn_type = pick(\
+			/obj/item/weapon/gun/energy/laser/practice;100,\
+			/obj/item/weapon/gun/energy/laser;75,\
+			/obj/item/weapon/gun/energy/xray;50,\
+			/obj/item/weapon/gun/energy/laser/captain;25,\
 			)
 			var/obj/item/weapon/gun/energy/new_gun = new spawn_type(src.loc)
 			new_item = new_gun
@@ -518,7 +520,7 @@
 		new_item.name = name
 		new_item.desc = src.desc
 
-		if(talkative)
+		if(talkative && istype(new_item,/obj/item/weapon))
 			new_item.listening_to_players = 1
 			if(prob(25))
 				new_item.speaking_to_players = 1

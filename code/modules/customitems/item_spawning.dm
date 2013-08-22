@@ -5,6 +5,7 @@
 //yes, it has to be an item, you can't pick up nonitems
 //Lazy people, Numbers made this use DB
 
+
 /proc/EquipCustomItemsDB(mob/living/carbon/human/M)
 	establish_round_db_connection()
 	if(!dbcon_round.IsConnected())
