@@ -126,7 +126,8 @@
 	item_state = "medical_hardsuit"
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical,/obj/item/roller)
 	slowdown = 2.0
-	//Security
+
+//Security
 /obj/item/clothing/head/helmet/space/rig/security
 	name = "security hardsuit helmet"
 	icon_state = "rig0-sec"
@@ -159,3 +160,30 @@
 	item_state = "atmos_hardsuit"
 	armor = list(melee = 40, bullet = 0, laser = 0, energy = 0, bomb = 25, bio = 100, rad = 0)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECITON_TEMPERATURE
+
+//Soghun Rigs
+/obj/item/clothing/suit/space/rig/soghun
+	name = "soghun engineering hardsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding. Custom built for Soghun use."
+	icon_state = "rig-engineering-soghun"
+
+/obj/item/clothing/suit/space/rig/elite/soghun
+	icon_state = "rig-white-soghun"
+	name = "soghun advanced hardsuit"
+
+/obj/item/clothing/suit/space/rig/mining/soghun
+	icon_state = "rig-mining-mining"
+	name = "soghun mining hardsuit"
+
+/obj/item/clothing/suit/space/rig/medical/soghun
+	icon_state = "rig-medical-soghun"
+	name = "soghun medical hardsuit"
+
+/obj/item/clothing/suit/space/rig/security/soghun
+	icon_state = "rig-sec-soghun"
+	name = "soghun-security hardsuit"
+
+/obj/item/clothing/suit/space/rig/atmos/soghun
+	desc = "A special suit that protects against hazardous, low pressure environments. Has reduced radiation shielding to allow for greater mobility. Custom built for Soghun use."
+	icon_state = "rig-atmos-soghun"
+	name = "soghun atmos hardsuit"

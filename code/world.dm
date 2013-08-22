@@ -280,7 +280,6 @@
 		features += "<br>"
 
 	features += "<a href=\"[config.forumurl]\">Forum</a>"
-	features += "<br>"
 	features += "<a href=\"[config.wikiurl]\">Wiki</a>"
 
 	if (features)
