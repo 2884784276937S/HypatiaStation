@@ -675,6 +675,7 @@ proc/process_ghost_teleport_locs()
 	icon_state = "escape"
 
 /area/hallway/secondary/construction
+
 	name = "\improper Construction Area"
 	icon_state = "construction"
 
